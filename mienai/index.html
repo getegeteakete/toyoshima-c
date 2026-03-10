@@ -115,7 +115,30 @@ footer{background:#0d1a2e;padding:40px 40px 20px;color:rgba(255,255,255,.42);}
   .card-grid,.cg{grid-template-columns:1fr !important;}
   .cta-band,.cta{padding:36px 16px !important;}
   body{padding-bottom:64px;}
-}</style>
+}
+/* FOOTER */
+footer{background:#0d1a2e;padding:48px 40px 20px;color:rgba(255,255,255,.45);}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;align-items:start;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.08);}
+.footer-info{font-size:.74rem;line-height:2.1;}
+.footer-info a{color:rgba(255,255,255,.45);transition:color .2s;}
+.footer-info a:hover{color:var(--ochre);}
+.footer-nav-col{display:flex;flex-direction:column;gap:8px;}
+.footer-nav-title{font-size:.62rem;letter-spacing:.12em;color:rgba(255,255,255,.28);text-transform:uppercase;margin-bottom:4px;}
+.footer-nav-col a{font-size:.72rem;color:rgba(255,255,255,.42);transition:color .2s;}
+.footer-nav-col a:hover{color:var(--ochre);}
+.footer-btm{max-width:1100px;margin:16px auto 0;display:flex;align-items:center;justify-content:space-between;font-size:.58rem;color:rgba(255,255,255,.22);}
+.admin-footer a{font-size:.54rem;color:rgba(255,255,255,.13);}
+.admin-footer a:hover{color:rgba(255,255,255,.3);}
+@media(max-width:900px){
+  .footer-inner{grid-template-columns:1fr 1fr;gap:28px;}
+  footer{padding:40px 20px 20px;}
+}
+@media(max-width:600px){
+  .footer-inner{grid-template-columns:1fr;gap:24px;}
+  footer{padding:36px 16px 80px;}
+  .footer-btm{flex-direction:column;gap:8px;text-align:center;}
+}
+</style>
 <link rel="stylesheet" href="/shared.css">
 </head>
 <body>
@@ -182,16 +205,67 @@ footer{background:#0d1a2e;padding:40px 40px 20px;color:rgba(255,255,255,.42);}
     <a href="tel:0924062119" class="btn-primary" style="background:transparent;border:1.5px solid rgba(255,255,255,.4);box-shadow:none;">☎ 092-406-2119</a>
   </div>
 </section>
-<footer>
+<footer id="footer">
   <div class="footer-inner">
-    <div><span class="logo-jp" style="font-family:'Shippori Mincho',serif;font-size:.78rem;font-weight:600;color:rgba(255,255,255,.55);">六本松矯正歯科クリニックとよしま</span></div>
-    <div class="footer-info">
-      <div>〒810-0044 福岡市中央区六本松4-11-26 ビバーチェ・ハシモト1F</div>
-      <div><a href="tel:0924062119">TEL: 092-406-2119</a></div>
-      <div>月火水金 9:00〜19:00 ／ 土 9:00〜17:00（木・日・祝 休診）</div>
+    <!-- ロゴ・クリニック情報 -->
+    <div>
+      <div class="logo-mark" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);">
+        <svg viewBox="0 0 22 22" fill="none" width="20" height="20"><path d="M5 5C5 3 6.5 2.5 8.5 3.5C10 4.2 10.5 5.5 11 5.5C11.5 5.5 12 4.2 13.5 3.5C15.5 2.5 17 3 17 5C17 9 15.5 13 14.8 16C14.2 18.5 13.5 20 12 20C10.8 20 10.6 17.5 11 16C11.4 17.5 11.2 20 10 20C8.5 20 7.8 18.5 7.2 16C6.5 13 5 9 5 5Z" stroke="rgba(255,255,255,0.45)" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </div>
+      <span class="logo-jp" style="margin-top:10px;">六本松矯正歯科クリニックとよしま</span>
+      <span class="logo-en">ROPPONMATSU ORTHODONTIC CLINIC TOYOSHIMA</span>
+      <div class="footer-info" style="margin-top:14px;">
+        <div>〒810-0044 福岡市中央区六本松4-11-26 ビバーチェ・ハシモト1F</div>
+        <div><a href="tel:0924062119">TEL: 092-406-2119</a></div>
+        <div>月火水金 9:00〜19:00 ／ 土 9:00〜17:00</div>
+        <div>木・日・祝 休診（月1回日曜診療あり）</div>
+      </div>
+    </div>
+
+    <!-- 診療メニュー -->
+    <div class="footer-nav-col">
+      <div class="footer-nav-title">診療内容</div>
+      <a href="/otona/">大人の矯正</a>
+      <a href="/kodomo/">子どもの矯正</a>
+      <a href="/mienai/">目立たない矯正</a>
+      <a href="/インビザライン（マウスピース矯正）のメリット/">インビザライン</a>
+      <a href="/出っ歯・受け口・すきっ歯の矯正治療/">出っ歯・受け口・すきっ歯</a>
+      <a href="/sonota/">その他の治療</a>
+      <a href="/price/">料金・費用</a>
+    </div>
+
+    <!-- クリニック情報 -->
+    <div class="footer-nav-col">
+      <div class="footer-nav-title">クリニック情報</div>
+      <a href="/touin/">当院のご紹介</a>
+      <a href="#calendar">診療カレンダー</a>
+      <a href="#hours">アクセス・地図</a>
+      <a href="/faq/">よくある質問</a>
+      <a href="/contact/">お問い合わせ</a>
+      <a href="https://489.toyoshima-do.com/" target="_blank">無料矯正相談予約</a>
+    </div>
+
+    <!-- 矯正知識・求人 -->
+    <div class="footer-nav-col">
+      <div class="footer-nav-title">矯正歯科について</div>
+      <a href="/矯正歯科の基礎知識/">矯正歯科の基礎知識</a>
+      <a href="/矯正治療の種類と特徴/">矯正治療の種類と特徴</a>
+      <a href="/矯正治療の費用と支払い方法/">費用と支払い方法</a>
+      <a href="/矯正治療の期間とスケジュール/">治療期間とスケジュール</a>
+      <a href="/risks-of-correction/">リスク・副反応</a>
+      <div class="footer-nav-title" style="margin-top:16px;">採用情報</div>
+      <a href="/歯科衛生士社員・パート募集求人情報/" style="color:var(--ochre);">🦷 歯科衛生士 求人情報</a>
     </div>
   </div>
-  <div class="footer-btm"><span>© 2024 六本松矯正歯科クリニックとよしま. All Rights Reserved.</span><a href="/admin" style="color:rgba(255,255,255,.12);">管理画面</a></div>
+
+  <div class="footer-btm">
+    <span>© 2024 六本松矯正歯科クリニックとよしま. All Rights Reserved.</span>
+    <div style="display:flex;gap:16px;align-items:center;">
+      <a href="/contact/" style="color:rgba(255,255,255,.35);font-size:.65rem;">お問い合わせ</a>
+      <a href="/faq/" style="color:rgba(255,255,255,.35);font-size:.65rem;">FAQ</a>
+      <div class="admin-footer"><a href="/admin">管理画面</a></div>
+    </div>
+  </div>
 </footer>
 <button id="pageTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 18 18"><path d="M4 11l5-5 5 5"/></svg></button>
 <script>
