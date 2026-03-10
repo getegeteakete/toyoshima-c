@@ -596,9 +596,84 @@ textarea.field { resize: vertical; min-height: 80px; line-height: 1.7; }
   stroke-linecap: round; stroke-linejoin: round;
 }
 
+
+/* ═══ LOGIN SCREEN ═══ */
+#loginScreen{
+  position:fixed;inset:0;z-index:9999;
+  background:linear-gradient(135deg,#0d2340 0%,#1d3a5e 50%,#1e4a3a 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+#loginScreen.hidden{display:none;}
+.login-box{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:16px;
+  padding:48px 44px;
+  width:100%;max-width:380px;
+  backdrop-filter:blur(20px);
+  box-shadow:0 24px 64px rgba(0,0,0,.4);
+}
+.login-logo{text-align:center;margin-bottom:32px;}
+.login-logo svg{width:44px;height:44px;margin-bottom:10px;}
+.login-logo h1{font-family:'Shippori Mincho',serif;font-size:1rem;color:#fff;letter-spacing:.1em;margin-bottom:4px;}
+.login-logo p{font-size:.65rem;color:rgba(255,255,255,.4);letter-spacing:.08em;}
+.login-field{margin-bottom:16px;}
+.login-field label{display:block;font-size:.7rem;color:rgba(255,255,255,.55);letter-spacing:.06em;margin-bottom:6px;}
+.login-field input{
+  width:100%;padding:12px 14px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:8px;color:#fff;font-size:.9rem;
+  outline:none;transition:border .2s;box-sizing:border-box;
+}
+.login-field input:focus{border-color:rgba(196,164,98,.6);}
+.login-btn{
+  width:100%;padding:13px;margin-top:8px;
+  background:var(--ochre);border:none;border-radius:8px;
+  color:#fff;font-size:.9rem;font-weight:700;
+  letter-spacing:.06em;cursor:pointer;transition:background .2s;
+  font-family:'Noto Sans JP',sans-serif;
+}
+.login-btn:hover{background:var(--ochre2);}
+.login-err{
+  color:#ff7777;font-size:.75rem;text-align:center;
+  margin-top:10px;min-height:18px;
+}
+.login-hint{
+  font-size:.62rem;color:rgba(255,255,255,.25);
+  text-align:center;margin-top:20px;line-height:1.6;
+}
 </style>
 </head>
 <body>
+<!-- ════ LOGIN SCREEN ════ -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">
+      <svg viewBox="0 0 44 44" fill="none">
+        <circle cx="22" cy="22" r="21" stroke="rgba(196,164,98,.6)" stroke-width="1.5"/>
+        <path d="M12 13C12 10 14.5 9 17.5 10.5C19.5 11.5 20.5 13.5 22 13.5C23.5 13.5 24.5 11.5 26.5 10.5C29.5 9 32 10 32 13C32 20 29.5 26 28.5 30C27.5 33.5 26.5 36 24.5 36C22.8 36 22.5 32.5 23 30C23.5 32.5 23.2 36 21.5 36C19.5 36 18.5 33.5 17.5 30C16.5 26 14 20 12 13Z" stroke="rgba(255,255,255,.85)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h1>とよしま管理システム</h1>
+      <p>ADMIN DASHBOARD — RESTRICTED ACCESS</p>
+    </div>
+    <div class="login-field">
+      <label>ログインID</label>
+      <input type="text" id="loginId" placeholder="admin" autocomplete="username"
+        onkeydown="if(event.key==='Enter')document.getElementById('loginPass').focus()">
+    </div>
+    <div class="login-field">
+      <label>パスワード</label>
+      <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password"
+        onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="login-btn" onclick="doLogin()">ログイン</button>
+    <div class="login-err" id="loginErr"></div>
+    <div class="login-hint">このシステムは六本松矯正歯科クリニックとよしまの<br>スタッフ専用です。不正アクセスは禁止されています。</div>
+  </div>
+</div>
+
+
 
 <!-- ══════════════════════════════════════════
   SIDEBAR
@@ -731,6 +806,9 @@ textarea.field { resize: vertical; min-height: 80px; line-height: 1.7; }
         今日の予約
       </button>
       <span id="clock">--:--:--</span>
+      <button onclick="doLogout()" title="ログアウト" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:6px;color:rgba(255,255,255,.6);padding:5px 11px;font-size:.7rem;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='rgba(255,80,80,.2)';this.style.color='#ff9999'" onmouseout="this.style.background='rgba(255,255,255,.08)';this.style.color='rgba(255,255,255,.6)'">
+        ⏏ ログアウト
+      </button>
     </div>
   </div>
 
@@ -1445,6 +1523,45 @@ textarea.field { resize: vertical; min-height: 80px; line-height: 1.7; }
 </div><!-- /main -->
 
 <script>
+// ═══ LOGIN ═══
+const ADMIN_CREDS = [
+  { id: 'toyoshima', pass: 'dental2024' },
+  { id: 'admin', pass: 'toyoshima2024!' }
+];
+const SESSION_KEY = 'tys_admin_auth';
+
+function checkSession() {
+  const s = sessionStorage.getItem(SESSION_KEY);
+  if (s === 'ok') {
+    document.getElementById('loginScreen').classList.add('hidden');
+  }
+}
+function doLogin() {
+  const id = document.getElementById('loginId').value.trim();
+  const pass = document.getElementById('loginPass').value;
+  const errEl = document.getElementById('loginErr');
+  const ok = ADMIN_CREDS.some(c => c.id === id && c.pass === pass);
+  if (ok) {
+    sessionStorage.setItem(SESSION_KEY, 'ok');
+    const screen = document.getElementById('loginScreen');
+    screen.style.opacity = '0';
+    screen.style.transition = 'opacity .4s';
+    setTimeout(() => screen.classList.add('hidden'), 400);
+  } else {
+    errEl.textContent = '❌ IDまたはパスワードが正しくありません';
+    document.getElementById('loginPass').value = '';
+    document.getElementById('loginPass').focus();
+    setTimeout(() => errEl.textContent = '', 3000);
+  }
+}
+function doLogout() {
+  sessionStorage.removeItem(SESSION_KEY);
+  location.reload();
+}
+// 起動時にセッション確認
+window.addEventListener('DOMContentLoaded', checkSession);
+
+
 // ═══════════════════════════════════════════════════════════
 //  とよしま矯正歯科 統合AI管理システム — メインスクリプト
 // ═══════════════════════════════════════════════════════════
@@ -2299,19 +2416,19 @@ async function genSEOTitles() {
   const kw = document.getElementById('seo-kw').value;
   await callClaude(`SEO専門家として「${kw}」をターゲットにした歯科矯正記事タイトル案10個を提案。各タイトルに文字数・クリック率予測・狙いを記載。医療広告GL遵守。`, 'seo-out', '📝 タイトル案生成中...');
 }
-function setKwAndGenSEO(kw) {
+async function setKwAndGenSEO(kw) {
   nav('seo', null);
   setTimeout(() => {
     document.getElementById('seo-kw').value = kw;
     genSEO();
   }, 100);
 }
-function seoToLegal() {
+async function seoToLegal() {
   document.getElementById('legal-text').value = document.getElementById('seo-out').innerText;
   nav('legal', null);
   setTimeout(runLegal, 200);
 }
-function seoToLegalDirect() {
+async function seoToLegalDirect() {
   const txt = document.getElementById('seo-out').innerText;
   if (txt && !txt.includes('クリックしてください')) {
     document.getElementById('legal-text').value = txt;
@@ -2349,7 +2466,7 @@ async function autoFix() {
 元テキスト: ${text}
 指摘事項: ${issues.slice(0,1000)}`, 'legal-out', '🔧 自動修正中...');
 }
-function noteToLegal() {
+async function noteToLegal() {
   document.getElementById('legal-text').value = document.getElementById('note-out').innerText;
   nav('legal', null);
   setTimeout(runLegal, 200);
