@@ -550,13 +550,74 @@ textarea.field { resize: vertical; min-height: 80px; line-height: 1.7; }
 .tags-wrap { display: flex; flex-wrap: wrap; gap: 5px; }
 
 /* ━━━━━━━━━━━ RESPONSIVE ━━━━━━━━━━━ */
+/* ════ TABLET (960px) ════ */
 @media (max-width: 960px) {
-  :root { --sw: 50px; }
-  .sb-brand-txt, .sb-lbl, .nav-item span:not(.ico), .nav-badge, .sb-footer { display: none; }
-  .sb-brand { justify-content: center; }
-  .nav-item { justify-content: center; padding: 10px; }
   .kpi-grid { grid-template-columns: repeat(2,1fr); }
   .g2, .g3, .g-sidebar { grid-template-columns: 1fr; }
+}
+
+/* ════ MOBILE DRAWER MENU (720px以下) ════ */
+@media (max-width: 720px) {
+  /* bodyのoverflowはJSで制御 */
+  html, body { overflow: hidden; }
+
+  /* サイドバーをflex flowから外しドロワーに */
+  #sidebar {
+    position: fixed !important;
+    top: 0; left: 0; bottom: 0;
+    z-index: 2000;
+    width: 252px !important;
+    transform: translateX(-100%);
+    transition: transform .28s cubic-bezier(.4,0,.2,1);
+    box-shadow: 6px 0 40px rgba(0,0,0,.45);
+    /* テキスト・ラベルを常に表示 */
+  }
+  #sidebar.open { transform: translateX(0); }
+  /* ドロワー内はテキストを表示 */
+  #sidebar .sb-brand-txt,
+  #sidebar .sb-lbl,
+  #sidebar .nav-item span:not(.ico),
+  #sidebar .nav-badge,
+  #sidebar .sb-footer { display: block !important; }
+  #sidebar .nav-item { justify-content: flex-start !important; padding: 9px 14px !important; }
+
+  /* オーバーレイ */
+  #sideOverlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.6);
+    z-index: 1999;
+    backdrop-filter: blur(3px);
+  }
+  #sideOverlay.show { display: block; }
+
+  /* メインを全幅 */
+  #main { width: 100% !important; }
+
+  /* ハンバーガーボタン表示 */
+  #hamburger-admin { display: flex !important; }
+
+  /* トップバー整理 */
+  .tb-btn.primary .btn-label { display: none; }
+  #conn-status { display: none; }
+  #topbar { padding: 0 10px !important; gap: 6px; }
+
+  /* ページ余白 */
+  .page { padding: 14px 12px !important; }
+  .page-head { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .kpi-grid { grid-template-columns: 1fr 1fr !important; gap: 8px; }
+  .g2, .g3, .g-sidebar { grid-template-columns: 1fr; }
+
+  /* フォーム */
+  .form-row { flex-direction: column; }
+  .field { min-width: 0 !important; }
+
+  /* ログインボックス */
+  .login-box { padding: 32px 22px; margin: 0 12px; }
+
+  /* カード */
+  .card-body { padding: 12px !important; }
+  .card-head { padding: 10px 12px !important; }
 }
 
 /* ── SCROLL TO TOP ── */
@@ -675,6 +736,9 @@ textarea.field { resize: vertical; min-height: 80px; line-height: 1.7; }
 
 
 
+<!-- サイドバーオーバーレイ（スマホ用） -->
+<div id="sideOverlay" onclick="closeSidebar()"></div>
+
 <!-- ══════════════════════════════════════════
   SIDEBAR
 ══════════════════════════════════════════ -->
@@ -788,6 +852,21 @@ textarea.field { resize: vertical; min-height: 80px; line-height: 1.7; }
 
   <!-- TOPBAR -->
   <div id="topbar">
+    <!-- ハンバーガーボタン（スマホのみ表示） -->
+    <button id="hamburger-admin" onclick="toggleAdminMenu()"
+      style="display:none;align-items:center;justify-content:center;
+             width:36px;height:36px;background:rgba(255,255,255,.08);
+             border:1px solid rgba(255,255,255,.15);border-radius:7px;
+             margin-right:8px;flex-shrink:0;cursor:pointer;transition:background .2s;">
+      <!-- ☰ ハンバーガー -->
+      <svg id="ham-icon-open" viewBox="0 0 20 20" fill="none" width="18" height="18">
+        <path d="M3 5h14M3 10h14M3 15h14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <!-- ✕ クローズ（ドロワー開時） -->
+      <svg id="ham-icon-close" viewBox="0 0 20 20" fill="none" width="18" height="18" style="display:none;">
+        <path d="M5 5l10 10M15 5L5 15" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
     <div class="tb-left">
       <div class="tb-breadcrumb">
         <a onclick="nav('dashboard',null)">とよしま管理</a>
@@ -1665,6 +1744,10 @@ function nav(id, el) {
   if (id === 'pages') initPagesPage();
   if (id === 'keywords') renderKwTags();
   if (id === 'settings') loadSettings();
+  // スマホ: ナビ後にサイドバー閉じる
+  if (window.innerWidth <= 720) {
+    try { closeSidebar(); } catch(e) {}
+  }
 }
 
 // ─────────────────────────────────────
@@ -2617,6 +2700,33 @@ document.addEventListener('DOMContentLoaded', () => {
   if(target === window) window.addEventListener('scroll', onScroll);
   else target.addEventListener('scroll', onScroll);
 })();
+
+// ════ MOBILE DRAWER MENU ════
+function toggleAdminMenu() {
+  const isOpen = document.getElementById('sidebar').classList.contains('open');
+  isOpen ? closeSidebar() : openSidebar();
+}
+function openSidebar() {
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('sideOverlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('ham-icon-open').style.display = 'none';
+  document.getElementById('ham-icon-close').style.display = 'block';
+}
+function closeSidebar() {
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('sideOverlay');
+  if (sb) sb.classList.remove('open');
+  if (ov) ov.classList.remove('show');
+  document.body.style.overflow = '';
+  const o = document.getElementById('ham-icon-open');
+  const c = document.getElementById('ham-icon-close');
+  if (o) o.style.display = 'block';
+  if (c) c.style.display = 'none';
+}
+// ページ遷移時にスマホではサイドバーを閉じる
+const _origNav = typeof nav === 'function' ? nav : null;
+
 </script>
 
 <!-- SCROLL TO TOP -->
