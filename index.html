@@ -2,2446 +2,1453 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>とよしま矯正歯科｜統合AI管理システム</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/dayjs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/locale/ja.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>六本松矯正歯科クリニックとよしま｜福岡市中央区六本松の矯正・歯科</title>
+<meta name="description" content="福岡市中央区六本松の矯正歯科クリニック。インビザライン・ワイヤー矯正・舌側矯正・小児矯正・ホワイトニング・一般歯科。地下鉄六本松駅徒歩3分。092-406-2119">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-/* ━━━━━━━━━━━ DESIGN TOKENS ━━━━━━━━━━━ */
 :root {
-  --bg:        #f3f0e8;
-  --bg2:       #ece8de;
-  --bg3:       #e4dfd3;
-  --white:     #ffffff;
-  --sf2:       #f8f5ef;
-  --border:    #ddd8cd;
-  --border2:   #ccc6b8;
-
-  --navy:      #1d3a5e;
-  --navy2:     #152f4e;
-  --navy3:     #24487a;
-  --navy-lt:   #e7edf5;
-  --navy-mid:  #c3d0e2;
-
-  --ochre:     #b8965a;
-  --ochre-lt:  #f5ebd6;
-  --ochre-mid: #dbc898;
-  --ochre-dk:  #9a7c40;
-
-  --sage:      #3d7a5a;
-  --sage-lt:   #e2f0e8;
-  --amber:     #9a7318;
-  --amber-lt:  #f5ebd8;
-  --red:       #b04848;
-  --red-lt:    #f5e7e7;
-  --blue:      #2a5ca8;
-  --blue-lt:   #e5edf8;
-
-  --text:      #1a2636;
-  --text2:     #465060;
-  --text3:     #8a8a8a;
-  --text4:     #b0b0b0;
-
-  --sw: 228px;
-  --th: 46px;
-  --radius: 7px;
-  --shadow: 0 1px 6px rgba(0,0,0,.08);
-  --shadow2: 0 3px 16px rgba(0,0,0,.1);
+  --white: #FFFFFF;
+  --off-white: #FAFAF8;
+  --cream: #F5EFE7;
+  --petal: #F9F3EE;
+  --sage: #6B9E8A;
+  --sage-mid: #5A8A78;
+  --sage-deep: #3D6B5A;
+  --sage-pale: #C2D9D2;
+  --sage-ultra: #EAF3F0;
+  --charcoal: #222222;
+  --mid: #555555;
+  --light: #999999;
+  --border: #E2DDD8;
+  --gold: #BF9060;
+  --gold-light: #DFB88A;
+  --warm-bg: #F8F5F1;
 }
 
-/* ━━━━━━━━━━━ RESET ━━━━━━━━━━━ */
 *{margin:0;padding:0;box-sizing:border-box;}
-html,body{height:100%;overflow:hidden;}
-body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);display:flex;font-size:13px;line-height:1.5;}
-button{font-family:inherit;cursor:pointer;}
-input,select,textarea{font-family:inherit;}
-a{text-decoration:none;}
-::-webkit-scrollbar{width:5px;height:5px;}
-::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
-::-webkit-scrollbar-track{background:transparent;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--charcoal);background:var(--off-white);overflow-x:hidden;}
 
-/* ━━━━━━━━━━━ SIDEBAR ━━━━━━━━━━━ */
-#sidebar {
-  width: var(--sw);
-  flex-shrink: 0;
-  background: var(--navy);
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-  transition: width .2s;
+/* ── HEADER ─────────────────── */
+#header {
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  background:rgba(250,250,248,0.96);backdrop-filter:blur(16px);
+  border-bottom:1px solid transparent;
+  transition:border-color 0.3s,box-shadow 0.3s;
+  height:68px;display:flex;align-items:center;padding:0 5%;
+  justify-content:space-between;
 }
-.sb-brand {
-  padding: 16px 14px 14px;
-  border-bottom: 1px solid rgba(255,255,255,.08);
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  flex-shrink: 0;
-}
-.sb-logo {
-  width: 34px; height: 34px;
-  background: rgba(255,255,255,.07);
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.sb-logo svg { display: block; }
-.sb-brand-txt .sb-name {
-  font-size: .72rem; font-weight: 700;
-  color: #fff; line-height: 1.35; letter-spacing: .04em;
-}
-.sb-brand-txt .sb-sub {
-  font-size: .55rem; color: rgba(255,255,255,.38);
-  margin-top: 1px; letter-spacing: .04em;
-}
-.sb-status {
-  margin-top: 4px; display: flex; align-items: center; gap: 5px;
-  font-size: .54rem; color: rgba(255,255,255,.35);
-}
-.sb-status::before {
-  content: ''; width: 5px; height: 5px; border-radius: 50%;
-  background: #ccc; flex-shrink: 0;
-  transition: background .3s;
-}
-.sb-status.online::before { background: #4adc8a; box-shadow: 0 0 6px #4adc8a; }
+#header.scrolled{border-color:var(--border);box-shadow:0 2px 16px rgba(0,0,0,0.06);}
 
-.sb-section { padding: 10px 0 2px; }
-.sb-lbl {
-  font-size: .53rem; color: rgba(255,255,255,.28);
-  letter-spacing: .16em; padding: 0 14px 5px;
-  text-transform: uppercase; font-weight: 600;
+.logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-mark{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,var(--sage),var(--sage-deep));
+  display:flex;align-items:center;justify-content:center;
+  color:white;font-size:1rem;flex-shrink:0;
 }
-.nav-item {
-  display: flex; align-items: center; gap: 9px;
-  padding: 8px 14px; cursor: pointer;
-  font-size: .7rem; color: rgba(255,255,255,.58);
-  transition: all .15s; border-left: 3px solid transparent;
-  white-space: nowrap; overflow: hidden;
-}
-.nav-item:hover { color: rgba(255,255,255,.88); background: rgba(255,255,255,.06); }
-.nav-item.active {
-  color: #fff; background: rgba(255,255,255,.1);
-  border-left-color: var(--ochre); font-weight: 500;
-}
-.nav-item .ico {
-  width: 16px; height: 16px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-}
-.nav-item .ico svg {
-  width: 14px; height: 14px; stroke: currentColor; fill: none;
-  stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round;
-}
-.nav-badge {
-  margin-left: auto; flex-shrink: 0;
-  background: var(--ochre); color: #fff;
-  font-size: .52rem; padding: 2px 7px; border-radius: 10px; font-weight: 700;
-}
-.nav-badge.dim { background: rgba(255,255,255,.12); color: rgba(255,255,255,.55); }
-.nav-badge.alert { background: var(--red); animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.6} }
+.logo-text{}
+.logo-jp{display:block;font-family:'Noto Serif JP',serif;font-size:.95rem;font-weight:500;color:var(--charcoal);letter-spacing:.05em;line-height:1.2;}
+.logo-en{display:block;font-family:'Cormorant Garamond',serif;font-size:.6rem;color:var(--sage);letter-spacing:.2em;font-style:italic;}
 
-.sb-divider { height: 1px; background: rgba(255,255,255,.07); margin: 6px 14px; }
-.sb-footer {
-  margin-top: auto; padding: 12px 14px;
-  border-top: 1px solid rgba(255,255,255,.07);
-  font-size: .58rem; color: rgba(255,255,255,.3);
-  line-height: 1.8; flex-shrink: 0;
+nav{display:flex;align-items:center;gap:1.8rem;}
+nav a{text-decoration:none;color:var(--mid);font-size:.75rem;letter-spacing:.04em;transition:color .2s;font-weight:500;}
+nav a:hover{color:var(--sage);}
+.nav-cta{
+  background:var(--sage);color:white!important;
+  padding:9px 22px;border-radius:30px;font-size:.72rem!important;
+  letter-spacing:.08em;transition:background .2s!important;
+  display:flex;align-items:center;gap:6px;
 }
-.sb-footer .version { font-family: 'JetBrains Mono', monospace; font-size: .52rem; }
+.nav-cta:hover{background:var(--sage-deep)!important;}
 
-/* ━━━━━━━━━━━ MAIN ━━━━━━━━━━━ */
-#main { flex: 1; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{width:22px;height:2px;background:var(--charcoal);border-radius:2px;transition:.3s;}
 
-/* ━━━━━━━━━━━ TOPBAR ━━━━━━━━━━━ */
-#topbar {
-  height: var(--th); flex-shrink: 0;
-  background: var(--navy2);
-  display: flex; align-items: center; padding: 0 18px;
-  justify-content: space-between;
-  border-bottom: 2px solid var(--ochre);
-  gap: 12px;
+.mobile-menu{
+  display:none;position:fixed;
+  top:68px;left:0;right:0;
+  background:var(--off-white);border-bottom:1px solid var(--border);
+  z-index:899;flex-direction:column;padding:16px 5% 24px;gap:0;
+  box-shadow:0 8px 24px rgba(0,0,0,.1);
 }
-.tb-left { display: flex; align-items: center; gap: 14px; min-width: 0; }
-.tb-breadcrumb {
-  font-size: .62rem; color: rgba(255,255,255,.4);
-  display: flex; align-items: center; gap: 6px; white-space: nowrap;
+.mobile-menu.open{display:flex;}
+.mobile-menu a{
+  text-decoration:none;color:var(--charcoal);font-size:.88rem;
+  padding:13px 0;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  letter-spacing:.03em;
 }
-.tb-breadcrumb a { color: var(--ochre-mid); cursor: pointer; }
-.tb-breadcrumb a:hover { color: var(--ochre); }
-.tb-title { font-size: .76rem; font-weight: 600; color: #fff; letter-spacing: .04em; white-space: nowrap; }
-.tb-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-.tb-btn {
-  font-size: .62rem; padding: 5px 12px; border-radius: 4px;
-  border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.07);
-  color: rgba(255,255,255,.68); transition: all .15s;
-  display: flex; align-items: center; gap: 5px;
-}
-.tb-btn:hover { background: rgba(255,255,255,.14); color: #fff; }
-.tb-btn.primary { background: var(--ochre); border-color: var(--ochre); color: #fff; }
-.tb-btn.primary:hover { background: var(--ochre-dk); }
-.tb-btn svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-#clock { font-size: .6rem; color: rgba(255,255,255,.32); font-family: 'JetBrains Mono', monospace; }
-#conn-status {
-  font-size: .58rem; padding: 3px 9px; border-radius: 10px;
-  background: rgba(255,255,255,.08); color: rgba(255,255,255,.4);
-  display: flex; align-items: center; gap: 5px; white-space: nowrap;
-}
-#conn-status::before {
-  content: ''; width: 5px; height: 5px; border-radius: 50%;
-  background: #ccc; flex-shrink: 0; transition: background .3s;
-}
-#conn-status.ok::before { background: #4adc8a; }
-#conn-status.partial::before { background: var(--ochre); }
+.mobile-menu a::after{content:'›';color:var(--sage);font-size:1.1rem;}
 
-/* ━━━━━━━━━━━ CONTENT ━━━━━━━━━━━ */
-#content { flex: 1; overflow-y: auto; background: var(--bg); }
-.page { display: none; padding: 18px 20px; }
-.page.active { display: block; }
+/* ── HERO ─────────────────── */
+.hero{
+  min-height:100vh;
+  display:grid;grid-template-columns:55% 45%;
+  padding-top:68px;position:relative;
+}
+.hero-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 5% 80px 8%;position:relative;z-index:2;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.68rem;letter-spacing:.2em;color:var(--sage);
+  text-transform:uppercase;font-family:'Cormorant Garamond',serif;
+  font-style:italic;margin-bottom:28px;
+}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--sage);}
 
-/* ━━━━━━━━━━━ PAGE HEADER ━━━━━━━━━━━ */
-.page-head {
-  display: flex; align-items: flex-start; justify-content: space-between;
-  margin-bottom: 16px; padding-bottom: 13px; border-bottom: 1px solid var(--border);
+.hero-title{
+  font-family:'Noto Serif JP',serif;
+  font-size:clamp(1.8rem,3.5vw,3rem);
+  font-weight:300;line-height:1.65;
+  letter-spacing:.1em;color:var(--charcoal);
+  margin-bottom:8px;
 }
-.page-title {
-  font-size: 1.22rem; font-weight: 700; color: var(--text);
-  font-family: 'Noto Serif JP', serif; letter-spacing: .02em;
+.hero-title strong{
+  font-weight:500;color:var(--sage);display:block;
+  font-size:clamp(2rem,4vw,3.4rem);
 }
-.page-title small {
-  display: block; font-size: .58rem; font-weight: 400;
-  color: var(--text3); font-family: 'Noto Sans JP', sans-serif;
-  letter-spacing: .05em; margin-top: 3px;
+.hero-subtitle{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(.9rem,1.5vw,1.1rem);
+  color:var(--gold);letter-spacing:.15em;
+  margin-bottom:32px;font-style:italic;
 }
-.page-actions { display: flex; gap: 7px; flex-wrap: wrap; }
+.hero-body{
+  font-size:.82rem;line-height:2.1;color:var(--mid);
+  max-width:420px;margin-bottom:44px;letter-spacing:.03em;
+}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;}
 
-/* ━━━━━━━━━━━ BUTTONS ━━━━━━━━━━━ */
-.btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 7px 14px; border-radius: 5px; border: 1px solid transparent;
-  font-size: .7rem; font-weight: 500; letter-spacing: .03em;
-  transition: all .15s; white-space: nowrap;
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  text-decoration:none;border-radius:40px;
+  font-size:.82rem;letter-spacing:.06em;font-weight:500;
+  padding:14px 30px;transition:all .25s;border:2px solid transparent;
 }
-.btn svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.btn-navy { background: var(--navy); color: #fff; border-color: var(--navy); }
-.btn-navy:hover { background: var(--navy3); }
-.btn-ochre { background: var(--ochre); color: #fff; border-color: var(--ochre); }
-.btn-ochre:hover { background: var(--ochre-dk); }
-.btn-ghost { background: var(--white); color: var(--text2); border-color: var(--border2); }
-.btn-ghost:hover { background: var(--bg2); }
-.btn-danger { background: var(--red-lt); color: var(--red); border-color: #ddbfbf; }
-.btn-danger:hover { background: #f0d0d0; }
-.btn-sage { background: var(--sage-lt); color: var(--sage); border-color: #b8d8c5; }
-.btn-sage:hover { background: #cfe8d8; }
-.btn-sm { padding: 5px 11px; font-size: .63rem; }
-.btn-xs { padding: 3px 8px; font-size: .59rem; }
-.btn:disabled { opacity: .4; cursor: not-allowed; }
+.btn-green{background:var(--sage);color:white;border-color:var(--sage);}
+.btn-green:hover{background:var(--sage-deep);border-color:var(--sage-deep);transform:translateY(-1px);box-shadow:0 6px 20px rgba(74,122,104,.3);}
+.btn-outline{background:transparent;color:var(--charcoal);border-color:var(--border);}
+.btn-outline:hover{border-color:var(--sage);color:var(--sage);}
+.btn-gold{background:var(--gold);color:white;border-color:var(--gold);}
+.btn-gold:hover{background:#a67840;border-color:#a67840;transform:translateY(-1px);}
 
-/* ━━━━━━━━━━━ CARD ━━━━━━━━━━━ */
-.card {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: var(--radius); margin-bottom: 14px;
-  overflow: hidden; box-shadow: var(--shadow);
+/* Hero right – photo area */
+.hero-right{
+  position:relative;overflow:hidden;
+  background:linear-gradient(160deg, var(--sage-ultra) 0%, var(--cream) 100%);
 }
-.card-head {
-  padding: 11px 16px; border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-  background: var(--white);
+.hero-photo{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,var(--sage-ultra) 0%,#d4e8e1 40%,var(--cream) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:8px;
 }
-.card-title {
-  font-size: .75rem; font-weight: 600; color: var(--text);
-  display: flex; align-items: center; gap: 7px;
+.hero-photo-label{
+  font-size:.65rem;color:var(--sage);letter-spacing:.15em;opacity:.6;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
 }
-.card-title svg {
-  width: 14px; height: 14px; stroke: var(--navy); fill: none;
-  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+.clinic-img-area{
+  width:80%;aspect-ratio:4/3;
+  background:rgba(107,158,138,.12);
+  border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:8px;
+  border:1px dashed var(--sage-pale);
 }
-.card-body { padding: 14px 16px; }
+.clinic-img-area span{font-size:3rem;opacity:.25;}
+.clinic-img-area p{font-size:.65rem;color:var(--sage-mid);letter-spacing:.1em;opacity:.7;}
 
-/* ━━━━━━━━━━━ KPI GRID ━━━━━━━━━━━ */
-.kpi-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 14px; }
-.kpi {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 14px 16px;
-  border-top: 3px solid var(--border); box-shadow: var(--shadow);
-  transition: box-shadow .2s, transform .2s;
+/* Floating info cards */
+.hero-card{
+  position:absolute;
+  background:white;border-radius:14px;
+  padding:14px 20px;
+  box-shadow:0 4px 24px rgba(0,0,0,.1);
+  animation:cardIn .8s ease forwards;opacity:0;
 }
-.kpi:hover { box-shadow: var(--shadow2); transform: translateY(-1px); }
-.kpi.c-navy { border-top-color: var(--navy); }
-.kpi.c-ochre { border-top-color: var(--ochre); }
-.kpi.c-sage { border-top-color: var(--sage); }
-.kpi.c-amber { border-top-color: var(--amber); }
-.kpi.c-red { border-top-color: var(--red); }
-.kpi-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
-.kpi-icon svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.kpi-icon.i-navy { background: var(--navy-lt); color: var(--navy); }
-.kpi-icon.i-ochre { background: var(--ochre-lt); color: var(--ochre); }
-.kpi-icon.i-sage { background: var(--sage-lt); color: var(--sage); }
-.kpi-icon.i-amber { background: var(--amber-lt); color: var(--amber); }
-.kpi-val { font-size: 1.6rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; line-height: 1; margin-bottom: 4px; color: var(--text); }
-.kpi-label { font-size: .59rem; color: var(--text3); letter-spacing: .05em; }
-.kpi-change { font-size: .58rem; margin-top: 5px; display: flex; align-items: center; gap: 3px; }
-.up { color: var(--sage); } .dn { color: var(--red); } .nc { color: var(--text3); }
+.hero-card:nth-child(3){bottom:22%;left:4%;animation-delay:.3s;}
+.hero-card:nth-child(4){top:20%;right:4%;animation-delay:.5s;}
+.hero-card:nth-child(5){bottom:6%;right:8%;animation-delay:.7s;}
+@keyframes cardIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero-card .val{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem;color:var(--sage);line-height:1;font-weight:400;
+}
+.hero-card .lbl{font-size:.6rem;color:var(--light);letter-spacing:.08em;margin-top:4px;}
 
-/* ━━━━━━━━━━━ ALERT BANNER ━━━━━━━━━━━ */
-.alert-banner {
-  display: flex; align-items: flex-start; gap: 10px;
-  padding: 10px 14px; border-radius: 6px; margin-bottom: 12px;
-  font-size: .68rem; line-height: 1.7; border-left: 4px solid;
+/* ── ANNOUNCE ─────────────────── */
+.announce{
+  background:var(--sage);color:white;
+  padding:11px 5%;display:flex;align-items:center;
+  justify-content:center;gap:16px;flex-wrap:wrap;
+  font-size:.75rem;letter-spacing:.04em;
 }
-.alert-banner svg { width: 14px; height: 14px; flex-shrink: 0; margin-top: 2px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.alert-info { background: var(--navy-lt); border-color: var(--navy); color: var(--navy); }
-.alert-warn { background: var(--amber-lt); border-color: var(--amber); color: var(--amber); }
-.alert-ok { background: var(--sage-lt); border-color: var(--sage); color: var(--sage); }
-.alert-error { background: var(--red-lt); border-color: var(--red); color: var(--red); }
+.announce a{color:var(--gold-light);text-decoration:underline;}
+.announce-dot{width:4px;height:4px;background:rgba(255,255,255,.4);border-radius:50%;}
 
-/* ━━━━━━━━━━━ TABLES ━━━━━━━━━━━ */
-.wp-table { width: 100%; border-collapse: collapse; font-size: .7rem; }
-.wp-table th {
-  background: var(--sf2); padding: 8px 12px; text-align: left;
-  font-size: .57rem; color: var(--text3); letter-spacing: .1em;
-  font-weight: 600; border-bottom: 1px solid var(--border);
-  text-transform: uppercase; white-space: nowrap;
+/* ── SECTION BASE ─────────────────── */
+section{padding:96px 8%;}
+.sec-head{text-align:center;margin-bottom:60px;}
+.sec-en{
+  display:block;font-family:'Cormorant Garamond',serif;
+  font-size:.7rem;letter-spacing:.35em;color:var(--sage);
+  text-transform:uppercase;margin-bottom:10px;font-style:italic;
 }
-.wp-table td {
-  padding: 9px 12px; border-bottom: 1px solid var(--border);
-  color: var(--text2); vertical-align: middle;
+.sec-jp{
+  font-family:'Noto Serif JP',serif;
+  font-size:clamp(1.4rem,3vw,2rem);
+  font-weight:400;letter-spacing:.1em;line-height:1.5;
 }
-.wp-table tr:last-child td { border-bottom: none; }
-.wp-table tr:hover td { background: var(--sf2); }
-.wp-table td.tc { color: var(--text); font-weight: 500; }
-.wp-table td.tc a { color: var(--navy); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: block; max-width: 300px; }
-.wp-table td.tc a:hover { color: var(--ochre); text-decoration: underline; }
-.excerpt { font-size: .59rem; color: var(--text3); margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 300px; }
-.row-actions { display: flex; gap: 4px; opacity: 0; transition: opacity .15s; }
-tr:hover .row-actions { opacity: 1; }
-
-/* ━━━━━━━━━━━ BADGES ━━━━━━━━━━━ */
-.badge {
-  display: inline-flex; align-items: center;
-  padding: 2px 8px; border-radius: 3px;
-  font-size: .57rem; font-weight: 600; letter-spacing: .04em; white-space: nowrap;
-}
-.b-pub { background: var(--sage-lt); color: var(--sage); }
-.b-draft { background: var(--amber-lt); color: var(--amber); }
-.b-navy { background: var(--navy-lt); color: var(--navy); }
-.b-gray { background: var(--bg3); color: var(--text3); }
-.b-red { background: var(--red-lt); color: var(--red); }
-.b-ochre { background: var(--ochre-lt); color: var(--ochre-dk); }
-.b-blue { background: var(--blue-lt); color: var(--blue); }
-
-/* ━━━━━━━━━━━ TABS ━━━━━━━━━━━ */
-.tabs {
-  display: flex; border-bottom: 1px solid var(--border);
-  padding: 0 16px; background: var(--white);
-}
-.tab-btn {
-  padding: 9px 14px; cursor: pointer; font-size: .68rem;
-  color: var(--text3); border-bottom: 2px solid transparent;
-  transition: all .15s; margin-bottom: -1px; font-weight: 500;
-  display: flex; align-items: center; gap: 5px;
-  background: none; border-top: none; border-left: none; border-right: none;
-}
-.tab-btn:hover { color: var(--text2); }
-.tab-btn.active { color: var(--navy); border-bottom-color: var(--ochre); font-weight: 600; }
-.tab-cnt { background: var(--border); color: var(--text3); font-size: .53rem; padding: 1px 6px; border-radius: 10px; }
-.tab-btn.active .tab-cnt { background: var(--ochre-mid); color: var(--amber); }
-.tab-pane { display: none; }
-.tab-pane.active { display: block; }
-
-/* ━━━━━━━━━━━ FILTER BAR ━━━━━━━━━━━ */
-.filter-bar {
-  display: flex; align-items: center; gap: 7px;
-  padding: 8px 14px; background: var(--sf2);
-  border-bottom: 1px solid var(--border); flex-wrap: wrap;
-}
-.filter-bar input, .filter-bar select {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 4px; padding: 5px 9px; font-size: .67rem;
-  color: var(--text); outline: none; transition: border .15s;
-}
-.filter-bar input:focus, .filter-bar select:focus { border-color: var(--navy3); }
-.filter-bar input { min-width: 180px; }
-.filter-count { font-size: .6rem; color: var(--text3); margin-left: auto; }
-
-/* ━━━━━━━━━━━ PAGINATION ━━━━━━━━━━━ */
-.pagination {
-  display: flex; align-items: center; gap: 4px;
-  padding: 9px 14px; border-top: 1px solid var(--border); background: var(--sf2);
-}
-.pag-info { font-size: .6rem; color: var(--text3); margin-right: 8px; }
-.pag-btn {
-  width: 27px; height: 27px; border-radius: 4px;
-  border: 1px solid var(--border); background: var(--white);
-  font-size: .64rem; color: var(--text2); display: flex; align-items: center; justify-content: center;
-  font-family: 'JetBrains Mono', monospace; transition: all .15s; cursor: pointer;
-}
-.pag-btn:hover { background: var(--bg2); }
-.pag-btn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
-
-/* ━━━━━━━━━━━ GRIDS ━━━━━━━━━━━ */
-.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-.g-sidebar { display: grid; grid-template-columns: 1fr 340px; gap: 14px; }
-
-/* ━━━━━━━━━━━ AI OUTPUT ━━━━━━━━━━━ */
-.ai-output {
-  background: var(--sf2); border: 1px solid var(--border);
-  border-radius: 6px; padding: 13px 15px; font-size: .7rem;
-  line-height: 1.9; color: var(--text2); white-space: pre-wrap;
-  word-break: break-word; max-height: 500px; overflow-y: auto;
-  transition: border-color .2s;
-}
-.ai-output.empty { color: var(--text3); font-style: italic; }
-.ai-output.loading {
-  display: flex; align-items: center; justify-content: center;
-  gap: 10px; color: var(--text3); font-style: italic; min-height: 80px;
-}
-.ai-output:focus-within { border-color: var(--navy-mid); }
-
-/* ━━━━━━━━━━━ FORM ELEMENTS ━━━━━━━━━━━ */
-.field-label {
-  display: block; font-size: .59rem; color: var(--text3);
-  letter-spacing: .07em; margin-bottom: 5px; font-weight: 600;
-  text-transform: uppercase;
-}
-.field {
-  width: 100%; background: var(--white); border: 1px solid var(--border);
-  border-radius: 5px; padding: 7px 10px; font-size: .7rem;
-  color: var(--text); outline: none; transition: border .15s;
-}
-.field:focus { border-color: var(--navy3); }
-.field::placeholder { color: var(--text4); }
-textarea.field { resize: vertical; min-height: 80px; line-height: 1.7; }
-.form-row { margin-bottom: 11px; }
-.check-label {
-  display: flex; align-items: center; gap: 8px;
-  font-size: .68rem; color: var(--text2); cursor: pointer;
-}
-.check-label input[type=checkbox] { width: 14px; height: 14px; accent-color: var(--navy); }
-
-/* ━━━━━━━━━━━ SPINNER ━━━━━━━━━━━ */
-.spinner {
-  width: 16px; height: 16px; border: 2px solid var(--border);
-  border-top-color: var(--navy); border-radius: 50%;
-  animation: spin .7s linear infinite; display: inline-block;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* ━━━━━━━━━━━ INSIGHT CARD ━━━━━━━━━━━ */
-.insight-card {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 7px; padding: 13px 15px; display: flex; gap: 11px;
-  transition: box-shadow .2s; margin-bottom: 9px;
-}
-.insight-card:hover { box-shadow: var(--shadow2); }
-.insight-icon {
-  width: 34px; height: 34px; border-radius: 7px;
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-}
-.insight-icon svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.insight-icon.i-navy { background: var(--navy-lt); color: var(--navy); }
-.insight-icon.i-ochre { background: var(--ochre-lt); color: var(--ochre-dk); }
-.insight-icon.i-red { background: var(--red-lt); color: var(--red); }
-.insight-icon.i-sage { background: var(--sage-lt); color: var(--sage); }
-.insight-body h4 { font-size: .73rem; font-weight: 600; color: var(--text); margin-bottom: 3px; }
-.insight-body p { font-size: .65rem; color: var(--text3); line-height: 1.7; }
-.insight-action { margin-top: 7px; font-size: .62rem; color: var(--navy); font-weight: 600; cursor: pointer; }
-.insight-action:hover { color: var(--ochre); text-decoration: underline; }
-
-/* ━━━━━━━━━━━ CALENDAR ━━━━━━━━━━━ */
-.cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-.cal-title { font-size: .85rem; font-weight: 700; color: var(--text); font-family: 'JetBrains Mono', monospace; }
-.cal-nav { display: flex; gap: 6px; }
-.cal-nav button { background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; font-size: .68rem; cursor: pointer; color: var(--text2); transition: all .15s; }
-.cal-nav button:hover { background: var(--bg2); }
-.cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 3px; }
-.cal-day-label { text-align: center; font-size: .6rem; color: var(--text3); padding: 4px 0; font-weight: 600; }
-.cal-day-label.sun { color: var(--red); }
-.cal-day-label.sat { color: var(--navy); }
-.cal-cell {
-  min-height: 68px; border: 1px solid var(--border); border-radius: 5px;
-  padding: 5px; cursor: pointer; background: var(--white);
-  transition: all .15s; overflow: hidden;
-}
-.cal-cell:hover { background: var(--sf2); border-color: var(--navy-mid); }
-.cal-cell.today { border-color: var(--ochre); background: var(--ochre-lt); }
-.cal-cell.other-month { opacity: .4; }
-.cal-cell.closed { background: var(--bg3); }
-.cal-date { font-size: .65rem; font-weight: 600; color: var(--text2); margin-bottom: 3px; font-family: 'JetBrains Mono', monospace; }
-.cal-cell.today .cal-date { color: var(--ochre-dk); }
-.cal-apt { font-size: .56rem; padding: 2px 5px; border-radius: 3px; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; background: var(--navy-lt); color: var(--navy); }
-.cal-apt.morning { background: var(--ochre-lt); color: var(--ochre-dk); }
-.cal-apt.afternoon { background: var(--sage-lt); color: var(--sage); }
-.cal-more { font-size: .55rem; color: var(--text3); }
-
-/* ━━━━━━━━━━━ RANK PILL ━━━━━━━━━━━ */
-.rank-pill {
-  display: inline-block; width: 40px; text-align: center;
-  padding: 2px 0; border-radius: 3px; font-size: .64rem;
-  font-weight: 700; font-family: 'JetBrains Mono', monospace;
-}
-.r-top3 { background: #fff3cd; color: #856404; }
-.r-top10 { background: var(--sage-lt); color: var(--sage); }
-.r-top20 { background: var(--ochre-lt); color: var(--ochre-dk); }
-.r-low { background: var(--bg3); color: var(--text3); }
-
-/* ━━━━━━━━━━━ CONNECTION SETUP ━━━━━━━━━━━ */
-.setup-card {
-  max-width: 680px; margin: 60px auto;
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 12px; overflow: hidden; box-shadow: var(--shadow2);
-}
-.setup-header {
-  background: var(--navy); padding: 28px 32px;
-  display: flex; align-items: center; gap: 14px;
-}
-.setup-header svg { width: 32px; height: 32px; stroke: rgba(255,255,255,.7); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.setup-header h2 { font-size: 1.1rem; font-weight: 700; color: #fff; }
-.setup-header p { font-size: .65rem; color: rgba(255,255,255,.5); margin-top: 3px; }
-.setup-body { padding: 28px 32px; }
-.setup-section { margin-bottom: 22px; }
-.setup-section-title {
-  font-size: .62rem; font-weight: 700; color: var(--text3);
-  letter-spacing: .12em; text-transform: uppercase; margin-bottom: 12px;
-  padding-bottom: 7px; border-bottom: 1px solid var(--border);
-}
-.setup-hint { font-size: .63rem; color: var(--text3); margin-top: 5px; line-height: 1.7; }
-.setup-hint a { color: var(--navy); }
-.setup-hint code { background: var(--bg2); padding: 1px 5px; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: .6rem; }
-
-/* ━━━━━━━━━━━ PATIENT TABLE ━━━━━━━━━━━ */
-.patient-avatar {
-  width: 28px; height: 28px; border-radius: 50%;
-  background: var(--navy-lt); color: var(--navy);
-  display: flex; align-items: center; justify-content: center;
-  font-size: .62rem; font-weight: 700; flex-shrink: 0;
+.sec-bar{
+  width:36px;height:2px;
+  background:linear-gradient(90deg,var(--sage),var(--gold));
+  margin:18px auto 0;border-radius:2px;
 }
 
-/* ━━━━━━━━━━━ LEGAL CHECK ━━━━━━━━━━━ */
-.legal-item {
-  display: flex; align-items: flex-start; gap: 10px;
-  padding: 11px 13px; border-radius: 6px; margin-bottom: 7px;
-  border: 1px solid var(--border); background: var(--sf2);
-  border-left: 4px solid var(--border);
+/* ── FEATURES ─────────────────── */
+.features{background:var(--warm-bg);}
+.features-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
 }
-.legal-item.ok { border-left-color: var(--sage); background: var(--sage-lt); }
-.legal-item.warn { border-left-color: var(--amber); background: var(--amber-lt); }
-.legal-item.ng { border-left-color: var(--red); background: var(--red-lt); }
-.legal-item-icon { font-size: .85rem; flex-shrink: 0; width: 18px; }
-.legal-item-body strong { display: block; font-size: .7rem; color: var(--text); margin-bottom: 2px; }
-.legal-item-body span { font-size: .62rem; color: var(--text3); }
-
-/* ━━━━━━━━━━━ MISC ━━━━━━━━━━━ */
-.section-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-.section-row h3 { font-size: .76rem; font-weight: 600; color: var(--text); }
-.mono { font-family: 'JetBrains Mono', monospace; }
-.text-muted { color: var(--text3); font-size: .65rem; }
-.dot-sep { color: var(--text4); margin: 0 5px; }
-.tag {
-  display: inline-flex; align-items: center; gap: 5px;
-  background: var(--navy-lt); color: var(--navy3);
-  font-size: .6rem; padding: 3px 9px; border-radius: 3px;
+.feat-card{
+  background:white;border-radius:20px;
+  padding:36px 28px;
+  border:1px solid var(--border);
+  transition:all .3s;
+  display:flex;flex-direction:column;align-items:flex-start;
 }
-.tag button { background: none; border: none; cursor: pointer; color: inherit; opacity: .6; font-size: .7rem; padding: 0; }
-.tag button:hover { opacity: 1; }
-.tags-wrap { display: flex; flex-wrap: wrap; gap: 5px; }
+.feat-card:hover{
+  border-color:var(--sage-pale);
+  box-shadow:0 8px 32px rgba(107,158,138,.12);
+  transform:translateY(-3px);
+}
+.feat-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.2rem;color:var(--sage-pale);
+  font-weight:300;line-height:1;margin-bottom:12px;
+}
+.feat-icon{
+  width:52px;height:52px;
+  background:var(--sage-ultra);border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;margin-bottom:18px;
+}
+.feat-card h3{
+  font-family:'Noto Serif JP',serif;
+  font-size:.95rem;font-weight:500;
+  letter-spacing:.05em;margin-bottom:10px;
+  line-height:1.5;
+}
+.feat-card p{font-size:.75rem;color:var(--mid);line-height:1.9;letter-spacing:.02em;}
 
-/* ━━━━━━━━━━━ RESPONSIVE ━━━━━━━━━━━ */
-@media (max-width: 960px) {
-  :root { --sw: 50px; }
-  .sb-brand-txt, .sb-lbl, .nav-item span:not(.ico), .nav-badge, .sb-footer { display: none; }
-  .sb-brand { justify-content: center; }
-  .nav-item { justify-content: center; padding: 10px; }
-  .kpi-grid { grid-template-columns: repeat(2,1fr); }
-  .g2, .g3, .g-sidebar { grid-template-columns: 1fr; }
+/* ── TREATMENTS ─────────────────── */
+.treatments{background:var(--off-white);}
+.treat-tabs{
+  display:flex;justify-content:center;gap:8px;
+  flex-wrap:wrap;margin-bottom:48px;
+}
+.tab-btn{
+  padding:9px 22px;border-radius:30px;
+  border:1.5px solid var(--border);
+  background:transparent;cursor:pointer;
+  font-size:.75rem;font-family:'Noto Sans JP',sans-serif;
+  color:var(--mid);letter-spacing:.04em;
+  transition:all .2s;
+}
+.tab-btn.active,.tab-btn:hover{
+  background:var(--sage);color:white;border-color:var(--sage);
+}
+.treat-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:28px;
+}
+.treat-card{
+  background:white;border-radius:20px;
+  overflow:hidden;border:1px solid var(--border);
+  transition:all .3s;display:flex;
+}
+.treat-card:hover{
+  box-shadow:0 8px 32px rgba(0,0,0,.08);
+  transform:translateY(-2px);
+}
+.treat-img{
+  width:160px;flex-shrink:0;
+  background:var(--sage-ultra);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:6px;
+  font-size:2.2rem;color:var(--sage);
+}
+.treat-img span{font-size:2.5rem;opacity:.5;}
+.treat-img p{font-size:.55rem;color:var(--sage-mid);letter-spacing:.08em;opacity:.7;}
+.treat-body{padding:24px 20px;flex:1;}
+.treat-tag{
+  display:inline-block;font-size:.58rem;
+  background:var(--sage-ultra);color:var(--sage-deep);
+  padding:3px 10px;border-radius:20px;margin-bottom:10px;
+  letter-spacing:.05em;font-weight:500;
+}
+.treat-body h3{
+  font-family:'Noto Serif JP',serif;
+  font-size:.92rem;font-weight:500;
+  margin-bottom:8px;letter-spacing:.04em;line-height:1.5;
+}
+.treat-body p{font-size:.73rem;color:var(--mid);line-height:1.85;letter-spacing:.02em;}
+.treat-detail{
+  display:inline-flex;align-items:center;gap:4px;
+  margin-top:12px;font-size:.67rem;color:var(--sage);
+  letter-spacing:.05em;font-weight:500;
+}
+.treat-detail::after{content:'→';}
+
+/* ── ORTHODONTICS DETAIL ─────────────────── */
+.ortho-section{background:var(--warm-bg);}
+.ortho-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.ortho-left h2{
+  font-family:'Noto Serif JP',serif;
+  font-size:clamp(1.4rem,2.5vw,1.9rem);
+  font-weight:400;line-height:1.7;letter-spacing:.08em;margin-bottom:24px;
+}
+.ortho-left p{
+  font-size:.82rem;line-height:2.1;color:var(--mid);
+  margin-bottom:20px;letter-spacing:.03em;
+}
+.ortho-points{display:flex;flex-direction:column;gap:16px;margin-top:28px;}
+.ortho-point{
+  display:flex;align-items:flex-start;gap:14px;
+  background:white;border-radius:14px;padding:16px 18px;
+  border:1px solid var(--border);
+}
+.ortho-point-icon{
+  width:36px;height:36px;background:var(--sage-ultra);
+  border-radius:10px;display:flex;align-items:center;
+  justify-content:center;font-size:1rem;flex-shrink:0;
+}
+.ortho-point-text h4{font-size:.82rem;font-weight:600;margin-bottom:4px;letter-spacing:.03em;}
+.ortho-point-text p{font-size:.72rem;color:var(--mid);line-height:1.7;letter-spacing:.02em;}
+
+.ortho-types{display:flex;flex-direction:column;gap:16px;}
+.ortho-type{
+  background:white;border-radius:16px;padding:22px 22px;
+  border:1px solid var(--border);transition:all .3s;
+}
+.ortho-type:hover{border-color:var(--sage-pale);box-shadow:0 4px 16px rgba(107,158,138,.1);}
+.ortho-type-head{
+  display:flex;align-items:center;gap:12px;margin-bottom:12px;
+}
+.ortho-type-badge{
+  background:var(--sage);color:white;
+  font-size:.6rem;padding:4px 12px;border-radius:20px;
+  letter-spacing:.06em;font-weight:600;
+}
+.ortho-type h3{font-family:'Noto Serif JP',serif;font-size:.9rem;font-weight:500;letter-spacing:.04em;}
+.ortho-type p{font-size:.73rem;color:var(--mid);line-height:1.85;letter-spacing:.02em;}
+.price-note{
+  margin-top:10px;font-size:.65rem;color:var(--gold);
+  font-weight:600;letter-spacing:.04em;
+}
+
+/* ── CLINIC INFO ─────────────────── */
+.clinic-section{background:var(--off-white);}
+.clinic-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.clinic-photo-area{
+  aspect-ratio:4/3;border-radius:20px;overflow:hidden;
+  background:linear-gradient(135deg,var(--sage-ultra),var(--cream));
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:12px;
+  border:1px solid var(--border);
+}
+.clinic-photo-area span{font-size:4rem;opacity:.2;}
+.clinic-photo-area p{font-size:.65rem;color:var(--sage-mid);letter-spacing:.12em;opacity:.6;}
+.clinic-content h2{
+  font-family:'Noto Serif JP',serif;
+  font-size:clamp(1.3rem,2.2vw,1.8rem);
+  font-weight:400;line-height:1.75;
+  letter-spacing:.08em;margin-bottom:20px;
+}
+.clinic-content p{
+  font-size:.82rem;line-height:2.1;color:var(--mid);
+  margin-bottom:16px;letter-spacing:.03em;
+}
+.clinic-features{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;
+}
+.cli-feat{
+  display:flex;align-items:center;gap:10px;
+  background:var(--sage-ultra);border-radius:10px;
+  padding:11px 14px;
+}
+.cli-feat-dot{
+  width:6px;height:6px;background:var(--sage);
+  border-radius:50%;flex-shrink:0;
+}
+.cli-feat p{font-size:.72rem;font-weight:500;color:var(--charcoal);letter-spacing:.02em;}
+
+/* ── HOURS & ACCESS ─────────────────── */
+.hours-section{
+  background:var(--charcoal);color:white;
+  padding:80px 8%;
+}
+.hours-section .sec-en{color:var(--sage-pale);}
+.hours-section .sec-jp{color:white;}
+.hours-wrap{
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;
+  max-width:960px;margin:0 auto;
+  align-items:start;
+}
+.hours-table{width:100%;}
+.hours-table table{width:100%;border-collapse:collapse;}
+.hours-table thead tr th{
+  font-size:.62rem;letter-spacing:.12em;
+  color:var(--sage-pale);padding:0 8px 12px;
+  text-align:center;font-weight:500;
+}
+.hours-table thead tr th:first-child{text-align:left;}
+.hours-table tbody tr{border-top:1px solid rgba(255,255,255,.08);}
+.hours-table tbody tr td{
+  padding:12px 8px;font-size:.78rem;
+  text-align:center;color:rgba(255,255,255,.75);
+}
+.hours-table tbody tr td:first-child{
+  text-align:left;font-weight:500;
+  color:white;letter-spacing:.03em;
+}
+.circle{color:var(--sage-pale);}
+.cross{color:rgba(255,255,255,.25);}
+.triangle{color:var(--gold-light);}
+.hours-note{
+  margin-top:16px;font-size:.68rem;
+  color:rgba(255,255,255,.45);line-height:1.8;
+  letter-spacing:.03em;
+}
+
+.access-info{}
+.access-info h3{
+  font-family:'Noto Serif JP',serif;
+  font-size:1rem;font-weight:400;color:white;
+  letter-spacing:.08em;margin-bottom:20px;
+}
+.access-item{
+  display:flex;align-items:flex-start;gap:12px;
+  margin-bottom:16px;
+}
+.access-icon{
+  width:32px;height:32px;
+  background:rgba(107,158,138,.25);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;flex-shrink:0;margin-top:1px;
+}
+.access-text p{font-size:.75rem;color:rgba(255,255,255,.65);line-height:1.7;letter-spacing:.02em;}
+.access-text strong{color:white;font-weight:600;font-size:.8rem;}
+.map-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:20px;
+  background:var(--sage);color:white;
+  padding:11px 24px;border-radius:30px;
+  text-decoration:none;font-size:.75rem;letter-spacing:.06em;
+  font-weight:500;transition:background .2s;
+}
+.map-btn:hover{background:var(--sage-deep);}
+
+/* ── PAYMENT ─────────────────── */
+.payment-section{background:var(--warm-bg);padding:80px 8%;}
+.payment-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  max-width:800px;margin:0 auto;
+}
+.pay-card{
+  background:white;border-radius:16px;padding:28px 22px;
+  border:1px solid var(--border);text-align:center;
+  transition:all .3s;
+}
+.pay-card:hover{border-color:var(--sage-pale);transform:translateY(-2px);}
+.pay-icon{
+  width:52px;height:52px;
+  background:var(--sage-ultra);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 16px;font-size:1.4rem;
+}
+.pay-card h3{font-family:'Noto Serif JP',serif;font-size:.88rem;font-weight:500;letter-spacing:.04em;margin-bottom:8px;}
+.pay-card p{font-size:.7rem;color:var(--mid);line-height:1.8;letter-spacing:.02em;}
+
+/* ── CTA ─────────────────── */
+.cta-section{
+  background:linear-gradient(135deg,var(--sage) 0%,var(--sage-deep) 100%);
+  padding:80px 8%;text-align:center;color:white;
+}
+.cta-section h2{
+  font-family:'Noto Serif JP',serif;
+  font-size:clamp(1.4rem,3vw,2rem);
+  font-weight:400;letter-spacing:.1em;margin-bottom:12px;
+}
+.cta-section p{
+  font-size:.82rem;opacity:.85;letter-spacing:.04em;margin-bottom:40px;line-height:1.9;
+}
+.cta-btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
+.btn-w{background:white;color:var(--sage-deep);border-color:white;}
+.btn-w:hover{background:transparent;color:white;border-color:white;}
+.btn-ow{background:transparent;color:white;border-color:rgba(255,255,255,.6);}
+.btn-ow:hover{border-color:white;background:rgba(255,255,255,.1);}
+
+/* ── FOOTER ─────────────────── */
+footer{
+  background:#1C1C1C;color:rgba(255,255,255,.55);
+  padding:60px 8% 28px;
+}
+.footer-grid{
+  display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;
+  gap:48px;margin-bottom:48px;
+}
+.footer-brand .logo-jp{color:white;}
+.footer-brand .logo-en{color:var(--sage-pale);}
+.footer-brand p{
+  font-size:.72rem;line-height:1.95;margin-top:16px;
+  color:rgba(255,255,255,.45);letter-spacing:.02em;
+}
+.footer-col h4{
+  color:white;font-size:.72rem;letter-spacing:.12em;
+  margin-bottom:14px;font-weight:600;
+}
+.footer-col a{
+  display:block;text-decoration:none;
+  color:rgba(255,255,255,.45);font-size:.68rem;
+  margin-bottom:9px;transition:color .2s;letter-spacing:.03em;
+}
+.footer-col a:hover{color:var(--sage-pale);}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.08);
+  padding-top:22px;display:flex;
+  justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+.footer-bottom p{font-size:.65rem;}
+
+/* ── AI CHAT ─────────────────── */
+.chat-fab{position:fixed;bottom:24px;right:24px;z-index:2000;}
+.chat-fab-btn{
+  width:62px;height:62px;
+  background:linear-gradient(135deg,var(--sage),var(--sage-deep));
+  border-radius:50%;border:none;cursor:pointer;
+  box-shadow:0 4px 20px rgba(61,107,90,.5);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;transition:all .3s;color:white;
+  position:relative;
+}
+.chat-fab-btn:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(61,107,90,.6);}
+.chat-badge{
+  position:absolute;top:-3px;right:-3px;
+  width:18px;height:18px;background:var(--gold);
+  border-radius:50%;font-size:.58rem;color:white;
+  display:flex;align-items:center;justify-content:center;font-weight:700;
+  border:2px solid white;
+}
+.chat-pulse{
+  position:absolute;inset:-4px;border-radius:50%;
+  border:2px solid var(--sage-pale);opacity:0;
+  animation:chatPulse 2.5s ease infinite;
+}
+@keyframes chatPulse{
+  0%{opacity:.6;transform:scale(1)}
+  100%{opacity:0;transform:scale(1.4)}
+}
+
+.chat-window{
+  position:fixed;bottom:98px;right:24px;
+  width:375px;max-height:590px;
+  background:white;border-radius:24px;
+  box-shadow:0 12px 56px rgba(0,0,0,.18);
+  z-index:1999;display:none;flex-direction:column;
+  overflow:hidden;border:1px solid var(--border);
+}
+.chat-window.open{display:flex;animation:chatOpen .3s ease;}
+@keyframes chatOpen{
+  from{opacity:0;transform:translateY(16px) scale(.97)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+.chat-hdr{
+  background:linear-gradient(135deg,var(--sage),var(--sage-deep));
+  padding:16px 18px;display:flex;align-items:center;gap:11px;
+}
+.chat-ava{
+  width:38px;height:38px;
+  background:rgba(255,255,255,.22);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;flex-shrink:0;
+}
+.chat-hdr-info h4{color:white;font-size:.85rem;font-weight:600;letter-spacing:.03em;}
+.chat-hdr-info p{color:rgba(255,255,255,.7);font-size:.62rem;margin-top:2px;letter-spacing:.03em;}
+.chat-online{
+  width:8px;height:8px;background:#5EE87A;border-radius:50%;
+  margin-left:auto;flex-shrink:0;
+  box-shadow:0 0 6px rgba(94,232,122,.8);
+  animation:onlinePulse 2s infinite;
+}
+@keyframes onlinePulse{0%,100%{opacity:1}50%{opacity:.5}}
+.chat-x{background:none;border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:1.1rem;padding:4px;margin-left:8px;transition:color .2s;}
+.chat-x:hover{color:white;}
+
+.chat-msgs{
+  flex:1;overflow-y:auto;padding:18px;
+  display:flex;flex-direction:column;gap:13px;
+  background:#F8F9FB;
+}
+.chat-msgs::-webkit-scrollbar{width:3px;}
+.chat-msgs::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+
+.msg{display:flex;align-items:flex-end;gap:7px;}
+.msg.bot{align-self:flex-start;}
+.msg.user{align-self:flex-end;flex-direction:row-reverse;}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.msg{animation:msgIn .3s ease;}
+.msg-av{
+  width:26px;height:26px;
+  background:var(--sage-pale);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;flex-shrink:0;
+}
+.msg-bub{
+  max-width:80%;padding:10px 14px;border-radius:16px;
+  font-size:.76rem;line-height:1.75;letter-spacing:.02em;
+}
+.msg.bot .msg-bub{
+  background:white;color:var(--charcoal);
+  border-bottom-left-radius:4px;
+  box-shadow:0 1px 4px rgba(0,0,0,.06);
+}
+.msg.user .msg-bub{
+  background:var(--sage);color:white;
+  border-bottom-right-radius:4px;
+}
+.msg-t{font-size:.55rem;color:#bbb;margin-top:3px;padding:0 3px;}
+.msg-t-r{text-align:right;}
+
+.typing{
+  display:none;align-items:center;gap:7px;
+  padding:0 3px;
+}
+.typing.show{display:flex;}
+.typing-dots{
+  background:white;border-radius:16px;border-bottom-left-radius:4px;
+  padding:10px 14px;display:flex;gap:4px;
+  box-shadow:0 1px 4px rgba(0,0,0,.06);
+}
+.typing-dots span{
+  width:5px;height:5px;background:var(--sage);border-radius:50%;
+  animation:typeDot 1.2s infinite;
+}
+.typing-dots span:nth-child(2){animation-delay:.2s;}
+.typing-dots span:nth-child(3){animation-delay:.4s;}
+@keyframes typeDot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+
+.quick-btns{
+  padding:10px 16px;display:flex;gap:7px;
+  flex-wrap:wrap;background:#F8F9FB;
+  border-top:1px solid var(--border);
+}
+.qbtn{
+  background:white;border:1px solid var(--sage-pale);
+  color:var(--sage-deep);padding:6px 12px;
+  border-radius:20px;font-size:.66rem;cursor:pointer;
+  transition:all .2s;letter-spacing:.03em;
+  font-family:'Noto Sans JP',sans-serif;
+}
+.qbtn:hover{background:var(--sage);color:white;border-color:var(--sage);}
+
+.chat-inp-area{
+  padding:12px 14px;border-top:1px solid var(--border);
+  display:flex;gap:9px;align-items:flex-end;background:white;
+}
+.chat-inp{
+  flex:1;border:1.5px solid var(--border);border-radius:20px;
+  padding:9px 15px;font-size:.76rem;
+  font-family:'Noto Sans JP',sans-serif;
+  resize:none;outline:none;transition:border .2s;
+  max-height:90px;letter-spacing:.02em;
+  color:var(--charcoal);background:var(--off-white);
+}
+.chat-inp:focus{border-color:var(--sage);}
+.chat-inp::placeholder{color:#bbb;}
+.chat-send{
+  width:38px;height:38px;
+  background:var(--sage);border:none;border-radius:50%;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .2s;flex-shrink:0;color:white;font-size:.9rem;
+}
+.chat-send:hover{background:var(--sage-deep);transform:scale(1.05);}
+.chat-send:disabled{background:var(--border);cursor:not-allowed;transform:none;}
+
+/* ── SCROLL ANIM ─────────────────── */
+.fade{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease;}
+.fade.in{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.1s;}.d2{transition-delay:.18s;}.d3{transition-delay:.26s;}
+.d4{transition-delay:.34s;}.d5{transition-delay:.42s;}
+
+/* ── RESPONSIVE ─────────────────── */
+@media(max-width:960px){
+  nav{display:none;}
+  .hamburger{display:flex;}
+  .hero{grid-template-columns:1fr;min-height:auto;}
+  .hero-left{padding:60px 6%;}
+  .hero-right{height:280px;}
+  .features-grid{grid-template-columns:1fr 1fr;}
+  .treat-grid{grid-template-columns:1fr;}
+  .ortho-grid{grid-template-columns:1fr;gap:32px;}
+  .clinic-grid{grid-template-columns:1fr;gap:32px;}
+  .hours-wrap{grid-template-columns:1fr;gap:40px;}
+  .payment-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px;}
+  section{padding:72px 6%;}
+}
+@media(max-width:600px){
+  .features-grid{grid-template-columns:1fr;}
+  .treat-card{flex-direction:column;}
+  .treat-img{width:100%;height:120px;}
+  .clinic-features{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .chat-window{width:calc(100vw - 24px);right:12px;bottom:92px;}
+  .hero-title{font-size:1.7rem;}
+  .cta-btns{flex-direction:column;align-items:center;}
 }
 </style>
-</head>
+
+<style>
+.admin-link-footer {
+  text-align: center;
+  padding: 8px;
+  background: #1e3a5f;
+}
+.admin-link-footer a {
+  font-size: 0.55rem;
+  color: rgba(255,255,255,0.25);
+  text-decoration: none;
+  letter-spacing: .1em;
+}
+.admin-link-footer a:hover { color: rgba(255,255,255,0.5); }
+</style></head>
 <body>
 
-<!-- ══════════════════════════════════════════
-  SIDEBAR
-══════════════════════════════════════════ -->
-<nav id="sidebar">
-  <div class="sb-brand">
-    <div class="sb-logo">
-      <!-- 一筆書き 歯のSVGロゴ -->
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <path d="M5 5 C5 3 6.5 2.5 8.5 3.5 C10 4.2 10.5 5.5 11 5.5 C11.5 5.5 12 4.2 13.5 3.5 C15.5 2.5 17 3 17 5 C17 9 15.5 13 14.8 16 C14.2 18.5 13.5 20 12 20 C10.8 20 10.6 17.5 11 16 C11.4 17.5 11.2 20 10 20 C8.5 20 7.8 18.5 7.2 16 C6.5 13 5 9 5 5 Z" stroke="rgba(255,255,255,0.82)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+<!-- HEADER -->
+<header id="header">
+  <a class="logo-wrap" href="#">
+    <div class="logo-mark">🦷</div>
+    <div class="logo-text">
+      <span class="logo-jp">六本松矯正歯科クリニックとよしま</span>
+      <span class="logo-en">Ropponmatsu Orthodontic Dental Clinic Toyoshima</span>
     </div>
-    <div class="sb-brand-txt">
-      <div class="sb-name">とよしま矯正歯科<br>AI管理システム</div>
-      <div class="sb-status" id="sbStatus">接続確認中...</div>
+  </a>
+  <nav>
+    <a href="#features">当院の特徴</a>
+    <a href="#treatments">診療内容</a>
+    <a href="#ortho">矯正歯科</a>
+    <a href="#clinic">医院案内</a>
+    <a href="#hours">診療時間</a>
+    <a href="#" onclick="openChat();return false;">AI相談</a>
+    <a href="https://489.toyoshima-do.com/" target="_blank" class="nav-cta">📅 ネット予約</a>
+  </nav>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#features" onclick="toggleMenu()">当院の特徴</a>
+  <a href="#treatments" onclick="toggleMenu()">診療内容</a>
+  <a href="#ortho" onclick="toggleMenu()">矯正歯科</a>
+  <a href="#clinic" onclick="toggleMenu()">医院案内</a>
+  <a href="#hours" onclick="toggleMenu()">診療時間・アクセス</a>
+  <a href="#" onclick="openChat();toggleMenu();return false;">💬 AIチャット相談（24時間）</a>
+  <a href="https://489.toyoshima-do.com/" target="_blank">📅 ネット予約はこちら</a>
+</div>
+
+<!-- ANNOUNCE -->
+<div class="announce">
+  <span>🦷 矯正相談・初診カウンセリング随時受付中</span>
+  <span class="announce-dot"></span>
+  <span>ネット予約は24時間受付 ｜ <a href="https://489.toyoshima-do.com/" target="_blank">今すぐ予約 →</a></span>
+  <span class="announce-dot"></span>
+  <span>月1回日曜診療あり</span>
+</div>
+
+<!-- HERO -->
+<section style="padding:0;" class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Orthodontic Dental Clinic Toyoshima</div>
+    <h1 class="hero-title">
+      美しい歯並びで、<br>
+      <strong>自信あふれる笑顔へ。</strong>
+    </h1>
+    <p class="hero-subtitle">福岡市中央区 六本松の矯正歯科専門クリニック</p>
+    <p class="hero-body">
+      当院は矯正歯科を専門とするクリニックです。<br>
+      インビザライン・ワイヤー矯正・舌側矯正・小児矯正など、<br>
+      患者様一人ひとりに合った治療方法をご提案します。<br>
+      カウンセリングは完全個室で、じっくりとご相談いただけます。
+    </p>
+    <div class="hero-actions">
+      <a href="https://489.toyoshima-do.com/" target="_blank" class="btn btn-green">📅 ネット予約（24時間）</a>
+      <a href="#" onclick="openChat();return false;" class="btn btn-outline">💬 AIチャットで相談</a>
     </div>
   </div>
-
-  <!-- ホーム -->
-  <div class="sb-section">
-    <div class="sb-lbl">概要</div>
-    <div class="nav-item active" onclick="nav('dashboard',this)">
-      <div class="ico"><svg viewBox="0 0 14 14"><rect x="1" y="1" width="5.5" height="5.5" rx=".8"/><rect x="7.5" y="1" width="5.5" height="5.5" rx=".8"/><rect x="1" y="7.5" width="5.5" height="5.5" rx=".8"/><rect x="7.5" y="7.5" width="5.5" height="5.5" rx=".8"/></svg></div>
-      <span>ダッシュボード</span>
-    </div>
-  </div>
-
-  <!-- 予約・患者 -->
-  <div class="sb-section">
-    <div class="sb-lbl">予約管理</div>
-    <div class="nav-item" onclick="nav('calendar',this)">
-      <div class="ico"><svg viewBox="0 0 14 14"><rect x="1" y="2" width="12" height="11" rx="1"/><path d="M1 6h12M4 1v2M10 1v2"/></svg></div>
-      <span>予約カレンダー</span>
-      <span class="nav-badge" id="nb-today">-</span>
-    </div>
-    <div class="nav-item" onclick="nav('appointments',this)">
-      <div class="ico"><svg viewBox="0 0 14 14"><path d="M9 2H5C3.3 2 2 3.3 2 5v4c0 1.7 1.3 3 3 3h4c1.7 0 3-1.3 3-3V5c0-1.7-1.3-3-3-3z"/><path d="M5 7h4M5 9.5h2"/></svg></div>
-      <span>予約一覧</span>
-    </div>
-    <div class="nav-item" onclick="nav('patients',this)">
-      <div class="ico"><svg viewBox="0 0 14 14"><circle cx="7" cy="4.5" r="2.5"/><path d="M2 13c0-2.8 2.2-5 5-5s5 2.2 5 5"/></svg></div>
-      <span>患者リスト</span>
-    </div>
-  </div>
-
-  <div class="sb-divider"></div>
-
-  <!-- コンテンツ -->
-  <div class="sb-section">
-    <div class="sb-lbl">WordPress</div>
-    <div class="nav-item" onclick="nav('posts',this)">
-      <div class="ico"><svg viewBox="0 0 14 14"><path d="M2 3h10M2 6h10M2 9h7M2 12h5"/></svg></div>
-      <span>投稿管理</span>
-      <span class="nav-badge dim">84</span>
-    </div>
-    <div class="nav-item" onclick="nav('pages',this)">
-      <div class="ico"><svg viewBox="0 0 14 14"><rect x="2" y="1" width="10" height="12" rx="1"/><path d="M4.5 5h5M4.5 7.5h5M4.5 10h3"/></svg></div>
-      <span>固定ページ</span>
-      <span class="nav-badge dim">42</span>
-    </div>
-  </div>
-
-  <div class="sb-divider"></div>
-
-  <!-- AI機能 -->
-  <div class="sb-section">
-    <div class="sb-lbl">AI機能</div>
-    <div class="nav-item" onclick="nav('analytics',this)">
-      <div class="ico"><svg viewBox="0 0 14 14"><path d="M1 11L4 7l3 2.5 3-5 3 3"/><circle cx="4" cy="7" r=".8" fill="currentColor"/><circle cx="7" cy="9.5" r=".8" fill="currentColor"/><circle cx="10" cy="4.5" r=".8" fill="currentColor"/></svg></div>
-      <span>AIアクセス解析</span>
-    </div>
-    <div class="nav-item" onclick="nav('seo',this)">
-      <div class="ico"><svg viewBox="0 0 14 14"><path d="M2 11L5 3l3 5 2.5-3.5 2 4"/><path d="M1 13h12"/></svg></div>
-      <span>SEO記事生成</span>
-    </div>
-    <div class="nav-item" onclick="nav('legal',this)">
-      <div class="ico"><svg viewBox="0 0 14 14"><path d="M7 1v8M4.5 3.5L7 1l2.5 2.5"/><path d="M3 9c0 2.5 8 2.5 8 0"/><line x1="1" y1="9" x2="13" y2="9"/></svg></div>
-      <span>リーガルチェック</span>
-    </div>
-    <div class="nav-item" onclick="nav('note',this)">
-      <div class="ico"><svg viewBox="0 0 14 14"><path d="M2 2c0 0 2-1 5-1s5 1 5 1v8c0 0-2 3-5 3s-5-3-5-3V2z"/><path d="M4.5 5.5h5M4.5 8h3.5"/></svg></div>
-      <span>NOTE記事生成</span>
-    </div>
-    <div class="nav-item" onclick="nav('keywords',this)">
-      <div class="ico"><svg viewBox="0 0 14 14"><circle cx="6" cy="6" r="4.5"/><path d="M9.5 9.5L13 13"/></svg></div>
-      <span>キーワード管理</span>
-    </div>
-  </div>
-
-  <div class="sb-divider"></div>
-
-  <!-- 設定 -->
-  <div class="sb-section">
-    <div class="sb-lbl">システム</div>
-    <div class="nav-item" onclick="nav('settings',this)">
-      <div class="ico"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="2.2"/><path d="M7 1.5v1.2M7 11.3v1.2M1.5 7h1.2M11.3 7h1.2M3.2 3.2l.9.9M9.9 9.9l.9.9M3.2 10.8l.9-.9M9.9 4.1l.9-.9"/></svg></div>
-      <span>API設定</span>
-      <span class="nav-badge alert" id="nb-settings" style="display:none">!</span>
-    </div>
-  </div>
-
-  <div class="sb-footer">
-    <div>六本松矯正歯科とよしま</div>
-    <div class="version">v3.0.0 統合版</div>
-  </div>
-</nav>
-
-<!-- ══════════════════════════════════════════
-  MAIN
-══════════════════════════════════════════ -->
-<div id="main">
-
-  <!-- TOPBAR -->
-  <div id="topbar">
-    <div class="tb-left">
-      <div class="tb-breadcrumb">
-        <a onclick="nav('dashboard',null)">とよしま管理</a>
-        <span>›</span>
+  <div class="hero-right">
+    <div class="hero-photo">
+      <div class="clinic-img-area">
+        <span>🏥</span>
+        <p>CLINIC PHOTO</p>
       </div>
-      <div class="tb-title" id="tb-title">ダッシュボード</div>
+      <p class="hero-photo-label">ビバーチェ・ハシモト 1F</p>
     </div>
-    <div class="tb-right">
-      <div id="conn-status">接続確認中...</div>
-      <button class="tb-btn primary" onclick="nav('seo',null)">
-        <svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg>
-        新規記事作成
-      </button>
-      <button class="tb-btn" onclick="nav('calendar',null)">
-        <svg viewBox="0 0 12 12"><rect x="1" y="2" width="10" height="9" rx="1"/><path d="M1 5h10M4 1v2M8 1v2"/></svg>
-        今日の予約
-      </button>
-      <span id="clock">--:--:--</span>
+    <!-- Floating Cards -->
+    <div class="hero-card">
+      <div class="val">2018</div>
+      <div class="lbl">年6月 開院</div>
     </div>
-  </div>
-
-  <!-- ══ CONTENT ══ -->
-  <div id="content">
-
-<!-- ────────────────────────────────────────
-  PAGE: DASHBOARD
-──────────────────────────────────────── -->
-<div class="page active" id="p-dashboard">
-  <div class="page-head">
-    <div class="page-title">ダッシュボード <small>六本松矯正歯科クリニックとよしま ／ 統合管理システム</small></div>
-    <div class="page-actions">
-      <button class="btn btn-ghost btn-sm" onclick="refreshAll()">
-        <svg viewBox="0 0 12 12"><path d="M10 2a5 5 0 1 0 1 4M10 2v3h-3"/></svg>
-        更新
-      </button>
+    <div class="hero-card">
+      <div class="val">個室</div>
+      <div class="lbl">完全個室 診療室</div>
+    </div>
+    <div class="hero-card">
+      <div class="val">24h</div>
+      <div class="lbl">ネット予約受付中</div>
     </div>
   </div>
+</section>
 
-  <div id="setup-warning"></div>
-
-  <!-- KPI -->
-  <div class="kpi-grid" id="dash-kpi">
-    <div class="kpi c-ochre">
-      <div class="kpi-icon i-ochre"><svg viewBox="0 0 14 14"><rect x="1" y="2" width="12" height="11" rx="1"/><path d="M1 6h12M4 1v2M10 1v2"/></svg></div>
-      <div class="kpi-val" id="kpi-today">--</div>
-      <div class="kpi-label">今日の予約数</div>
-      <div class="kpi-change nc" id="kpi-today-sub">Supabase接続待ち</div>
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="sec-head fade">
+    <span class="sec-en">Our Features</span>
+    <h2 class="sec-jp">とよしまクリニックの特徴</h2>
+    <div class="sec-bar"></div>
+  </div>
+  <div class="features-grid">
+    <div class="feat-card fade d1">
+      <div class="feat-icon">🏠</div>
+      <h3>完全個室の診療室・<br>カウンセリングルーム</h3>
+      <p>診療室はゆとりある完全個室設計です。お子様連れでも気兼ねなくご来院いただけます。カウンセリングルームも個室になっていますので、治療内容や費用のことなど、安心してご相談いただけます。</p>
     </div>
-    <div class="kpi c-navy">
-      <div class="kpi-icon i-navy"><svg viewBox="0 0 14 14"><circle cx="7" cy="4.5" r="2.5"/><path d="M2 13c0-2.8 2.2-5 5-5s5 2.2 5 5"/></svg></div>
-      <div class="kpi-val" id="kpi-patients">--</div>
-      <div class="kpi-label">総患者数</div>
-      <div class="kpi-change nc" id="kpi-patients-sub">Supabase接続待ち</div>
+    <div class="feat-card fade d2">
+      <div class="feat-icon">💳</div>
+      <h3>充実したお支払い方法・<br>分割払い対応</h3>
+      <p>お支払いは医院窓口・銀行振込・カード決済からお選びいただけます。また、分割でのお支払いも可能で、分割による金利や手数料もかかりません（分割回数制限あり）。</p>
     </div>
-    <div class="kpi c-sage">
-      <div class="kpi-icon i-sage"><svg viewBox="0 0 14 14"><path d="M2 3h10M2 6h10M2 9h7M2 12h5"/></svg></div>
-      <div class="kpi-val">84</div>
-      <div class="kpi-label">公開投稿数</div>
-      <div class="kpi-change up">WP XMLより確認済</div>
+    <div class="feat-card fade d3">
+      <div class="feat-icon">🚌</div>
+      <h3>アクセス抜群・<br>駐車場完備</h3>
+      <p>地下鉄七隈線六本松駅より徒歩3分。西鉄バス別府橋バス停目の前というアクセス抜群の立地です。お車でのご来院も駐車場3台完備しています。</p>
     </div>
-    <div class="kpi c-amber">
-      <div class="kpi-icon" style="background:var(--amber-lt);color:var(--amber);width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><svg viewBox="0 0 14 14" width="15" height="15" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1 L9 5 L13 6 L10 9 L11 13 L7 11 L3 13 L4 9 L1 6 L5 5 Z"/></svg></div>
-      <div class="kpi-val" id="kpi-rank">3位</div>
-      <div class="kpi-label">六本松 矯正歯科</div>
-      <div class="kpi-change up">↑ 先月5位から</div>
+    <div class="feat-card fade d4">
+      <div class="feat-icon">💬</div>
+      <h3>丁寧なカウンセリングと<br>分かりやすい説明</h3>
+      <p>患者さんとのカウンセリングに十分な時間をかけ、矯正治療についての分かりやすい説明を心がけています。治療のリスクや適した治療計画への理解を深めていただけるよう努めています。</p>
+    </div>
+    <div class="feat-card fade d5">
+      <div class="feat-icon">🌿</div>
+      <h3>矯正は口腔と全身の<br>健康に繋がります</h3>
+      <p>歯並びが整うことで、肩こりや頭痛が改善すると言われています。また、丁寧なブラッシングができるようになることから、むし歯や歯周病の予防にも繋がります。</p>
+    </div>
+    <div class="feat-card fade">
+      <div class="feat-icon">📅</div>
+      <h3>月1回の日曜診療・<br>ネット予約24時間対応</h3>
+      <p>お忙しい方も通いやすいよう、月に1回日曜日の診療を行っています（代わりに平日に代休日あり）。ネット予約は24時間受付中で、いつでも気軽にご予約いただけます。</p>
     </div>
   </div>
+</section>
 
-  <div class="g2">
-    <!-- 最新予約 -->
-    <div class="card">
-      <div class="card-head">
-        <div class="card-title">
-          <svg viewBox="0 0 14 14"><rect x="1" y="2" width="12" height="11" rx="1"/><path d="M1 6h12M4 1v2M10 1v2"/></svg>
-          本日・直近の予約
-        </div>
-        <button class="btn btn-ghost btn-sm" onclick="nav('calendar',null)">カレンダーへ</button>
+<!-- TREATMENTS -->
+<section class="treatments" id="treatments">
+  <div class="sec-head fade">
+    <span class="sec-en">Treatments</span>
+    <h2 class="sec-jp">診療内容</h2>
+    <div class="sec-bar"></div>
+  </div>
+  <div class="treat-grid">
+    <div class="treat-card fade d1">
+      <div class="treat-img">
+        <span>😬</span>
+        <p>ORTHODONTICS</p>
       </div>
-      <div id="dash-appointments">
-        <div style="padding:20px 16px;text-align:center;color:var(--text3);font-size:.7rem;">
-          <span class="spinner"></span><br><br>Supabase から読み込み中...
-        </div>
+      <div class="treat-body">
+        <span class="treat-tag">専門診療</span>
+        <h3>矯正歯科</h3>
+        <p>インビザライン（マウスピース矯正）・ワイヤー矯正・舌側矯正（裏側矯正）など、様々な矯正方法に対応。お子様から大人まで、一人ひとりに最適な治療をご提案します。</p>
+        <span class="treat-detail">詳しくはこちら</span>
       </div>
     </div>
-
-    <!-- AI提案 -->
-    <div class="card">
-      <div class="card-head">
-        <div class="card-title">
-          <svg viewBox="0 0 14 14"><circle cx="7" cy="5" r="2.5"/><path d="M7 7.5v3.5M5.5 11h3"/></svg>
-          AIからの今週の提案
-        </div>
-        <button class="btn btn-ghost btn-sm" onclick="nav('analytics',null)">詳細解析</button>
+    <div class="treat-card fade d2">
+      <div class="treat-img">
+        <span>👶</span>
+        <p>PEDIATRIC</p>
       </div>
-      <div style="padding:12px 14px;display:flex;flex-direction:column;gap:0;">
-        <div class="insight-card">
-          <div class="insight-icon i-red"><svg viewBox="0 0 18 18"><circle cx="9" cy="9" r="7"/><path d="M9 5v4M9 12v1"/></svg></div>
-          <div class="insight-body">
-            <h4>「矯正 分割払い 福岡」3ランク降下</h4>
-            <p>競合新記事が影響。9位→12位。早急な対策コンテンツの公開が必要です。</p>
-            <div class="insight-action" onclick="setKwAndGenSEO('矯正 分割払い 福岡')">→ 対策SEO記事を今すぐ生成</div>
+      <div class="treat-body">
+        <span class="treat-tag">小児対応</span>
+        <h3>小児歯科・小児矯正</h3>
+        <p>乳歯のケアから永久歯への移行まで、お子様の歯の成長をサポートします。小児矯正は顎の成長に合わせたタイミングで行うことが大切です。お気軽にご相談ください。</p>
+        <span class="treat-detail">詳しくはこちら</span>
+      </div>
+    </div>
+    <div class="treat-card fade d3">
+      <div class="treat-img">
+        <span>✨</span>
+        <p>WHITENING</p>
+      </div>
+      <div class="treat-body">
+        <span class="treat-tag">審美</span>
+        <h3>ホワイトニング</h3>
+        <p>白く美しい歯へ。歯科医院で行うオフィスホワイトニングをご提供しています。矯正治療終了後にホワイトニングを組み合わせることで、より美しい口元を実現します。</p>
+        <span class="treat-detail">詳しくはこちら</span>
+      </div>
+    </div>
+    <div class="treat-card fade d4">
+      <div class="treat-img">
+        <span>🦷</span>
+        <p>GENERAL</p>
+      </div>
+      <div class="treat-body">
+        <span class="treat-tag">保険診療</span>
+        <h3>一般歯科・虫歯治療</h3>
+        <p>むし歯の治療から歯のクリーニングまで、一般歯科診療も行っています。レーザー治療にも対応。保険診療での治療が可能です。</p>
+        <span class="treat-detail">詳しくはこちら</span>
+      </div>
+    </div>
+    <div class="treat-card fade">
+      <div class="treat-img">
+        <span>🔬</span>
+        <p>LASER</p>
+      </div>
+      <div class="treat-body">
+        <span class="treat-tag">最新設備</span>
+        <h3>レーザー治療</h3>
+        <p>最新のレーザー機器を使用した治療を行っています。痛みや出血が少なく、治癒が早いのが特徴です。歯肉の治療や虫歯治療など幅広く応用できます。</p>
+        <span class="treat-detail">詳しくはこちら</span>
+      </div>
+    </div>
+    <div class="treat-card fade">
+      <div class="treat-img">
+        <span>🧽</span>
+        <p>CLEANING</p>
+      </div>
+      <div class="treat-body">
+        <span class="treat-tag">予防</span>
+        <h3>クリーニング・予防歯科</h3>
+        <p>定期的なクリーニングで歯の健康を維持。プロフェッショナルクリーニングでは、ご自宅のブラッシングでは落とせない汚れや着色をしっかり落とします。</p>
+        <span class="treat-detail">詳しくはこちら</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORTHODONTICS DETAIL -->
+<section class="ortho-section" id="ortho">
+  <div class="sec-head fade">
+    <span class="sec-en">Orthodontics</span>
+    <h2 class="sec-jp">矯正歯科について</h2>
+    <div class="sec-bar"></div>
+  </div>
+  <div class="ortho-grid">
+    <div class="ortho-left fade">
+      <h2>矯正治療は、<br>口腔と全身の健康に<br>大きな役割があります</h2>
+      <p>当院では矯正治療は単に歯並びを整えるだけでなく、口腔内と身体の健康に大きな役割があると考えています。</p>
+      <p>歯並びが整うことで肩こりや頭痛が改善すると言われており、また丁寧なブラッシングができるようになることから、むし歯や歯周病の予防にも繋がります。</p>
+      <p>治療前には十分なカウンセリングを行い、患者様が矯正治療に関するリスクや適した治療計画への理解を深めていただけるよう努めています。</p>
+      <div class="ortho-points">
+        <div class="ortho-point">
+          <div class="ortho-point-icon">💡</div>
+          <div class="ortho-point-text">
+            <h4>無料矯正相談実施中</h4>
+            <p>初めての方もお気軽に。治療の流れや費用について詳しくご説明します。</p>
           </div>
         </div>
-        <div class="insight-card">
-          <div class="insight-icon i-navy"><svg viewBox="0 0 18 18"><path d="M9 2v12M5 6l4-4 4 4"/><path d="M3 15h12"/></svg></div>
-          <div class="insight-body">
-            <h4>「インビザライン 福岡」強化推奨</h4>
-            <p>月間検索Vol 2,400。現在8位→3位圏内を狙える。専用LP+記事が効果的。</p>
-            <div class="insight-action" onclick="setKwAndGenSEO('インビザライン 福岡')">→ SEO記事を生成する</div>
+        <div class="ortho-point">
+          <div class="ortho-point-icon">💳</div>
+          <div class="ortho-point-text">
+            <h4>分割払い対応（金利・手数料0円）</h4>
+            <p>矯正治療の費用を分割でお支払いいただけます。金利・手数料は一切かかりません。</p>
           </div>
         </div>
-        <div class="insight-card">
-          <div class="insight-icon i-sage"><svg viewBox="0 0 18 18"><path d="M3 9 C5 5 7 3 9 3 C11 3 13 5 15 9"/><path d="M6 13 C7 11 8 10 9 10 C10 10 11 11 12 13"/></svg></div>
-          <div class="insight-body">
-            <h4>NOTE記事の流入が先月比+34%</h4>
-            <p>豆知識コンテンツからの流入が好調。継続投稿で流入数をさらに拡大できます。</p>
-            <div class="insight-action" onclick="nav('note',null)">→ NOTE記事を生成する</div>
+        <div class="ortho-point">
+          <div class="ortho-point-icon">🏆</div>
+          <div class="ortho-point-text">
+            <h4>お子様連れも安心の個室設計</h4>
+            <p>完全個室の診療室とカウンセリングルームで、小さなお子様連れでも安心です。</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- 最新投稿 -->
-  <div class="card">
-    <div class="card-head">
-      <div class="card-title">
-        <svg viewBox="0 0 14 14"><path d="M2 3h10M2 6h10M2 9h7M2 12h5"/></svg>
-        最新投稿（WordPress）
+    <div class="ortho-types fade d2">
+      <div class="ortho-type">
+        <div class="ortho-type-head">
+          <span class="ortho-type-badge">人気No.1</span>
+          <h3>インビザライン（マウスピース矯正）</h3>
+        </div>
+        <p>透明なマウスピースを使った矯正法で、目立たないのが最大の特徴です。取り外し可能なため食事や歯磨きも通常通り行えます。金属アレルギーの方にも対応。</p>
+        <p class="price-note">✦ 初回カウンセリング無料</p>
       </div>
-      <button class="btn btn-ghost btn-sm" onclick="nav('posts',null)">すべて見る</button>
-    </div>
-    <table class="wp-table">
-      <thead><tr><th>タイトル</th><th>カテゴリ</th><th>投稿者</th><th>日付</th></tr></thead>
-      <tbody id="dash-posts"></tbody>
-    </table>
-  </div>
-</div>
-
-<!-- ────────────────────────────────────────
-  PAGE: CALENDAR
-──────────────────────────────────────── -->
-<div class="page" id="p-calendar">
-  <div class="page-head">
-    <div class="page-title">予約カレンダー <small>Supabase リアルタイム連携</small></div>
-    <div class="page-actions">
-      <button class="btn btn-ghost btn-sm" onclick="loadCalendar()">
-        <svg viewBox="0 0 12 12"><path d="M10 2a5 5 0 1 0 1 4M10 2v3h-3"/></svg>
-        更新
-      </button>
-      <button class="btn btn-navy btn-sm" onclick="nav('appointments',null)">予約一覧へ</button>
-    </div>
-  </div>
-
-  <div class="g2" style="margin-bottom:14px;">
-    <div class="kpi c-ochre" style="margin-bottom:0">
-      <div class="kpi-val" id="cal-today-count">--</div>
-      <div class="kpi-label">本日の予約</div>
-      <div class="kpi-change nc" id="cal-today-label">読み込み中...</div>
-    </div>
-    <div class="kpi c-navy" style="margin-bottom:0">
-      <div class="kpi-val" id="cal-month-count">--</div>
-      <div class="kpi-label">今月の予約</div>
-      <div class="kpi-change up" id="cal-month-label">読み込み中...</div>
+      <div class="ortho-type">
+        <div class="ortho-type-head">
+          <span class="ortho-type-badge">実績多数</span>
+          <h3>ワイヤー矯正（表側矯正）</h3>
+        </div>
+        <p>歯の表面にブラケットとワイヤーを装着する一般的な矯正法です。幅広い症例に対応でき、費用を比較的抑えることができます。確実な治療効果が期待できます。</p>
+        <p class="price-note">✦ 初回カウンセリング無料</p>
+      </div>
+      <div class="ortho-type">
+        <div class="ortho-type-head">
+          <span class="ortho-type-badge">目立たない</span>
+          <h3>舌側矯正（裏側矯正）</h3>
+        </div>
+        <p>矯正器具を歯の裏側に取り付けるため、外からほとんど見えません。上の歯のみに施術することも可能です。サッカーなど人と接触するスポーツをしている方にもおすすめです。</p>
+        <p class="price-note">✦ 初回カウンセリング無料</p>
+      </div>
+      <div class="ortho-type">
+        <div class="ortho-type-head">
+          <span class="ortho-type-badge">お子様向け</span>
+          <h3>小児矯正</h3>
+        </div>
+        <p>顎の成長を利用して行う小児矯正です。永久歯が生えそろう前に始めることで、より自然な形での矯正が可能になります。早めのご相談をおすすめします。</p>
+        <p class="price-note">✦ 初回カウンセリング無料</p>
+      </div>
     </div>
   </div>
+</section>
 
-  <div class="card">
-    <div class="card-head">
-      <div class="cal-header" style="width:100%;margin-bottom:0;">
-        <div class="cal-title" id="cal-month-title">2026年 3月</div>
-        <div class="cal-nav">
-          <button onclick="changeMonth(-1)">‹ 前月</button>
-          <button onclick="changeMonth(0)">今月</button>
-          <button onclick="changeMonth(1)">翌月 ›</button>
+<!-- CLINIC INFO -->
+<section class="clinic-section" id="clinic">
+  <div class="sec-head fade">
+    <span class="sec-en">About Our Clinic</span>
+    <h2 class="sec-jp">医院案内</h2>
+    <div class="sec-bar"></div>
+  </div>
+  <div class="clinic-grid">
+    <div class="clinic-photo-area fade">
+      <span>🏥</span>
+      <p>CLINIC PHOTO</p>
+    </div>
+    <div class="clinic-content fade d2">
+      <span class="sec-en" style="display:block;text-align:left;margin-bottom:8px;">Clinic Information</span>
+      <h2>患者様に寄り添う、<br>丁寧な矯正治療を。</h2>
+      <p>六本松矯正歯科クリニックとよしまは、2018年6月に福岡市中央区六本松に開院しました。矯正歯科を専門とするクリニックとして、患者様一人ひとりに合った最適な治療を提供しています。</p>
+      <p>カウンセリングには十分な時間をかけ、治療方法・費用・期間について分かりやすくご説明します。まずはお気軽にご相談ください。</p>
+      <div class="clinic-features">
+        <div class="cli-feat"><div class="cli-feat-dot"></div><p>完全個室の診療室</p></div>
+        <div class="cli-feat"><div class="cli-feat-dot"></div><p>カウンセリングルーム個室</p></div>
+        <div class="cli-feat"><div class="cli-feat-dot"></div><p>カード・銀行振込対応</p></div>
+        <div class="cli-feat"><div class="cli-feat-dot"></div><p>分割払い（金利0円）</p></div>
+        <div class="cli-feat"><div class="cli-feat-dot"></div><p>駐車場3台完備</p></div>
+        <div class="cli-feat"><div class="cli-feat-dot"></div><p>月1回日曜診療あり</p></div>
+        <div class="cli-feat"><div class="cli-feat-dot"></div><p>レーザー治療対応</p></div>
+        <div class="cli-feat"><div class="cli-feat-dot"></div><p>小児歯科対応</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS & ACCESS -->
+<div class="hours-section" id="hours">
+  <div class="sec-head">
+    <span class="sec-en">Hours &amp; Access</span>
+    <h2 class="sec-jp fade">診療時間・アクセス</h2>
+    <div class="sec-bar"></div>
+  </div>
+  <div class="hours-wrap">
+    <div class="hours-table fade">
+      <table>
+        <thead>
+          <tr>
+            <th>診療時間</th>
+            <th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日祝</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>09:00〜12:00</td>
+            <td class="circle">○</td><td class="circle">○</td><td class="circle">○</td>
+            <td class="cross">✕</td><td class="circle">○</td><td class="circle">○</td>
+            <td class="cross">✕</td>
+          </tr>
+          <tr>
+            <td>14:00〜19:00</td>
+            <td class="circle">○</td><td class="circle">○</td><td class="circle">○</td>
+            <td class="cross">✕</td><td class="circle">○</td><td class="cross">✕</td>
+            <td class="cross">✕</td>
+          </tr>
+          <tr>
+            <td>14:00〜17:00</td>
+            <td class="cross">✕</td><td class="cross">✕</td><td class="cross">✕</td>
+            <td class="cross">✕</td><td class="cross">✕</td><td class="circle">○</td>
+            <td class="cross">✕</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="hours-note">
+        ※ 休診日：木曜・日曜・祝日<br>
+        ※ 月1回日曜日診療あり（代わりに平日代休日あり）<br>
+        ※ 詳細はサイトカレンダーをご確認ください<br>
+        ※ 完全予約制
+      </p>
+    </div>
+    <div class="access-info fade d2">
+      <h3>アクセス情報</h3>
+      <div class="access-item">
+        <div class="access-icon">📍</div>
+        <div class="access-text">
+          <strong>住所</strong>
+          <p>〒810-0044<br>福岡県福岡市中央区六本松4-11-26<br>ビバーチェ・ハシモト 1F</p>
         </div>
       </div>
-    </div>
-    <div class="card-body">
-      <div class="cal-grid" id="cal-labels"></div>
-      <div class="cal-grid" id="cal-grid" style="margin-top:4px;"></div>
-    </div>
-  </div>
-
-  <div class="card" id="cal-day-detail" style="display:none;">
-    <div class="card-head">
-      <div class="card-title" id="cal-detail-title">予約詳細</div>
-      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('cal-day-detail').style.display='none'">閉じる</button>
-    </div>
-    <div class="card-body" id="cal-detail-body"></div>
-  </div>
-</div>
-
-<!-- ────────────────────────────────────────
-  PAGE: APPOINTMENTS
-──────────────────────────────────────── -->
-<div class="page" id="p-appointments">
-  <div class="page-head">
-    <div class="page-title">予約一覧 <small>Supabase 予約データ</small></div>
-    <div class="page-actions">
-      <button class="btn btn-ghost btn-sm" onclick="loadAppointments()">更新</button>
-    </div>
-  </div>
-  <div class="card">
-    <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab(this,'apt-tabs','apt-upcoming')">今後の予約 <span class="tab-cnt" id="cnt-upcoming">-</span></button>
-      <button class="tab-btn" onclick="switchTab(this,'apt-tabs','apt-today')">本日 <span class="tab-cnt" id="cnt-today-apt">-</span></button>
-      <button class="tab-btn" onclick="switchTab(this,'apt-tabs','apt-past')">過去 <span class="tab-cnt" id="cnt-past">-</span></button>
-    </div>
-    <div class="filter-bar">
-      <input type="text" id="apt-search" placeholder="患者名・コースで検索..." oninput="filterApts()">
-      <select id="apt-status" onchange="filterApts()">
-        <option value="">すべてのステータス</option>
-        <option value="confirmed">確定</option>
-        <option value="pending">仮予約</option>
-        <option value="cancelled">キャンセル</option>
-      </select>
-      <span class="filter-count" id="apt-count"></span>
-    </div>
-    <div id="apt-tabs">
-      <div class="tab-pane active" id="apt-upcoming">
-        <table class="wp-table">
-          <thead><tr><th>日時</th><th>患者名</th><th>コース</th><th>担当</th><th>ステータス</th><th>操作</th></tr></thead>
-          <tbody id="apt-table-upcoming"></tbody>
-        </table>
-      </div>
-      <div class="tab-pane" id="apt-today">
-        <table class="wp-table">
-          <thead><tr><th>時間</th><th>患者名</th><th>コース</th><th>担当</th><th>ステータス</th></tr></thead>
-          <tbody id="apt-table-today"></tbody>
-        </table>
-      </div>
-      <div class="tab-pane" id="apt-past">
-        <table class="wp-table">
-          <thead><tr><th>日時</th><th>患者名</th><th>コース</th><th>担当</th><th>ステータス</th></tr></thead>
-          <tbody id="apt-table-past"></tbody>
-        </table>
-      </div>
-    </div>
-    <div class="pagination">
-      <span class="pag-info" id="apt-pag-info"></span>
-      <div id="apt-pag-btns"></div>
-    </div>
-  </div>
-</div>
-
-<!-- ────────────────────────────────────────
-  PAGE: PATIENTS
-──────────────────────────────────────── -->
-<div class="page" id="p-patients">
-  <div class="page-head">
-    <div class="page-title">患者リスト <small>Supabase 患者データ</small></div>
-  </div>
-  <div class="card">
-    <div class="filter-bar">
-      <input type="text" id="pt-search" placeholder="患者名・電話番号で検索..." oninput="filterPatients()">
-      <span class="filter-count" id="pt-count"></span>
-    </div>
-    <table class="wp-table">
-      <thead><tr><th>患者名</th><th>電話番号</th><th>メール</th><th>初回来院</th><th>予約回数</th><th>最終来院</th></tr></thead>
-      <tbody id="patients-table"></tbody>
-    </table>
-    <div class="pagination">
-      <span class="pag-info" id="pt-pag-info"></span>
-      <div id="pt-pag-btns"></div>
-    </div>
-  </div>
-</div>
-
-<!-- ────────────────────────────────────────
-  PAGE: POSTS
-──────────────────────────────────────── -->
-<div class="page" id="p-posts">
-  <div class="page-head">
-    <div class="page-title">投稿管理 <small>WordPress REST API 連携</small></div>
-    <div class="page-actions">
-      <button class="btn btn-ochre" onclick="nav('seo',null)">
-        <svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg>
-        AI新規記事作成
-      </button>
-    </div>
-  </div>
-  <div class="card">
-    <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab(this,'posts-tabs','posts-all')">すべて <span class="tab-cnt">84</span></button>
-      <button class="tab-btn" onclick="switchTab(this,'posts-tabs','posts-oshirase')">医院からのお知らせ <span class="tab-cnt" id="cnt-oshirase"></span></button>
-      <button class="tab-btn" onclick="switchTab(this,'posts-tabs','posts-kyousei')">矯正歯科知識 <span class="tab-cnt" id="cnt-kyousei"></span></button>
-    </div>
-    <div class="filter-bar">
-      <input type="text" id="posts-search" placeholder="タイトルで絞り込み..." oninput="filterPosts()">
-      <select id="posts-year" onchange="filterPosts()"><option value="">すべての年</option></select>
-      <span class="filter-count" id="posts-count"></span>
-    </div>
-    <div id="posts-tabs">
-      <div class="tab-pane active" id="posts-all">
-        <table class="wp-table">
-          <thead><tr><th style="width:42%">タイトル</th><th>カテゴリ</th><th>投稿者</th><th>日付</th><th>操作</th></tr></thead>
-          <tbody id="posts-tbody"></tbody>
-        </table>
-        <div class="pagination">
-          <span class="pag-info" id="posts-pag-info"></span>
-          <div id="posts-pag-btns"></div>
+      <div class="access-item">
+        <div class="access-icon">📞</div>
+        <div class="access-text">
+          <strong>電話番号</strong>
+          <p><a href="tel:0924062119" style="color:white;text-decoration:none;">092-406-2119</a></p>
         </div>
       </div>
-      <div class="tab-pane" id="posts-oshirase">
-        <table class="wp-table">
-          <thead><tr><th style="width:50%">タイトル</th><th>投稿者</th><th>日付</th><th>操作</th></tr></thead>
-          <tbody id="posts-tbody-cat1"></tbody>
-        </table>
+      <div class="access-item">
+        <div class="access-icon">🚇</div>
+        <div class="access-text">
+          <strong>電車でお越しの場合</strong>
+          <p>地下鉄七隈線「六本松駅」より徒歩3分<br>西鉄バス「別府橋」バス停 目の前</p>
+        </div>
       </div>
-      <div class="tab-pane" id="posts-kyousei">
-        <table class="wp-table">
-          <thead><tr><th style="width:50%">タイトル</th><th>投稿者</th><th>日付</th><th>操作</th></tr></thead>
-          <tbody id="posts-tbody-cat2"></tbody>
-        </table>
+      <div class="access-item">
+        <div class="access-icon">🚗</div>
+        <div class="access-text">
+          <strong>お車でお越しの場合</strong>
+          <p>駐車場3台完備</p>
+        </div>
       </div>
+      <a class="map-btn" href="https://maps.google.com/?q=福岡県福岡市中央区六本松4-11-26" target="_blank">
+        🗺️ Googleマップで見る
+      </a>
     </div>
   </div>
 </div>
 
-<!-- ────────────────────────────────────────
-  PAGE: PAGES
-──────────────────────────────────────── -->
-<div class="page" id="p-pages">
-  <div class="page-head">
-    <div class="page-title">固定ページ <small>WordPress ページ管理</small></div>
+<!-- PAYMENT -->
+<div class="payment-section">
+  <div class="sec-head fade">
+    <span class="sec-en">Payment</span>
+    <h2 class="sec-jp">お支払い方法</h2>
+    <div class="sec-bar"></div>
   </div>
-  <div class="card">
-    <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab(this,'pages-tabs','pages-all')">すべて <span class="tab-cnt">42</span></button>
-      <button class="tab-btn" onclick="switchTab(this,'pages-tabs','pages-pub')">公開中 <span class="tab-cnt" id="cnt-pub-pages"></span></button>
-      <button class="tab-btn" onclick="switchTab(this,'pages-tabs','pages-draft')">下書き <span class="tab-cnt">1</span></button>
+  <div class="payment-grid">
+    <div class="pay-card fade d1">
+      <div class="pay-icon">🏥</div>
+      <h3>医院窓口でのお支払い</h3>
+      <p>現金・各種クレジットカードにてお支払いいただけます。</p>
     </div>
-    <div id="pages-tabs">
-      <div class="tab-pane active" id="pages-all">
-        <table class="wp-table">
-          <thead><tr><th style="width:55%">ページ名</th><th>ステータス</th><th>更新日</th><th>操作</th></tr></thead>
-          <tbody id="pages-tbody-all"></tbody>
-        </table>
-      </div>
-      <div class="tab-pane" id="pages-pub">
-        <table class="wp-table">
-          <thead><tr><th style="width:55%">ページ名</th><th>更新日</th><th>操作</th></tr></thead>
-          <tbody id="pages-tbody-pub"></tbody>
-        </table>
-      </div>
-      <div class="tab-pane" id="pages-draft">
-        <table class="wp-table">
-          <thead><tr><th>ページ名</th><th>操作</th></tr></thead>
-          <tbody><tr><td class="tc">プライバシーポリシー</td><td><span class="badge b-draft">下書き</span></td></tr></tbody>
-        </table>
-      </div>
+    <div class="pay-card fade d2">
+      <div class="pay-icon">🏦</div>
+      <h3>銀行振込</h3>
+      <p>銀行振込でのお支払いにも対応しています。詳細はスタッフまでお問い合わせください。</p>
+    </div>
+    <div class="pay-card fade d3">
+      <div class="pay-icon">📆</div>
+      <h3>分割払い（金利・手数料0円）</h3>
+      <p>矯正治療費の分割払いが可能です。金利・手数料は一切かかりません。（分割回数制限あり）</p>
     </div>
   </div>
 </div>
 
-<!-- ────────────────────────────────────────
-  PAGE: AI ANALYTICS
-──────────────────────────────────────── -->
-<div class="page" id="p-analytics">
-  <div class="page-head">
-    <div class="page-title">AIアクセス解析 <small>アクセスデータ分析 + 予約データ統合分析</small></div>
-  </div>
-
-  <!-- KPI Monitor -->
-  <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);">
-    <div class="kpi c-navy"><div class="kpi-val mono">3位</div><div class="kpi-label">六本松 矯正歯科</div><div class="kpi-change up">↑ 先月5位から</div></div>
-    <div class="kpi c-ochre"><div class="kpi-val mono">8位</div><div class="kpi-label">インビザライン 福岡</div><div class="kpi-change up">↑ 9位から</div></div>
-    <div class="kpi c-red" style="border-top-color:var(--red)"><div class="kpi-val mono">12位</div><div class="kpi-label">矯正 分割払い 福岡</div><div class="kpi-change dn">↓ 9位から降下中</div></div>
-  </div>
-
-  <div class="g2">
-    <div class="card">
-      <div class="card-head"><div class="card-title"><svg viewBox="0 0 14 14"><path d="M1 11L4 7l3 2.5 3-5 3 3"/></svg>解析設定</div></div>
-      <div class="card-body">
-        <div class="form-row"><label class="field-label">分析期間</label>
-          <select class="field" id="ana-period"><option>今月（30日間）</option><option>先週</option><option>先月比較</option><option>過去3ヶ月</option></select>
-        </div>
-        <div class="form-row"><label class="field-label">フォーカス</label>
-          <select class="field" id="ana-focus"><option>総合（全項目）</option><option>SEO・検索流入</option><option>ユーザー行動</option><option>コンバージョン（予約）</option><option>競合比較</option></select>
-        </div>
-        <div class="form-row"><label class="field-label">アクセスデータ（GA4等から貼付・省略可）</label>
-          <textarea class="field" id="ana-data" rows="5" placeholder="PV・セッション・直帰率・流入キーワード等を貼り付け。空欄でもサンプル分析を生成できます。"></textarea>
-        </div>
-        <button class="btn btn-navy" style="width:100%" onclick="runAnalytics()">
-          <svg viewBox="0 0 12 12"><path d="M1 9L4 5l3 2.5 3-4.5 2 3"/></svg>
-          AIアクセス解析レポートを生成
-        </button>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-head">
-        <div class="card-title"><svg viewBox="0 0 14 14"><rect x="1" y="1" width="12" height="12" rx="1"/><path d="M4 5h6M4 8h6M4 11h3"/></svg>解析レポート</div>
-        <div style="display:flex;gap:6px;">
-          <button class="btn btn-ghost btn-xs" onclick="copyEl('ana-out')">コピー</button>
-          <button class="btn btn-ghost btn-xs" onclick="runActionPlan()">対策プラン生成</button>
-        </div>
-      </div>
-      <div class="card-body"><div class="ai-output empty" id="ana-out">「AIアクセス解析レポートを生成」をクリックすると詳細分析が表示されます。</div></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-head">
-      <div class="card-title"><svg viewBox="0 0 14 14"><path d="M7 1L9 5l4.5 1-3.2 3.1.8 4.4L7 11.5l-4.1 2.1.8-4.4L.5 6l4.5-1z"/></svg>キーワード順位モニタリング</div>
-      <button class="btn btn-navy btn-sm" onclick="runRankAI()">AI競合分析</button>
-    </div>
-    <table class="wp-table">
-      <thead><tr><th>キーワード</th><th>月間Vol</th><th>現在順位</th><th>先月</th><th>変動</th><th>難易度</th><th>AI判定</th><th>アクション</th></tr></thead>
-      <tbody>
-        <tr><td class="tc">六本松 矯正歯科</td><td>390</td><td><span class="rank-pill r-top3">3位</span></td><td>5位</td><td class="up">↑2</td><td><span class="badge b-ochre">中</span></td><td><span class="badge b-pub">良好</span></td><td><button class="btn btn-ghost btn-xs" onclick="setKwAndGenSEO('六本松 矯正歯科')">記事生成</button></td></tr>
-        <tr><td class="tc">インビザライン 福岡</td><td>2,400</td><td><span class="rank-pill r-top10">8位</span></td><td>9位</td><td class="up">↑1</td><td><span class="badge b-red">高</span></td><td><span class="badge b-draft">強化推奨</span></td><td><button class="btn btn-ghost btn-xs" onclick="setKwAndGenSEO('インビザライン 福岡')">記事生成</button></td></tr>
-        <tr><td class="tc">六本松 歯科 個室</td><td>170</td><td><span class="rank-pill r-top10">5位</span></td><td>5位</td><td class="nc">―</td><td><span class="badge b-pub">低</span></td><td><span class="badge b-pub">維持</span></td><td><button class="btn btn-ghost btn-xs" onclick="setKwAndGenSEO('六本松 歯科 個室')">記事生成</button></td></tr>
-        <tr><td class="tc">矯正 分割払い 福岡</td><td>590</td><td><span class="rank-pill r-top20">12位</span></td><td>9位</td><td class="dn">↓3</td><td><span class="badge b-ochre">中</span></td><td><span class="badge b-red">要対策</span></td><td><button class="btn btn-ghost btn-xs" onclick="setKwAndGenSEO('矯正 分割払い 福岡')">記事生成</button></td></tr>
-        <tr><td class="tc">福岡市 舌側矯正</td><td>320</td><td><span class="rank-pill r-top20">15位</span></td><td>19位</td><td class="up">↑4</td><td><span class="badge b-ochre">中</span></td><td><span class="badge b-blue">上昇中</span></td><td><button class="btn btn-ghost btn-xs" onclick="setKwAndGenSEO('福岡市 舌側矯正')">記事生成</button></td></tr>
-        <tr><td class="tc">小児矯正 福岡市中央区</td><td>140</td><td><span class="rank-pill r-low">18位</span></td><td>NEW</td><td class="nc">NEW</td><td><span class="badge b-pub">低</span></td><td><span class="badge b-ochre">狙い目</span></td><td><button class="btn btn-ghost btn-xs" onclick="setKwAndGenSEO('小児矯正 福岡市中央区')">記事生成</button></td></tr>
-      </tbody>
-    </table>
-    <div class="card-body" style="padding-top:0;"><div class="ai-output empty" id="rank-out" style="margin-top:10px;min-height:50px;">「AI競合分析」で詳細な競合分析と戦略提案を表示します。</div></div>
+<!-- CTA -->
+<div class="cta-section">
+  <h2 class="fade">まずはお気軽にご相談ください</h2>
+  <p class="fade">
+    矯正相談・初診カウンセリングは随時受付中。<br>
+    AIチャットでの24時間相談も、ネット予約もお気軽にどうぞ。
+  </p>
+  <div class="cta-btns fade">
+    <a href="https://489.toyoshima-do.com/" target="_blank" class="btn btn-w">📅 ネット予約（24時間）</a>
+    <a href="tel:0924062119" class="btn btn-gold">📞 092-406-2119</a>
+    <a href="#" onclick="openChat();return false;" class="btn btn-ow">💬 AIチャットで相談</a>
   </div>
 </div>
 
-<!-- ────────────────────────────────────────
-  PAGE: SEO
-──────────────────────────────────────── -->
-<div class="page" id="p-seo">
-  <div class="page-head">
-    <div class="page-title">SEO記事生成 <small>医療広告ガイドライン遵守 ／ AI自動生成</small></div>
-  </div>
-  <div class="g2">
-    <div class="card">
-      <div class="card-head"><div class="card-title"><svg viewBox="0 0 14 14"><path d="M2 11L5 3l3 5 2.5-3.5L13 9"/><path d="M1 13h12"/></svg>生成設定</div></div>
-      <div class="card-body">
-        <div class="form-row"><label class="field-label">ターゲットキーワード（メイン）</label>
-          <input class="field" id="seo-kw" placeholder="例: インビザライン 福岡" value="インビザライン 福岡">
-        </div>
-        <div class="form-row"><label class="field-label">関連キーワード（サブ）</label>
-          <input class="field" id="seo-sub" placeholder="例: マウスピース矯正, 目立たない矯正">
-        </div>
-        <div class="form-row"><label class="field-label">記事の種類</label>
-          <select class="field" id="seo-type">
-            <option>解説・情報記事（SEO向け）</option><option>比較記事</option>
-            <option>FAQ形式</option><option>患者向け案内記事</option>
-            <option>症例・ビフォーアフター記事</option><option>医院紹介・強み記事</option>
-          </select>
-        </div>
-        <div class="form-row"><label class="field-label">文字数</label>
-          <select class="field" id="seo-len">
-            <option>1,000字（ショート）</option><option selected>2,000字（スタンダード）</option>
-            <option>3,000字（ロング）</option><option>5,000字（上位表示狙い）</option>
-          </select>
-        </div>
-        <div class="form-row"><label class="field-label">追記指示（任意）</label>
-          <textarea class="field" id="seo-note" rows="3" placeholder="例: 当院の特徴（個室・分割払い・六本松駅3分）を自然に盛り込む。矯正相談CTAを末尾に。"></textarea>
-        </div>
-        <div style="display:flex;gap:7px;">
-          <button class="btn btn-navy" style="flex:1" onclick="genSEO()">
-            <svg viewBox="0 0 12 12"><path d="M2 9L5 2l3 4.5 2-3L13 8"/></svg>
-            SEO記事を生成
-          </button>
-          <button class="btn btn-ghost" onclick="genSEOTitles()">タイトル案のみ</button>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo-wrap">
+        <div class="logo-mark" style="width:32px;height:32px;font-size:.85rem;">🦷</div>
+        <div class="logo-text">
+          <span class="logo-jp" style="font-size:.88rem;">六本松矯正歯科クリニックとよしま</span>
+          <span class="logo-en" style="font-size:.55rem;">Ropponmatsu Orthodontic Dental Clinic Toyoshima</span>
         </div>
       </div>
+      <p>
+        〒810-0044 福岡県福岡市中央区六本松4-11-26<br>
+        ビバーチェ・ハシモト 1F<br>
+        TEL: 092-406-2119<br>
+        地下鉄七隈線 六本松駅 徒歩3分
+      </p>
     </div>
-    <div class="card">
-      <div class="card-head">
-        <div class="card-title"><svg viewBox="0 0 14 14"><rect x="1" y="1" width="12" height="12" rx="1"/><path d="M4 5h6M4 8h6M4 11h3"/></svg>生成結果</div>
-        <div style="display:flex;gap:5px;">
-          <button class="btn btn-ghost btn-xs" onclick="copyEl('seo-out')">コピー</button>
-          <button class="btn btn-ghost btn-xs" onclick="seoToLegal()">⚖ 法的チェック</button>
-        </div>
-      </div>
-      <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab(this,'seo-tabs','seo-article')">記事本文</button>
-        <button class="tab-btn" onclick="switchTab(this,'seo-tabs','seo-meta')">メタ情報</button>
-        <button class="tab-btn" onclick="switchTab(this,'seo-tabs','seo-struct')">構成案</button>
-      </div>
-      <div id="seo-tabs" style="padding:13px 15px;">
-        <div class="tab-pane active" id="seo-article"><div class="ai-output empty" id="seo-out" style="max-height:420px;">設定を入力して「SEO記事を生成」をクリックしてください。</div></div>
-        <div class="tab-pane" id="seo-meta"><div class="ai-output empty" id="seo-meta-out" style="max-height:420px;">記事生成後にメタタグ情報が表示されます。</div></div>
-        <div class="tab-pane" id="seo-struct"><div class="ai-output empty" id="seo-struct-out" style="max-height:420px;">記事生成後に構成案が表示されます。</div></div>
-      </div>
+    <div class="footer-col">
+      <h4>診療内容</h4>
+      <a href="#">矯正歯科</a>
+      <a href="#">インビザライン</a>
+      <a href="#">舌側矯正</a>
+      <a href="#">小児矯正</a>
+      <a href="#">ホワイトニング</a>
+      <a href="#">一般歯科</a>
+    </div>
+    <div class="footer-col">
+      <h4>医院情報</h4>
+      <a href="#">医院案内</a>
+      <a href="#">院長紹介</a>
+      <a href="#">診療時間</a>
+      <a href="#">アクセス</a>
+      <a href="#">初めての方へ</a>
+    </div>
+    <div class="footer-col">
+      <h4>ご予約・お問い合わせ</h4>
+      <a href="https://489.toyoshima-do.com/" target="_blank">ネット予約（24時間）</a>
+      <a href="tel:0924062119">電話: 092-406-2119</a>
+      <a href="#">プライバシーポリシー</a>
+      <a href="#">サイトマップ</a>
     </div>
   </div>
+  <div class="footer-bottom">
+    <p>© 2024 六本松矯正歯科クリニックとよしま. All rights reserved.</p>
+    <p>福岡市中央区六本松の矯正歯科 ｜ 六本松駅徒歩3分</p>
+  </div>
+</footer>
+
+<!-- AI CHAT WIDGET -->
+<div class="chat-fab">
+  <button class="chat-fab-btn" onclick="toggleChat()" id="fabBtn">
+    <div class="chat-pulse"></div>
+    💬
+  </button>
+  <div class="chat-badge" id="chatBadge">1</div>
 </div>
 
-<!-- ────────────────────────────────────────
-  PAGE: LEGAL
-──────────────────────────────────────── -->
-<div class="page" id="p-legal">
-  <div class="page-head">
-    <div class="page-title">リーガルチェック <small>医療広告ガイドライン自動審査</small></div>
+<div class="chat-window" id="chatWindow">
+  <div class="chat-hdr">
+    <div class="chat-ava">👩‍⚕️</div>
+    <div class="chat-hdr-info">
+      <h4>とよしまクリニック AIスタッフ</h4>
+      <p>矯正相談・診療・ご予約 なんでもどうぞ</p>
+    </div>
+    <div class="chat-online"></div>
+    <button class="chat-x" onclick="toggleChat()">✕</button>
   </div>
-  <div class="alert-banner alert-warn">
-    <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6"/><path d="M7 4v3M7 10v.5"/></svg>
-    歯科医療広告は「医療広告ガイドライン」により、誇大広告・比較優良広告・患者体験談等が規制されています。公開前に必ずチェックしてください。
-  </div>
-  <div class="g2">
-    <div class="card">
-      <div class="card-head"><div class="card-title"><svg viewBox="0 0 14 14"><path d="M7 1v8M4.5 3.5L7 1l2.5 2.5"/><path d="M3 9c0 2.5 8 2.5 8 0"/><line x1="1" y1="9" x2="13" y2="9"/></svg>チェック対象テキスト</div></div>
-      <div class="card-body">
-        <textarea class="field" id="legal-text" rows="14" style="min-height:220px;" placeholder="チェックしたい記事・広告文・キャッチコピー等を貼り付けてください。&#10;&#10;例）「福岡No.1の矯正歯科です」&#10;「インビザラインで必ず美しい歯並びになります」"></textarea>
-        <div style="display:flex;gap:7px;margin-top:10px;">
-          <button class="btn btn-navy" style="flex:1" onclick="runLegal()">⚖ リーガルチェック実行</button>
-          <button class="btn btn-ghost" onclick="seoToLegalDirect()">SEO記事をチェック</button>
+
+  <div class="chat-msgs" id="chatMsgs">
+    <div class="msg bot">
+      <div class="msg-av">👩‍⚕️</div>
+      <div>
+        <div class="msg-bub">
+          こんにちは😊 六本松矯正歯科クリニックとよしまのAIスタッフです。<br><br>
+          矯正治療のご相談・診療内容・料金・ご予約など、なんでもお気軽にお聞きください！
         </div>
+        <div class="msg-t">今</div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-head">
-        <div class="card-title"><svg viewBox="0 0 14 14"><path d="M2 7l4 4 6-6"/></svg>チェック結果</div>
-        <button class="btn btn-ochre btn-sm" onclick="autoFix()">AI自動修正</button>
-      </div>
-      <div class="card-body">
-        <div id="legal-result-area" style="margin-bottom:10px;"></div>
-        <div class="ai-output empty" id="legal-out">リーガルチェック実行後に詳細レポートが表示されます。</div>
-      </div>
-    </div>
+  </div>
+
+  <div class="quick-btns" id="quickBtns">
+    <button class="qbtn" onclick="sendQ('矯正治療について教えてください')">😬 矯正相談</button>
+    <button class="qbtn" onclick="sendQ('インビザラインについて詳しく教えてください')">透明矯正</button>
+    <button class="qbtn" onclick="sendQ('費用・料金を教えてください')">💴 費用</button>
+    <button class="qbtn" onclick="sendQ('予約を取りたいのですが')">📅 予約</button>
+    <button class="qbtn" onclick="sendQ('診療時間を教えてください')">🕐 診療時間</button>
+    <button class="qbtn" onclick="sendQ('子供の矯正について相談したい')">👶 小児矯正</button>
+    <button class="qbtn" onclick="sendQ('ホワイトニングについて教えてください')">✨ ホワイトニング</button>
+    <button class="qbtn" onclick="sendQ('初めて受診する場合、何を持参すればいいですか？')">🆕 初診案内</button>
+  </div>
+
+  <div class="typing" id="typing">
+    <div class="msg-av">👩‍⚕️</div>
+    <div class="typing-dots"><span></span><span></span><span></span></div>
+  </div>
+
+  <div class="chat-inp-area">
+    <textarea class="chat-inp" id="chatInp" placeholder="ご質問をどうぞ..." rows="1"
+      onkeydown="handleKey(event)" oninput="autoH(this)"></textarea>
+    <button class="chat-send" id="sendBtn" onclick="sendMsg()">➤</button>
   </div>
 </div>
-
-<!-- ────────────────────────────────────────
-  PAGE: NOTE
-──────────────────────────────────────── -->
-<div class="page" id="p-note">
-  <div class="page-head">
-    <div class="page-title">NOTE記事生成 <small>豆知識・コラム・患者向けコンテンツ</small></div>
-  </div>
-  <div class="g2">
-    <div class="card">
-      <div class="card-head"><div class="card-title"><svg viewBox="0 0 14 14"><path d="M2 2c0 0 2-.8 5-.8s5 .8 5 .8v9c0 0-2 3-5 3s-5-3-5-3V2z"/><path d="M4.5 6h5M4.5 8.5h3.5"/></svg>記事設定</div></div>
-      <div class="card-body">
-        <div class="form-row"><label class="field-label">テーマ</label>
-          <select class="field" id="note-theme">
-            <option>歯科豆知識・お口の健康</option><option>矯正歯科の基礎知識</option>
-            <option>インビザライン体験・Q&A</option><option>子どもの歯・小児矯正</option>
-            <option>ホワイトニング・審美歯科</option><option>歯周病・予防歯科</option>
-            <option>矯正中の食事・生活</option><option>院長・スタッフコラム</option>
-          </select>
-        </div>
-        <div class="form-row"><label class="field-label">トピック（任意）</label>
-          <input class="field" id="note-topic" placeholder="例: 矯正中に食べてはいけないもの TOP10">
-        </div>
-        <div class="form-row"><label class="field-label">スタイル</label>
-          <select class="field" id="note-tone">
-            <option>親しみやすい（一般向け）</option><option>専門的・信頼感重視</option>
-            <option>Q&A形式</option><option>リスト形式（◯選）</option>
-          </select>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:13px;">
-          <label class="check-label"><input type="checkbox" id="note-hashtag" checked> ハッシュタグ自動生成（10個）</label>
-          <label class="check-label"><input type="checkbox" id="note-cta" checked> クリニックへの相談CTAを追加</label>
-          <label class="check-label"><input type="checkbox" id="note-emoji" checked> 絵文字で読みやすく装飾</label>
-        </div>
-        <div style="display:flex;gap:7px;">
-          <button class="btn btn-navy" style="flex:1" onclick="genNote()">NOTE記事を生成</button>
-          <button class="btn btn-ghost" onclick="genNoteIdeas()">アイデア10案</button>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-head">
-        <div class="card-title"><svg viewBox="0 0 14 14"><rect x="1" y="1" width="12" height="12" rx="1"/><path d="M4 5h6M4 8h6M4 11h3"/></svg>生成結果</div>
-        <div style="display:flex;gap:5px;">
-          <button class="btn btn-ghost btn-xs" onclick="copyEl('note-out')">コピー</button>
-          <button class="btn btn-ghost btn-xs" onclick="noteToLegal()">⚖ 医療広告チェック</button>
-        </div>
-      </div>
-      <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab(this,'note-tabs','note-article')">生成記事</button>
-        <button class="tab-btn" onclick="switchTab(this,'note-tabs','note-ideas')">アイデア一覧</button>
-      </div>
-      <div id="note-tabs" style="padding:13px 15px;">
-        <div class="tab-pane active" id="note-article"><div class="ai-output empty" id="note-out" style="max-height:430px;">テーマを選んで「NOTE記事を生成」をクリックしてください。</div></div>
-        <div class="tab-pane" id="note-ideas"><div class="ai-output empty" id="note-ideas-out" style="max-height:430px;">「アイデア10案」をクリックしてください。</div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ────────────────────────────────────────
-  PAGE: KEYWORDS
-──────────────────────────────────────── -->
-<div class="page" id="p-keywords">
-  <div class="page-head">
-    <div class="page-title">キーワード管理 <small>ターゲットキーワードの一元管理 + AI発掘</small></div>
-    <button class="btn btn-navy" onclick="discoverKws()">
-      <svg viewBox="0 0 12 12"><circle cx="5.5" cy="5.5" r="4"/><path d="M9 9L12 12"/></svg>
-      AIキーワード発掘
-    </button>
-  </div>
-  <div class="g2">
-    <div class="card">
-      <div class="card-head"><div class="card-title">登録中のキーワード</div></div>
-      <div class="card-body">
-        <div style="display:flex;gap:7px;margin-bottom:12px;">
-          <input class="field" id="kw-input" placeholder="キーワードを追加..." style="flex:1;" onkeydown="if(event.key==='Enter')addKw()">
-          <button class="btn btn-ghost" onclick="addKw()">追加</button>
-        </div>
-        <div class="tags-wrap" id="kw-tags"></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-head"><div class="card-title">AI発掘レポート</div></div>
-      <div class="card-body"><div class="ai-output empty" id="kw-discover-out">「AIキーワード発掘」で競合・ロングテール・穴場KWを提案します。</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ────────────────────────────────────────
-  PAGE: SETTINGS
-──────────────────────────────────────── -->
-<div class="page" id="p-settings">
-  <div class="page-head">
-    <div class="page-title">API設定 <small>各サービスとの接続設定</small></div>
-    <button class="btn btn-navy" onclick="saveSettings()">
-      <svg viewBox="0 0 12 12"><path d="M2 7l3 3 5-5"/></svg>
-      設定を保存
-    </button>
-  </div>
-
-  <div id="settings-status-bar"></div>
-
-  <!-- Supabase -->
-  <div class="card">
-    <div class="card-head">
-      <div class="card-title">
-        <svg viewBox="0 0 14 14"><path d="M7 1L13 11H1L7 1z"/></svg>
-        Supabase（予約データベース）
-      </div>
-      <span class="badge" id="sb-badge" style="background:var(--bg3);color:var(--text3);">未接続</span>
-    </div>
-    <div class="card-body">
-      <div class="alert-banner alert-info">
-        <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6"/><path d="M7 6v4M7 4v.5"/></svg>
-        <span>Supabase管理画面 → Settings → API から取得できます。<br>
-        Project URL例: <code style="background:var(--navy-lt);padding:1px 6px;border-radius:3px;font-size:.65rem;font-family:monospace;">https://xxxx.supabase.co</code></span>
-      </div>
-      <div class="g2">
-        <div class="form-row"><label class="field-label">Project URL</label>
-          <input class="field" id="sb-url" placeholder="https://xxxxxxxxxxxx.supabase.co" type="url">
-        </div>
-        <div class="form-row"><label class="field-label">Anon (Public) Key</label>
-          <input class="field" id="sb-key" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." type="password">
-        </div>
-      </div>
-      <div class="form-row" style="margin-bottom:0;"><label class="field-label">予約テーブル名</label>
-        <input class="field" id="sb-table-apt" placeholder="appointments" style="max-width:250px;" value="appointments">
-      </div>
-      <div style="display:flex;gap:7px;margin-top:12px;">
-        <button class="btn btn-sage" onclick="testSupabase()">接続テスト</button>
-        <span class="text-muted" id="sb-test-result" style="align-self:center;"></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- WordPress -->
-  <div class="card">
-    <div class="card-head">
-      <div class="card-title">
-        <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6"/><path d="M2 7h10M7 1c-2 2-2 10 0 12M7 1c2 2 2 10 0 12M1.5 4h11M1.5 10h11"/></svg>
-        WordPress（記事・ページ管理）
-      </div>
-      <span class="badge" id="wp-badge" style="background:var(--bg3);color:var(--text3);">未接続</span>
-    </div>
-    <div class="card-body">
-      <div class="alert-banner alert-info">
-        <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6"/><path d="M7 6v4M7 4v.5"/></svg>
-        <span>記事の読み取りはAPIキー不要。投稿・編集には Application Password が必要です。<br>
-        WP管理画面 → ユーザー → プロフィール → アプリケーションパスワード から生成できます。</span>
-      </div>
-      <div class="g2">
-        <div class="form-row"><label class="field-label">WordPressサイトURL</label>
-          <input class="field" id="wp-url" placeholder="https://xn--68j7a2dtb9053amj1aoqai3wdd676ltle.com" value="https://xn--68j7a2dtb9053amj1aoqai3wdd676ltle.com">
-        </div>
-        <div class="form-row"><label class="field-label">Application Password（投稿・編集に必要）</label>
-          <input class="field" id="wp-pass" placeholder="xxxx xxxx xxxx xxxx xxxx xxxx" type="password">
-        </div>
-      </div>
-      <div style="display:flex;gap:7px;margin-top:8px;">
-        <button class="btn btn-sage" onclick="testWP()">接続テスト</button>
-        <span class="text-muted" id="wp-test-result" style="align-self:center;"></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Claude API -->
-  <div class="card">
-    <div class="card-head">
-      <div class="card-title">
-        <svg viewBox="0 0 14 14"><path d="M7 2C4.2 2 2 4.2 2 7s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5z"/><path d="M5 7.5c.5 1 1.5 1.5 2 1.5"/><path d="M5.5 5.5h.5M8 5.5h.5"/></svg>
-        Claude API（AI機能）
-      </div>
-      <span class="badge" id="claude-badge" style="background:var(--bg3);color:var(--text3);">未接続</span>
-    </div>
-    <div class="card-body">
-      <div class="alert-banner alert-info">
-        <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6"/><path d="M7 6v4M7 4v.5"/></svg>
-        <span>console.anthropic.com からAPIキーを取得してください。<br>
-        このダッシュボードを claude.ai 上で実行している場合はAPIキー不要です（自動接続）。</span>
-      </div>
-      <div class="form-row"><label class="field-label">Anthropic API Key（claude.ai外で使用する場合）</label>
-        <input class="field" id="claude-key" placeholder="sk-ant-..." type="password" style="max-width:500px;">
-      </div>
-      <div style="display:flex;gap:7px;margin-top:8px;">
-        <button class="btn btn-sage" onclick="testClaude()">AI接続テスト</button>
-        <span class="text-muted" id="claude-test-result" style="align-self:center;"></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Clinic Info -->
-  <div class="card">
-    <div class="card-head"><div class="card-title">クリニック基本情報（AI生成プロンプトに使用）</div></div>
-    <div class="card-body">
-      <div class="g2">
-        <div class="form-row"><label class="field-label">医院名</label><input class="field" id="cfg-name" value="六本松矯正歯科クリニックとよしま"></div>
-        <div class="form-row"><label class="field-label">電話番号</label><input class="field" id="cfg-tel" value="092-406-2119"></div>
-        <div class="form-row"><label class="field-label">住所</label><input class="field" id="cfg-addr" value="福岡市中央区六本松4-11-26 ビバーチェ・ハシモト1F"></div>
-        <div class="form-row"><label class="field-label">予約URL</label><input class="field" id="cfg-yoyaku" value="https://489.toyoshima-do.com/"></div>
-      </div>
-      <div class="form-row"><label class="field-label">AI記事生成デフォルト指示</label>
-        <textarea class="field" id="cfg-prompt" rows="3">当院の特徴（個室・分割払い金利無料・六本松駅徒歩3分・お子様連れ歓迎）を自然に盛り込む。矯正相談への誘導CTAを末尾に入れる。医療広告ガイドラインを遵守し、誇大表現・No.1表現・効果の保証は避ける。</textarea>
-      </div>
-    </div>
-  </div>
-</div>
-
-  </div><!-- /content -->
-</div><!-- /main -->
 
 <script>
-// ═══════════════════════════════════════════════════════════
-//  とよしま矯正歯科 統合AI管理システム — メインスクリプト
-// ═══════════════════════════════════════════════════════════
-
-// ──────── WordPress 実データ ────────
-const WP_POSTS = [{"id": 2398, "title": "年末年始休診のお知らせ", "date": "2025-11-01", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "下記日程にて年末年始の診療を、休診とさせていただきます。 ご迷惑をお掛けして大変申し訳ありませんが、ご理解の程宜しくお願い申し上げます。 2025年12月29日"}, {"id": 2406, "title": "「いいな、いい歯。」週間", "date": "2025-10-26", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "福岡県では、県民の皆さんが歯科口腔保健についての関心と理解を深め、積極的に歯科口腔保健に関する取組を行っていただけるように １１月７日から１３日 を、 「福岡県"}, {"id": 2400, "title": "11月の診療時間変更のお知らせ", "date": "2025-10-17", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "11月の診療時間変更のお知らせです。 11月27日（木） 10：00～13：30 午後は休診となります。 ご迷惑をお掛け致しますが、何卒ご了承下さいませ。 。"}, {"id": 2341, "title": "9月の休診のお知らせ", "date": "2025-08-01", "creator": "toyoshima_up", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "9月22日（月）は終日休診となります。 ご迷惑をお掛け致しますが、何卒ご了承くださいませ。"}, {"id": 2277, "title": "お盆休みのお知らせ", "date": "2025-07-01", "creator": "toyoshima_up", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "8月10日（日）～8月16日（土） まで休診とさせていただきます。 8月17日（日）より通常診療となります。 ご不便をおかけいたしますが、何卒ご理解の程よろしく"}, {"id": 2275, "title": "7月の休診のお知らせ", "date": "2025-06-02", "creator": "toyoshima_up", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "７月２８日（月）・７月２９日（火）は終日休診となります。 ご迷惑をお掛け致しますが、何卒ご了承下さいませ。"}, {"id": 2270, "title": "６月の診療時間変更のお知らせ", "date": "2025-05-01", "creator": "toyoshima_up", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "6月の診療時間変更のお知らせです。 6月7日（土）9：00～14：30 ６月21日（土）9：00～12：30 午後は休診となります。ご迷惑をお掛け致しますが、何"}, {"id": 2261, "title": "GW 休診のお知らせ", "date": "2025-04-01", "creator": "toyoshima_up", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "5月3日（土）～5月6日（火） まで休診とさせていただきます。 5月7日（水）より通常診療となります。 ご不便をおかけいたしますが、何卒ご理解の程よろしくお願い"}, {"id": 1656, "title": "3月の診療時間変更のお知らせ", "date": "2025-02-10", "creator": "toyoshima_up", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "3月の診療時間変更のお知らせです。 3月29日（土）9：00～12：30 午後は休診となります。ご迷惑をお掛け致しますが、何卒ご了承下さいませ。"}, {"id": 1669, "title": "2月の休診のお知らせ", "date": "2025-02-01", "creator": "toyoshima_up", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "2月3日（月）は終日休診となります。 ご迷惑をお掛け致しますが、何卒ご了承下さいませ。"}, {"id": 1646, "title": "1月の診療時間変更のお知らせ", "date": "2024-12-03", "creator": "toyoshima_up", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "1月の診療時間変更のお知らせです。 1月20日（月）12：00～16：00 ご迷惑をお掛け致しますが、何卒ご了承下さいませ。"}, {"id": 1640, "title": "年末年始休診のお知らせ", "date": "2024-11-06", "creator": "toyoshima_up", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "下記日程にて年末年始の診療を、休診とさせていただきます。 ご迷惑をお掛けして大変申し訳ありませんが、ご理解の程宜しくお願い申し上げます。 2024年12月29日"}, {"id": 1635, "title": "「いいな、いい歯。」週間", "date": "2024-10-22", "creator": "toyoshima_up", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "福岡県歯科医師会では11/7・8を「いいな、いい歯。」の日とし、11/7～13を「いいな、いい歯。」週間としています。 デジタルブックを読んで5問のクイズに答え"}, {"id": 1631, "title": "11月の診療時間変更のお知らせ", "date": "2024-10-08", "creator": "toyoshima_up", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "11月の診療時間変更のお知らせです。 11月11日（月）13：30～17：30 ご迷惑をお掛け致しますが、何卒ご了承下さいませ。"}, {"id": 1624, "title": "10月の診療時間変更のお知らせ", "date": "2024-09-03", "creator": "toyoshima_up", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "10月の診療時間変更のお知らせです。 10月12日（土）9：00～14：00 10月26日（土）9：00～14：30 ご迷惑をお掛け致しますが、何卒ご了承下さい"}, {"id": 1617, "title": "9月の診療時間変更のお知らせ", "date": "2024-08-07", "creator": "toyoshima_up", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "9月の診療時間変更のお知らせです。 9月28日（土）9：00～14：30 ご迷惑をお掛け致しますが、何卒ご了承下さいませ。"}, {"id": 1605, "title": "8月の診療時間変更のお知らせ", "date": "2024-07-10", "creator": "toyoshima_up", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "8月の診療時間変更のお知らせです。 8月26日（月）12：00～16：00 ご迷惑をお掛け致しますが、何卒ご了承下さいませ。"}, {"id": 1242, "title": "お盆休みのお知らせ", "date": "2024-06-12", "creator": "toyoshima_up", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "8月11日（日）～8月15日（木） まで休診とさせていただきます。 8月16日（金）より通常診療となります。 ご不便をおかけいたしますが、何卒ご理解の程よろしく"}, {"id": 1244, "title": "7月の診療時間変更のお知らせ", "date": "2024-06-11", "creator": "toyoshima_up", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "7月の診療時間変更のお知らせです。 7月8日（月）14：30～18：30 ご迷惑をお掛け致しますが、何卒ご了承下さいませ。"}, {"id": 1238, "title": "ただいまサイト調整中です。", "date": "2024-05-22", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "サイト調整のためサイトが表示されないなどご迷惑をおかけしております。"}, {"id": 894, "title": "ただいまサイト調整中です。", "date": "2024-05-18", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "サイト調整のためサイトが表示されないなどご迷惑をおかけしております。"}, {"id": 1225, "title": "GW休診のお知らせ", "date": "2024-05-02", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "5月3日（金）～5月6日（月） まで休診となります。 5月7日（火）より通常診療となります。"}, {"id": 1222, "title": "6月の診療時間変更のお知らせ", "date": "2024-04-05", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "6月の診療時間変更のお知らせです。 ６月８日（土）９：００～１４：３０ ご迷惑をお掛け致しますが、何卒ご了承くださいませ。"}, {"id": 1088, "title": "もうすぐ桜", "date": "2024-03-28", "creator": "eilife", "status": "draft", "cats": ["医院からのお知らせ"], "excerpt": ""}, {"id": 856, "title": "3月の診療時間変更のお知らせ", "date": "2024-02-06", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "3月の診療時間変更のお知らせです。 3月02日（土） 9：00～14：30 3月23日（土） 9：00～12：30 3月30日（土） 9：00～14：30 ご迷"}, {"id": 851, "title": "「いいな、いい歯。」週間", "date": "2023-10-12", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "福岡県歯科医師会では、11月7日・8日を「いいな、いい歯。」の日とし、 県内各地で歯や口の健康づくりに関する正しい知識や歯科疾患の予防に向けた取組が実施されてい"}, {"id": 862, "title": "診療時間変更のお知らせ", "date": "2023-08-23", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "2023年9月1日(金）より 診療時間が下記の通り変更となります。 何卒ご理解、ご協力のほどよろしくお願い申し上げます。 【変更後】 （月） 午前休診 / 15"}, {"id": 868, "title": "お盆休みのお知らせ", "date": "2023-07-11", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "お盆休みのお知らせです。 8月13日（日）～8月17日（木） を休診とさせていただきます。 8月18日（金）より通常診療となりますのでよろしくお願い致します。"}, {"id": 873, "title": "診療時間変更のお知らせ", "date": "2023-07-01", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "7月8日（土）の診療時間は、9時30分から14時30分までとなります。 ご迷惑をお掛け致しますが、何卒ご了承くださいませ。"}, {"id": 878, "title": "矯正診療価格変更のお知らせ", "date": "2023-05-27", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "2023年6月1日（木）より矯正診療の価格を変更させていただきます。 6月1日以降、費用のページをご参照いただけたらと存じます。 何卒ご理解の程宜しくお願い申し"}, {"id": 883, "title": "診療時間変更のお知らせ", "date": "2023-05-10", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "6月17日（土）の診療時間は、9時30分から14時30分までとなります。 ご迷惑をお掛け致しますが、何卒ご了承くださいませ。"}, {"id": 888, "title": "GWの休診のお知らせ", "date": "2023-04-19", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "GWの休診のお知らせです。 5月3日（水）～5月7日（日）まで休診となります。 5月8日（月）より通常診療となりますので、よろしくお願い致します。"}, {"id": 1214, "title": "年末年始の休診のお知らせ", "date": "2022-12-06", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "年末年始の休診のお知らせです。 12月30日(金）～1月5日（木）まで休診となります。 1月6日（金）より通常診療となりますので、よろしくお願い致します。"}, {"id": 901, "title": "「いいな、いい歯。」週間", "date": "2022-10-31", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは。 急な寒さの到来にようやく慣れてきました&#x1f60a; 皆さんは「いいな、いい歯。」週間をご存知でしょうか？ 「いいな、いい歯。」→117，11"}, {"id": 907, "title": "臨時休診のお知らせ", "date": "2022-10-19", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "臨時休診のお知らせです。 10月22日(土） は院長不在の為、午後から休診致します。 ご迷惑をおかけいたしますが、何卒ご理解の程、宜しくお願い致します。"}, {"id": 912, "title": "お盆休みのお知らせ", "date": "2022-07-15", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "お盆休みのお知らせです。 8月11日（木）～8月15日（月） を休診とさせていただきます。 8月16日（火）より通常通り診療しますのでよろしくお願い致します。"}, {"id": 917, "title": "年末年始のお休みのお知らせ", "date": "2021-12-13", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは&#x1f60a; 2021年も残すところ僅かとなりました。 年末の大掃除にむけてお口の中もクリーニングしてはいかがでしょうか。 キレイな歯で新しい年"}, {"id": 923, "title": "「いいな、いい歯。」週間", "date": "2021-11-09", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは。 11月7日～13日は「いいな、いい歯。」週間です。 歯と口の健康状態は、認知症の発症や、心疾患・誤嚥性肺炎などの全身疾患に関わるといわれています。"}, {"id": 929, "title": "自費診療価格変更のお知らせ", "date": "2021-10-01", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "2021年10月1日（金）より自費診療の価格を一部変更させていただきました。 費用のページをご参照いただけたらと存じます。 何卒ご理解の程よろしくお願い申し上げ"}, {"id": 934, "title": "お盆休みのお知らせ", "date": "2021-08-12", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "毎日暑い日が続いていますね。 みなさま体調に気をつけてお過ごし下さい。 今年のお盆休みですが、 8月13日（金）～8月17日（火） を休診とさせていただきます。"}, {"id": 939, "title": "移転開院３周年のごあいさつ", "date": "2021-06-15", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "当院は６月９日をもちまして、３周年を迎えました。 これもひとえに地域の皆様、関係者皆様の支えがあってのことと心よりお礼申し上げます。 これからもスタッフ一同日々"}, {"id": 947, "title": "ご予約状況のご案内", "date": "2021-05-21", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "現在、土曜・日曜・平日の夕方は大変予約が混み合い、ご希望の日時に予約がとりにくい状況となっております。 ご不便・ご迷惑をおかけして申し訳ございません。 当日キャ"}, {"id": 952, "title": "お知らせ", "date": "2021-03-08", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "まだ朝晩冷え込む日が続いていますが、だんだんと春らしくなってきました&#x1f338; 2021年3月1日(月)より、正式に平日の診療時間が変わりました。 平日"}, {"id": 957, "title": "平日の診療時間の変更のお知らせ", "date": "2021-01-30", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "2021年2月1日（月）より当面の間、下記の通り平日の診療時間を変更致します。 平日 午前 10：00～ 13：30 午後 15：00 ～19：00 ※土・日の"}, {"id": 963, "title": "年末年始診療のお知らせ", "date": "2020-12-11", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "下記の年末年始の期間お休みとなっております。ご迷惑をおかけしますが何卒ご了承くださいませ。 12月29日（火）17時まで通常診療 12月30日（水）から1月4日"}, {"id": 968, "title": "そろそろ１２月", "date": "2020-11-27", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは！ 歯科衛生士の井上です(^^♪ １１月も後半になり寒くなってきましたね～ 朝起きるのがきつくなってきましたが・・・ 実は最近朝のランニングを始めまし"}, {"id": 974, "title": "「いいな、いい歯。」週間", "date": "2020-11-04", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "福岡県歯科医師会は 、11月7日、8日 を「いいな、いい歯。」の日とし、 これを中心とした1週間を 「いいな、いい歯。」週間 としています。 パンフレットを読ん"}, {"id": 979, "title": "家庭菜園", "date": "2020-09-28", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは！ 歯科衛生士の三浦です！ 今年から家庭菜園を始めました(^^) ピーマンが大きくなっていくのが楽しみです！！ まだまだ初心者ですが、これからいろんな"}, {"id": 985, "title": "臨時休診のお知らせ", "date": "2020-09-05", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "9月7日月曜日 は台風10号の接近に伴い 臨時休診 とさせていただきます。 9月8日火曜日より、通常通り診療致します。 ご迷惑をおかけしますが、ご理解のほどよろ"}, {"id": 990, "title": "お盆休みのお知らせ", "date": "2020-07-20", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "お盆休みは８月１４日（金）～８月１６日（日）です。 盆明けの診療は１７日（月）からとなっております。 ご迷惑をおかけしますが、何卒ご了承くださいませ。"}, {"id": 995, "title": "夏バテ", "date": "2020-07-03", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは、歯科衛生士の宮原です(^^♪ 今週から７月にはいりましたね！ 皆様いかがお過ごしでしょうか 私は、ジメジメとした暑さに耐えられず、 毎日クーラーに頼"}, {"id": 1000, "title": "2周年", "date": "2020-06-15", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは(^^) さて、先日6月９日は六本松矯正歯科クリニックとよしまにとって記念すべき日でした。 茶山から六本松に移転してきて2年目ということで 院長とスタ"}, {"id": 1033, "title": "梅雨", "date": "2020-06-05", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは、歯科衛生士の宮原です(^^♪ ６月に入り、ジメジメとした暑さが続いていますね 来週からは本格的に雨が降り始めるみたいで、 またおうち時間が増えそうで"}, {"id": 1038, "title": "春", "date": "2020-05-11", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは！ 歯科衛生士の井上です♪ ５月になりましたが自粛要請は続き なかなか日常が戻りませんい(´；ω；`)ｳｯ… 早くコロナが収まったら 私はパ～っとどこ"}, {"id": 1043, "title": "５月臨時休診と診療時間短縮延長のお知らせ", "date": "2020-05-07", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "新型コロナウイルス感染拡大防止のため 現在平日午後の診療時間を１８時までと短縮しておりますが、 緊急事態措置延長に伴い当面の間短縮を続けます。 又、１２日（火）"}, {"id": 1048, "title": "臨時休診のお知らせ", "date": "2020-04-20", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "県下緊急事態宣言発令中につき、感染拡大防止の為下記の日を休診とさせて頂きます。 ４月２８日（火曜日）午前中 ４月３０日（木曜日） 今後、診療時間の短縮や変更を行"}, {"id": 1053, "title": "新型コロナウイルス感染予防のため②", "date": "2020-04-13", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "新型コロナウイルス感染拡大予防のため、本日より当面の間平日の診療時間を午後６時までに短縮させていただだきます。 ご迷惑をおかけしますが、ご理解賜りますようよろし"}, {"id": 1059, "title": "新型コロナウイルス感染予防のため①", "date": "2020-04-13", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "本県の緊急事態宣言発令に伴い、コロナウイルス感染拡大防止のため当院では以下について患者さんへお願い申し上げます。 ■メンテナンスや定期健診など特にお困りごとがな"}, {"id": 1064, "title": "アルコール消毒のお願い", "date": "2020-04-13", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは！歯科衛生士の井上です♪ 最近はコロナのことで持ちきりですね(´；ω；`)ｳｯ… とよしま歯科でも感染拡大防止の為、 来院されたときには問診と 診察券"}, {"id": 1070, "title": "おしらせ", "date": "2020-04-07", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは、衛生士の川久保です☻ ４月１日より新しくスタッフが 増えました！！新卒の衛生士です！！ 詳しい紹介はまたいつかの更新で♡ 最後に通勤路に咲いてる桜で"}, {"id": 1076, "title": "ぬり絵やDVDご用意しております", "date": "2020-03-18", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "六本松矯正歯科クリニックとよしまでは お子様連れの患者様も多く来院していただいております。 親御様の検診や矯正の待ち時間にお子様が退屈されないよう、 ぬり絵やD"}, {"id": 1081, "title": "春", "date": "2020-03-13", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは！ 歯科衛生士の井上です☻ 昨日はお休みだったので 朝からランニングに行ってきました！ 川沿いの道につくしが出てきてましたよ～ /*! element"}, {"id": 1090, "title": "もうすぐ桜", "date": "2020-03-11", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは、先週から雨が続いていますね もうすぐ桜の時期ですがコロナの影響で 色んなイベントが中止になっていてとても残念です。 小・中・高は休校になり学生さんた"}, {"id": 1098, "title": "春休み♪", "date": "2020-03-03", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは、歯科衛生士の宮原です(^^♪ 2020年もあっという間に２ヶ月が過ぎ、今週から３月に入りましたね！ 後１ヶ月でとよしま歯科に入社して１年が経つと思う"}, {"id": 1104, "title": "バレンタイン", "date": "2020-02-10", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは！歯科衛生士の井上です♪ ２月になってさらに寒さが増してきましたね 昨日はお休みだったので デパートのバレンタインフェアに行ってきました&#x2665"}, {"id": 1113, "title": "新年", "date": "2020-01-22", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "遅くなりましたが 皆さん明けましておめでとうございます♪ 最近は寒い日も続き 風邪をひきやすいと思います。 外から帰ったら手洗いうがいを 心がけてくださいね(^"}, {"id": 1118, "title": "年末年始お休みのお知らせ", "date": "2019-12-27", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "今年もあと数日で終わりですね(^^♪ 年内の診療は12月29日（日）の午前中までとなっております。 12月29日（日）の午後から1月4日（土）までお休みをいただ"}, {"id": 1123, "title": "「いいな、いい歯。」週間", "date": "2019-11-05", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは １１月に入り肌寒くなってきましたね。 福岡県歯科医師会は１１/７・８を「いいな、いい歯。」の日とし、 この両日を中心とした１週間を「いいな、いい歯。"}, {"id": 1128, "title": "寒くなってきましたね", "date": "2019-10-17", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは！ 六本松矯正歯科クリニックとよしまです 最近寒くなってきましたね～ 少し前まで暑かったのに急に冷え込んできて 体調を崩された方もいらっしゃるんでは "}, {"id": 1140, "title": "実習生がきています！", "date": "2019-09-20", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは 少し肌寒くなってきましたね。 ９月から歯科衛生専門学校の学生が 実習にきています 皆様にはご迷惑おかけすると思いますが １２月まで来ておりますので "}, {"id": 1146, "title": "お盆休みのお知らせ", "date": "2019-07-29", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "暑くなってきましたね&#x1f31e; ８/１０午後 ～ ８/１５ まで お盆休みとなっておりま&#x1f647; 夏休み期間中のため予約が取りづらく なってお"}, {"id": 1151, "title": "１年記念。", "date": "2019-06-19", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは&#x1f31e; 六本松に移転してきて一年が経ちました&#x1f64c; 改めて思うことは、歯医者の引っ越しって もんのすごく大変だな～・・・と。 "}, {"id": 1156, "title": "歯周病って？", "date": "2019-06-19", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "皆さんこんにちは&#x1f60a; 歯科衛生士の井上です&#x1f33b; 蛍の時期ですね～&#x2728; 私は昨日みにいきました！！ 優しい光に癒されました"}, {"id": 1161, "title": "お口の健康と認知症", "date": "2019-05-27", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "皆さんこんにちは&#x1f607; 最近暑い日が続きますね～&#x1f349; 突然ですが 皆さんはお口の健康と認知症が 関係していることご存知ですか？&#x1"}, {"id": 1166, "title": "間食について", "date": "2019-05-07", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "甘いものを控えているのに 虫歯になる。。。 そんな経験ありませんか？ 実はそれは甘いものの量ではなく 食べ方 に問題があるかもしれません&#x1f632;&#x"}, {"id": 1171, "title": "お子さんの仕上げ磨き", "date": "2019-04-24", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "皆さんこんにちは&#x1f33c; 少しずつですが暑い日が増えてきましたね&#x2600; 春を通り越して夏になってしまいそうな 気配です(;´･ω･)&#x1"}, {"id": 1176, "title": "歓迎会", "date": "2019-04-08", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは&#x2763; 六本松矯正歯科クリニックとよしま 衛生士の井上です&#x1f436;&#x1f3b6; 少し前ですが、ついに新年号が 発表されました"}, {"id": 1181, "title": "桜の季節", "date": "2019-03-12", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは、衛生士の川久保です&#x1f60a; ３月も中旬、桜の季節ですね&#x1f338; 卒業を迎えられた方、おめでとうございます&#x1f3eb; ３月"}, {"id": 1186, "title": "新年のご挨拶", "date": "2019-01-08", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "あけましておめでとうございます&#x1f417; みなさん初詣はいきましたか？ みなさんが健康なお口で過ごせるよう祈っています&#x2728; 昨年は引っ越しで"}, {"id": 1191, "title": "臨時休診のお知らせ", "date": "2018-12-03", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは！ 六本松矯正歯科クリニックとよしまです&#x1f607; １２月４、５、６日 の３日間 臨時休診となっております。 御用の方は留守番電話に メッセー"}, {"id": 1196, "title": "コスモス", "date": "2018-11-12", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは！ 六本松矯正歯科クリニックとよしま 歯科衛生士の井上です&#x1f64b;&#x1f495; 先週地元の佐賀へコスモスを見に行ってきました&#x1f"}, {"id": 1203, "title": "歯にもトリートメント", "date": "2018-10-26", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは！ 六本松矯正歯科クリニックとよしまです&#x1f33c; 皆さん髪の毛のトリートメントと同じように 歯のトリートメントがあるのを ご存知ですか？&#"}, {"id": 1208, "title": "臨時休診のお知らせ", "date": "2018-10-23", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "１０月２４日（水）の午後を 臨時休診とさせて頂きます。 ご迷惑をお掛けしますがご用の方は 留守電話にメッセージをお願いします。"}, {"id": 1213, "title": "JAZZ♪", "date": "2018-10-09", "creator": "eilife", "status": "publish", "cats": ["医院からのお知らせ"], "excerpt": "こんにちは！ 矯正歯科クリニックとよしまです&#x1f607; 昨日は院長と数名のスタッフで JAZZを聴きに行ってきました&#x1f44f; 知り合いの先生が"}];
-const WP_PAGES = [{"id": 762, "title": "Elementor #762", "date": "2024-03-14", "status": "publish", "excerpt": "/*! elementor - v3.20.0 - 13-03-2024 */ .elementor-heading-t"}, {"id": 1950, "title": "【予約者専用】予約管理ページ", "date": "2025-02-11", "status": "publish", "excerpt": "[ameliacustomerpanel version=2 appointments=1] [ameliacustom"}, {"id": 2139, "title": "【管理者】予約管理ページ", "date": "2025-02-18", "status": "publish", "excerpt": "予約管理ページ [ameliaemployeepanel appointments=1 events=1]"}, {"id": 419, "title": "お問い合わせ", "date": "2024-03-13", "status": "publish", "excerpt": "/*! elementor - v3.22.0 - 17-06-2024 */ .elementor-widget-im"}, {"id": 293, "title": "その他の治療", "date": "2024-03-13", "status": "publish", "excerpt": ""}, {"id": 378, "title": "よくある質問", "date": "2024-03-13", "status": "publish", "excerpt": "/*! elementor - v3.22.0 - 17-06-2024 */ .elementor-widget-im"}, {"id": 2228, "title": "インビザライン（マウスピース矯正）のメリット・デメリット", "date": "2025-02-18", "status": "publish", "excerpt": "インビザライン（マウスピース矯正）のメリット・デメリット インビザラインは、透明なマウスピースを使った矯正治療法で、近年"}, {"id": 2281, "title": "キャンセル完了", "date": "2025-04-21", "status": "publish", "excerpt": "キャンセル受付いたしました。"}, {"id": 28, "title": "ホーム", "date": "2024-03-13", "status": "publish", "excerpt": "[showwhatsnew] お知らせ一覧へ ゆっくり点滅する画像リンク .slow-blink { width: 30"}, {"id": 2068, "title": "予約システムマニュアル", "date": "2025-02-17", "status": "publish", "excerpt": "予約システムマニュアル 目次 予約受付完了までの流れ（管理者） 吾輩は猫である。名前はまだない。どこで生れたか頓と見当が"}, {"id": 1915, "title": "予約フォーム", "date": "2025-02-05", "status": "publish", "excerpt": "初めての方 初診の方 【無料相談・有料相談】スタッフが丁寧にサポート まずはお悩みをお聞かせください [ameliaca"}, {"id": 2220, "title": "出っ歯・受け口・すきっ歯の矯正治療", "date": "2025-02-18", "status": "publish", "excerpt": "出っ歯・受け口・すきっ歯の矯正治療 出っ歯、受け口、すきっ歯といった歯並びの問題は、見た目に影響を与えるだけでなく、噛み"}, {"id": 465, "title": "大人の矯正", "date": "2024-03-14", "status": "publish", "excerpt": "/*! elementor - v3.22.0 - 17-06-2024 */ .elementor-widget-im"}, {"id": 237, "title": "子どもの矯正", "date": "2024-03-13", "status": "publish", "excerpt": ""}, {"id": 446, "title": "完了画面", "date": "2024-03-13", "status": "publish", "excerpt": "/*! elementor - v3.20.0 - 11-03-2024 */ .elementor-heading-t"}, {"id": 191, "title": "当院のご紹介", "date": "2024-03-13", "status": "publish", "excerpt": "カウンセリングを大切にしています。 当院ではカウンセリングに十分な時間を取り、矯正治療についての一般的なご説明、起こりう"}, {"id": 2199, "title": "歯並びが与える健康への影響", "date": "2025-02-18", "status": "publish", "excerpt": "歯並びが与える健康への影響 歯並びは見た目だけでなく、健康にも大きな影響を与えます。歯並びが悪いと、噛み合わせや口腔内の"}, {"id": 2215, "title": "歯並びの悪さの原因と予防", "date": "2025-02-18", "status": "publish", "excerpt": "歯並びの悪さの原因と予防 歯並びが悪いと、見た目だけでなく、口の中の健康にもさまざまな影響を与えます。歯並びが悪くなる原"}, {"id": 1672, "title": "歯科衛生士社員・パート募集求人情報｜福岡市六本松の矯正歯科豊島", "date": "2025-02-04", "status": "publish", "excerpt": "求人に今すぐ応募する ページ上に 当院について『当院ご紹介』 あなたの笑顔が患者さんの未来を変える ――私たちと一緒に働"}, {"id": 1662, "title": "求人特設ページ", "date": "2025-01-26", "status": "publish", "excerpt": ""}, {"id": 467, "title": "目立たない矯正", "date": "2024-03-14", "status": "publish", "excerpt": "なるべく目立たない装置をご希望される方にオススメの、 3つの方法をご紹介します。 舌側矯正 マウスピース型矯正装置 セラ"}, {"id": 2007, "title": "矯正についての情報や口コミ", "date": "2025-02-12", "status": "publish", "excerpt": "矯正歯科の基礎知識 矯正治療の種類と特徴 矯正治療の費用と支払い方法 矯正治療の期間と流れ 矯正治療の痛みと対処法 矯正"}, {"id": 2085, "title": "矯正歯科の基礎知識", "date": "2025-02-18", "status": "publish", "excerpt": "矯正歯科の基礎知識 知っていましたか？矯正治療は単に歯並びを整えるだけでなく、 噛み合わせの改善や口腔内の健康維持 にも"}, {"id": 2194, "title": "矯正歯科の選び方と失敗しないポイント", "date": "2025-02-18", "status": "publish", "excerpt": "矯正歯科の選び方と失敗しないポイント 矯正治療を受けるにあたって、重要なのは信頼できる矯正歯科を選ぶことです。歯科医院の"}, {"id": 1251, "title": "矯正歯科治療に伴うリスク•副反応", "date": "2024-06-12", "status": "publish", "excerpt": "/*! elementor - v3.22.0 - 17-06-2024 */ .elementor-heading-t"}, {"id": 2204, "title": "矯正治療と美容（顔の印象の変化）", "date": "2025-02-18", "status": "publish", "excerpt": "吾輩は猫である。名前はまだない。どこで生れたか頓と見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけ"}, {"id": 2233, "title": "矯正治療と虫歯・歯周病の関係", "date": "2025-02-18", "status": "publish", "excerpt": "矯正治療と虫歯・歯周病の関係 矯正治療を受けることで歯並びが整い、見た目や噛み合わせが改善されますが、矯正装置を使ってい"}, {"id": 2225, "title": "矯正治療の体験談・よくある失敗", "date": "2025-02-18", "status": "publish", "excerpt": "矯正治療の体験談・よくある失敗 矯正治療は歯並びを改善するための素晴らしい方法ですが、治療中にはさまざまな体験談や失敗談"}, {"id": 2104, "title": "矯正治療の期間とスケジュール", "date": "2025-02-18", "status": "publish", "excerpt": "矯正治療の期間とスケジュール 矯正治療は短期間で終わるものではなく、 平均して1年半～3年 ほどかかります。 治療の流れ"}, {"id": 2091, "title": "矯正治療の種類と特徴", "date": "2025-02-18", "status": "publish", "excerpt": "矯正治療の種類と特徴 矯正治療にはさまざまな種類があり、それぞれに メリット・デメリット があります。 自分に合った治療"}, {"id": 2099, "title": "矯正治療の費用と支払い方法", "date": "2025-02-18", "status": "publish", "excerpt": "矯正治療の費用と支払い方法 矯正治療は高額になりやすいため、 費用の相場や支払い方法 を知ることが大切です。 ここでは、"}, {"id": 2114, "title": "矯正治療中の口腔ケアと歯磨きのポイント", "date": "2025-02-18", "status": "publish", "excerpt": "矯正治療中の口腔ケアと歯磨きのポイント 矯正装置をつけると 歯磨きが難しくなる ため、 しっかりとした口腔ケアが必要です"}, {"id": 2209, "title": "矯正治療中の口腔ケアと注意点", "date": "2025-02-18", "status": "publish", "excerpt": "矯正治療中の口腔ケアと注意点 矯正治療を受けている間は、通常の歯磨きや口腔ケアでは不十分です。矯正装置が歯に取り付けられ"}, {"id": 2124, "title": "矯正治療中の定期検診の重要性", "date": "2025-02-18", "status": "publish", "excerpt": "矯正治療中の定期検診の重要性 矯正治療では、 定期的な通院 が必要です。 矯正装置の調整や治療の進行状況を確認することで"}, {"id": 2119, "title": "矯正治療中の痛みと対処法", "date": "2025-02-18", "status": "publish", "excerpt": "矯正治療中の痛みと対処法 矯正治療では、装置の装着や調整後に 痛みを感じることがある ため、 適切な対処法を知っておくこ"}, {"id": 2109, "title": "矯正治療中の食事と注意点", "date": "2025-02-18", "status": "publish", "excerpt": "矯正治療中の食事と注意点 矯正治療中は 食べ物の選び方 が重要です。 固いものや粘着性のある食べ物は矯正装置を壊す可能性"}, {"id": 2129, "title": "矯正治療中の食事制限とおすすめの食べ物", "date": "2025-02-18", "status": "publish", "excerpt": "矯正治療中の食事制限とおすすめの食べ物 矯正治療中は 食べ物に気をつける 必要があります。 固いものや粘着性のある食べ物"}, {"id": 2238, "title": "矯正治療後のホワイトニングと歯のケア", "date": "2025-02-18", "status": "publish", "excerpt": "矯正治療後のホワイトニングと歯のケア 矯正治療を終えた後、歯並びが整い、美しい笑顔を手に入れることができますが、その後の"}, {"id": 2188, "title": "矯正治療後の後戻りと保定装置", "date": "2025-02-18", "status": "publish", "excerpt": "吾輩は猫である。名前はまだない。どこで生れたか頓と見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけ"}, {"id": 441, "title": "確認画面", "date": "2024-03-13", "status": "publish", "excerpt": "/*! elementor - v3.20.0 - 11-03-2024 */ .elementor-heading-t"}, {"id": 349, "title": "費用について", "date": "2024-03-13", "status": "publish", "excerpt": "矯正歯科治療は公的健康保険の適用外の自費診療（自由診療）となります。 一般的に永久歯治療はおおよそ治療期間２−３年、通院"}, {"id": 3, "title": "プライバシーポリシー", "date": "2024-03-13", "status": "draft", "excerpt": "私たちについて 私たちのサイトアドレスは https://xn--68j7a2dtb9053amj1aoqai3wdd6"}];
-
-// ──────── クリニック情報 ────────
-function CLINIC_INFO() {
-  return `医院名: ${getSetting('cfg-name','六本松矯正歯科クリニックとよしま')}
-住所: ${getSetting('cfg-addr','福岡市中央区六本松4-11-26 ビバーチェ・ハシモト1F')}
-TEL: ${getSetting('cfg-tel','092-406-2119')}
-予約URL: ${getSetting('cfg-yoyaku','https://489.toyoshima-do.com/')}
-診療: 月火水金 9:00-19:00、土 9:00-17:00（木日祝休）
-特徴: 完全個室・矯正専門・インビザライン/ワイヤー/舌側矯正/小児矯正・分割払い金利無料・六本松駅徒歩3分・お子様連れ歓迎
-${getSetting('cfg-prompt','医療広告ガイドラインを遵守する。')}`;
-}
-
-// ─────────────────────────────────────
-//  STATE
-// ─────────────────────────────────────
-let supabaseClient = null;
-let appointments = [];
-let patients = [];
-let calYear = 2026, calMonth = 3;
-let postsPage = 1, aptPage = 1, ptPage = 1;
-const PER_PAGE = 15;
-let filteredPosts = [...WP_POSTS];
-let filteredApts = [];
-let filteredPts = [];
-let kwList = ['六本松 矯正歯科','インビザライン 福岡','舌側矯正 福岡市','小児矯正 中央区','矯正 個室 六本松'];
-
-// ─────────────────────────────────────
-//  SETTINGS (localStorage)
-// ─────────────────────────────────────
-function getSetting(key, def='') {
-  const el = document.getElementById(key);
-  if (el) return el.value || def;
-  return localStorage.getItem('cfg_' + key) || def;
-}
-function loadSettings() {
-  const keys = ['sb-url','sb-key','sb-table-apt','wp-url','wp-pass','claude-key',
-                'cfg-name','cfg-tel','cfg-addr','cfg-yoyaku','cfg-prompt'];
-  keys.forEach(k => {
-    const v = localStorage.getItem('cfg_' + k);
-    const el = document.getElementById(k);
-    if (v && el) el.value = v;
-  });
-}
-function saveSettings() {
-  const keys = ['sb-url','sb-key','sb-table-apt','wp-url','wp-pass','claude-key',
-                'cfg-name','cfg-tel','cfg-addr','cfg-yoyaku','cfg-prompt'];
-  keys.forEach(k => {
-    const el = document.getElementById(k);
-    if (el) localStorage.setItem('cfg_' + k, el.value);
-  });
-  showSettingsStatus('ok', '設定を保存しました');
-  checkConnections();
-}
-
-// ─────────────────────────────────────
-//  CLOCK
-// ─────────────────────────────────────
-setInterval(() => {
-  const n = new Date();
-  const el = document.getElementById('clock');
-  if (el) el.textContent = n.toLocaleTimeString('ja-JP');
-}, 1000);
-
-// ─────────────────────────────────────
-//  NAVIGATION
-// ─────────────────────────────────────
-const PAGE_TITLES = {
-  dashboard: 'ダッシュボード', calendar: '予約カレンダー',
-  appointments: '予約一覧', patients: '患者リスト',
-  posts: '投稿管理', pages: '固定ページ',
-  analytics: 'AIアクセス解析', seo: 'SEO記事生成',
-  legal: 'リーガルチェック', note: 'NOTE記事生成',
-  keywords: 'キーワード管理', settings: 'API設定'
-};
-
-function nav(id, el) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  const pg = document.getElementById('p-' + id);
-  if (pg) pg.classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-  if (el) el.classList.add('active');
-  else {
-    document.querySelectorAll('.nav-item').forEach(i => {
-      if (i.getAttribute('onclick')?.includes("'" + id + "'")) i.classList.add('active');
-    });
-  }
-  const tb = document.getElementById('tb-title');
-  if (tb) tb.textContent = PAGE_TITLES[id] || id;
-  // Lazy load
-  if (id === 'calendar') loadCalendar();
-  if (id === 'appointments') loadAppointments();
-  if (id === 'patients') loadPatients();
-  if (id === 'posts') initPostsPage();
-  if (id === 'pages') initPagesPage();
-  if (id === 'keywords') renderKwTags();
-  if (id === 'settings') loadSettings();
-}
-
-// ─────────────────────────────────────
-//  TABS
-// ─────────────────────────────────────
-function switchTab(btn, groupId, paneId) {
-  const group = document.getElementById(groupId);
-  if (!group) return;
-  group.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-  const pane = document.getElementById(paneId);
-  if (pane) pane.classList.add('active');
-  btn.closest('.tabs').querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-}
-
-// ─────────────────────────────────────
-//  COPY
-// ─────────────────────────────────────
-function copyEl(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  navigator.clipboard.writeText(el.innerText).then(() => {
-    el.style.outline = '2px solid var(--navy3)';
-    setTimeout(() => el.style.outline = '', 1500);
-  });
-}
-
-// ─────────────────────────────────────
-//  AI OUTPUT HELPERS
-// ─────────────────────────────────────
-function setLoading(id, msg = 'AI処理中...') {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.className = 'ai-output loading';
-  el.innerHTML = `<span class="spinner"></span> ${msg}`;
-}
-function setOut(id, txt) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.className = 'ai-output';
-  el.textContent = txt;
-}
-function setEmpty(id, msg) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.className = 'ai-output empty';
-  el.textContent = msg;
-}
-
-// ─────────────────────────────────────
-//  CLAUDE API
-// ─────────────────────────────────────
-async function callClaude(prompt, outputId, loadMsg = 'AI処理中...') {
-  setLoading(outputId, loadMsg);
-  try {
-    const body = {
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 2000,
-      messages: [{ role: 'user', content: prompt }]
-    };
-    const headers = { 'Content-Type': 'application/json' };
-    const apiKey = getSetting('claude-key');
-    if (apiKey) headers['x-api-key'] = apiKey;
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST', headers, body: JSON.stringify(body)
-    });
-    const data = await res.json();
-    const txt = data.content?.[0]?.text || 'エラーが発生しました: ' + JSON.stringify(data.error || data);
-    setOut(outputId, txt);
-    return txt;
-  } catch(e) {
-    setOut(outputId, '⚠️ API接続エラー\n' + e.message);
-    return null;
-  }
-}
-
-// ─────────────────────────────────────
-//  SUPABASE INIT
-// ─────────────────────────────────────
-async function initSupabase() {
-  const url = getSetting('sb-url');
-  const key = getSetting('sb-key');
-  if (!url || !key) return null;
-  try {
-    // Dynamic load supabase-js from CDN
-    if (!window.supabase) {
-      await loadScript('https://cdnjs.cloudflare.com/ajax/libs/supabase-js/2.39.7/umd/supabase.min.js');
-    }
-    supabaseClient = window.supabase.createClient(url, key);
-    return supabaseClient;
-  } catch(e) {
-    console.error('Supabase init error:', e);
-    return null;
-  }
-}
-
-function loadScript(src) {
-  return new Promise((resolve, reject) => {
-    const s = document.createElement('script');
-    s.src = src; s.onload = resolve; s.onerror = reject;
-    document.head.appendChild(s);
-  });
-}
-
-// ─────────────────────────────────────
-//  CONNECTION CHECK
-// ─────────────────────────────────────
-async function checkConnections() {
-  const sbUrl = getSetting('sb-url');
-  const wpUrl = getSetting('wp-url');
-  
-  let sbOk = false, wpOk = false;
-
-  // Supabase check
-  if (sbUrl && getSetting('sb-key')) {
-    try {
-      const client = await initSupabase();
-      if (client) {
-        const table = getSetting('sb-table-apt','appointments');
-        const { error } = await client.from(table).select('id').limit(1);
-        sbOk = !error;
-      }
-    } catch(e) { sbOk = false; }
-  }
-
-  // WP check (public API no auth needed)
-  if (wpUrl) {
-    try {
-      const r = await fetch(wpUrl + '/wp-json/wp/v2/posts?per_page=1', {signal: AbortSignal.timeout(5000)});
-      wpOk = r.ok;
-    } catch(e) { wpOk = false; }
-  }
-
-  updateConnectionUI(sbOk, wpOk);
-  if (sbOk) await loadDashboardData();
-  return { sbOk, wpOk };
-}
-
-function updateConnectionUI(sbOk, wpOk) {
-  const cs = document.getElementById('conn-status');
-  const sbStatus = document.getElementById('sbStatus');
-  const sbBadge = document.getElementById('sb-badge');
-  const wpBadge = document.getElementById('wp-badge');
-  
-  if (sbOk && wpOk) {
-    if (cs) { cs.className = 'ok'; cs.textContent = '全サービス接続中'; }
-    if (sbStatus) { sbStatus.className = 'sb-status online'; sbStatus.textContent = 'Supabase + WP 接続中'; }
-  } else if (sbOk || wpOk) {
-    if (cs) { cs.className = 'partial'; cs.textContent = (sbOk?'Supabase':'WP') + ' 接続中'; }
-    if (sbStatus) { sbStatus.className = 'sb-status online'; sbStatus.textContent = sbOk ? 'Supabase 接続中' : 'WP のみ接続中'; }
-  } else {
-    if (cs) { cs.className = ''; cs.textContent = 'デモモードで動作中'; }
-    if (sbStatus) { sbStatus.className = 'sb-status'; sbStatus.textContent = 'API設定から接続してください'; }
-    showSetupWarning();
-  }
-
-  if (sbBadge) { sbBadge.textContent = sbOk ? '接続済み' : '未接続'; sbBadge.className = 'badge ' + (sbOk ? 'b-pub' : 'b-gray'); }
-  if (wpBadge) { wpBadge.textContent = wpOk ? '接続済み' : '未接続'; wpBadge.className = 'badge ' + (wpOk ? 'b-pub' : 'b-gray'); }
-
-  const nbSettings = document.getElementById('nb-settings');
-  if (nbSettings) nbSettings.style.display = (!sbOk && !wpOk) ? 'inline' : 'none';
-}
-
-function showSetupWarning() {
-  const el = document.getElementById('setup-warning');
-  if (!el) return;
-  el.innerHTML = `<div class="alert-banner alert-info" style="cursor:pointer" onclick="nav('settings',null)">
-    <svg viewBox="0 0 14 14" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="7" cy="7" r="6"/><path d="M7 6v4M7 4v.5"/></svg>
-    <span><strong>デモモードで動作中です。</strong> Supabase・WordPress との接続設定を行うと、実際の予約データと記事データが表示されます。
-    <span style="font-weight:600;text-decoration:underline;">→ API設定画面を開く</span></span>
-  </div>`;
-}
-
-// ─────────────────────────────────────
-//  DASHBOARD DATA LOAD
-// ─────────────────────────────────────
-async function loadDashboardData() {
-  if (!supabaseClient) return;
-  
-  const table = getSetting('sb-table-apt', 'appointments');
-  const today = new Date().toISOString().split('T')[0];
-
-  // Today's appointments
-  try {
-    const { data, error } = await supabaseClient
-      .from(table)
-      .select('*')
-      .gte('start_date', today + 'T00:00:00')
-      .lt('start_date', today + 'T23:59:59')
-      .order('start_date');
-    
-    if (!error && data) {
-      appointments = data;
-      document.getElementById('kpi-today').textContent = data.length;
-      document.getElementById('kpi-today-sub').textContent = '今日の予約 ' + today;
-      document.getElementById('nb-today').textContent = data.length;
-      renderDashApts(data);
-    }
-  } catch(e) { console.error('Supabase query error:', e); }
-
-  // Total patients
-  try {
-    const { count } = await supabaseClient.from(table).select('*', {count:'exact', head:true});
-    if (count !== null) {
-      document.getElementById('kpi-patients').textContent = count;
-      document.getElementById('kpi-patients-sub').textContent = '総予約レコード数';
-    }
-  } catch(e) {}
-}
-
-function renderDashApts(apts) {
-  const el = document.getElementById('dash-appointments');
-  if (!el) return;
-  if (!apts.length) {
-    el.innerHTML = '<div style="padding:20px 16px;text-align:center;color:var(--text3);font-size:.7rem;">本日の予約はありません</div>';
-    return;
-  }
-  el.innerHTML = `<table class="wp-table">
-    <thead><tr><th>時間</th><th>患者名</th><th>コース</th><th>担当</th><th>ステータス</th></tr></thead>
-    <tbody>` + apts.map(a => {
-    const time = a.start_date ? new Date(a.start_date).toLocaleTimeString('ja-JP', {hour:'2-digit',minute:'2-digit'}) : '--:--';
-    const name = a.customer_name || a.patient_name || (a.first_name ? a.first_name + ' ' + (a.last_name||'') : '患者名不明');
-    const course = a.service_name || a.course || a.title || '―';
-    const staff = a.employee_name || a.staff || '―';
-    const status = a.status || 'confirmed';
-    const badgeCls = status === 'cancelled' ? 'b-red' : status === 'pending' ? 'b-draft' : 'b-pub';
-    const statusLabel = status === 'cancelled' ? 'キャンセル' : status === 'pending' ? '仮予約' : '確定';
-    return `<tr>
-      <td class="mono" style="font-size:.72rem;">${time}</td>
-      <td class="tc">${name}</td><td>${course}</td><td>${staff}</td>
-      <td><span class="badge ${badgeCls}">${statusLabel}</span></td>
-    </tr>`;
-  }).join('') + '</tbody></table>';
-}
-
-// ─────────────────────────────────────
-//  CALENDAR
-// ─────────────────────────────────────
-async function loadCalendar() {
-  renderCalLabels();
-  await renderCalGrid();
-}
-
-function renderCalLabels() {
-  const el = document.getElementById('cal-labels');
-  if (!el) return;
-  const days = ['日','月','火','水','木','金','土'];
-  el.innerHTML = days.map((d,i) => `<div class="cal-day-label ${i===0?'sun':i===6?'sat':''}">{d}</div>`).join('').replace(/{d}/g, '').replace(/(日|月|火|水|木|金|土)/g, m => m);
-  el.innerHTML = days.map((d,i) => `<div class="cal-day-label ${i===0?'sun':i===6?'sat':''}">${d}</div>`).join('');
-}
-
-async function renderCalGrid() {
-  const el = document.getElementById('cal-grid');
-  const titleEl = document.getElementById('cal-month-title');
-  if (!el) return;
-  
-  titleEl.textContent = `${calYear}年 ${calMonth}月`;
-  
-  const firstDay = new Date(calYear, calMonth-1, 1).getDay();
-  const daysInMonth = new Date(calYear, calMonth, 0).getDate();
-  const today = new Date();
-  const todayStr = today.toISOString().split('T')[0];
-  
-  // Fetch month's appointments
-  let monthApts = {};
-  if (supabaseClient) {
-    try {
-      const startStr = `${calYear}-${String(calMonth).padStart(2,'0')}-01T00:00:00`;
-      const endStr = `${calYear}-${String(calMonth).padStart(2,'0')}-${String(daysInMonth).padStart(2,'0')}T23:59:59`;
-      const { data } = await supabaseClient
-        .from(getSetting('sb-table-apt','appointments'))
-        .select('start_date, status, customer_name, service_name, employee_name, first_name, last_name')
-        .gte('start_date', startStr)
-        .lte('start_date', endStr);
-      if (data) {
-        data.forEach(a => {
-          const d = a.start_date?.split('T')[0];
-          if (!monthApts[d]) monthApts[d] = [];
-          monthApts[d].push(a);
-        });
-      }
-    } catch(e) { console.error('Calendar fetch error:', e); }
-  } else {
-    // Demo data
-    const demoApts = [
-      {d: `${calYear}-${String(calMonth).padStart(2,'0')}-10`, label:'田中 様', time:'10:00', type:'morning'},
-      {d: `${calYear}-${String(calMonth).padStart(2,'0')}-10`, label:'山田 様', time:'14:00', type:'afternoon'},
-      {d: `${calYear}-${String(calMonth).padStart(2,'0')}-12`, label:'佐藤 様', time:'11:00', type:'morning'},
-      {d: `${calYear}-${String(calMonth).padStart(2,'0')}-15`, label:'鈴木 様', time:'10:30', type:'morning'},
-      {d: `${calYear}-${String(calMonth).padStart(2,'0')}-15`, label:'高橋 様', time:'15:00', type:'afternoon'},
-      {d: `${calYear}-${String(calMonth).padStart(2,'0')}-18`, label:'伊藤 様', time:'14:00', type:'afternoon'},
-    ];
-    demoApts.forEach(a => {
-      if (!monthApts[a.d]) monthApts[a.d] = [];
-      monthApts[a.d].push(a);
-    });
-  }
-
-  // Update month KPI
-  const totalMonthApts = Object.values(monthApts).reduce((s,a) => s+a.length, 0);
-  const elMC = document.getElementById('cal-month-count');
-  const elML = document.getElementById('cal-month-label');
-  if (elMC) elMC.textContent = totalMonthApts;
-  if (elML) elML.textContent = `${calYear}年${calMonth}月の総予約数`;
-
-  const todayApts = monthApts[todayStr] || [];
-  const elTC = document.getElementById('cal-today-count');
-  const elTL = document.getElementById('cal-today-label');
-  if (elTC) elTC.textContent = todayApts.length;
-  if (elTL) elTL.textContent = '本日 ' + todayStr;
-  document.getElementById('nb-today').textContent = todayApts.length;
-
-  // Closed days (Thu, Sun by default + special)
-  const closedDays = [4]; // Thursday
-
-  let cells = '';
-  // Empty cells before 1st
-  for (let i = 0; i < firstDay; i++) {
-    cells += `<div class="cal-cell other-month"></div>`;
-  }
-  for (let d = 1; d <= daysInMonth; d++) {
-    const dateStr = `${calYear}-${String(calMonth).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-    const dow = new Date(calYear, calMonth-1, d).getDay();
-    const isClosed = closedDays.includes(dow);
-    const isToday = dateStr === todayStr;
-    const apts = monthApts[dateStr] || [];
-    
-    let cls = 'cal-cell';
-    if (isToday) cls += ' today';
-    if (isClosed) cls += ' closed';
-
-    const aptHtml = apts.slice(0,3).map(a => {
-      const name = a.label || a.customer_name || (a.first_name ? a.first_name : '予約');
-      const t = a.time || (a.start_date ? new Date(a.start_date).toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'}) : '');
-      const type = a.type || (parseInt(t) < 13 ? 'morning' : 'afternoon');
-      return `<div class="cal-apt ${type}">${t ? t + ' ' : ''}${name}</div>`;
-    }).join('');
-    const moreHtml = apts.length > 3 ? `<div class="cal-more">+${apts.length-3}件</div>` : '';
-    
-    cells += `<div class="${cls}" onclick="showDayDetail('${dateStr}', ${JSON.stringify(apts).replace(/"/g,'&quot;')})">
-      <div class="cal-date">${d}</div>
-      ${isClosed ? '<div class="cal-apt" style="background:var(--bg3);color:var(--text3);">休診</div>' : aptHtml + moreHtml}
-    </div>`;
-  }
-  el.innerHTML = cells;
-}
-
-function changeMonth(delta) {
-  if (delta === 0) {
-    const n = new Date();
-    calYear = n.getFullYear(); calMonth = n.getMonth()+1;
-  } else {
-    calMonth += delta;
-    if (calMonth > 12) { calMonth = 1; calYear++; }
-    if (calMonth < 1) { calMonth = 12; calYear--; }
-  }
-  renderCalGrid();
-}
-
-function showDayDetail(dateStr, apts) {
-  const el = document.getElementById('cal-day-detail');
-  const titleEl = document.getElementById('cal-detail-title');
-  const bodyEl = document.getElementById('cal-detail-body');
-  if (!el) return;
-  el.style.display = 'block';
-  titleEl.textContent = dateStr + ' の予約詳細';
-  if (!apts.length) {
-    bodyEl.innerHTML = '<p class="text-muted">この日の予約はありません。</p>';
-    return;
-  }
-  bodyEl.innerHTML = `<table class="wp-table">
-    <thead><tr><th>時間</th><th>患者名</th><th>コース</th><th>担当</th><th>ステータス</th></tr></thead>
-    <tbody>` + apts.map(a => {
-    const time = a.time || (a.start_date ? new Date(a.start_date).toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'}) : '--:--');
-    const name = a.label || a.customer_name || a.first_name || '患者名不明';
-    const course = a.service_name || a.course || '―';
-    const staff = a.employee_name || a.staff || '―';
-    const status = a.status || 'confirmed';
-    const badgeCls = status==='cancelled'?'b-red':status==='pending'?'b-draft':'b-pub';
-    const statusLabel = status==='cancelled'?'キャンセル':status==='pending'?'仮予約':'確定';
-    return `<tr><td class="mono">${time}</td><td class="tc">${name}</td><td>${course}</td><td>${staff}</td><td><span class="badge ${badgeCls}">${statusLabel}</span></td></tr>`;
-  }).join('') + '</tbody></table>';
-}
-
-// ─────────────────────────────────────
-//  APPOINTMENTS LIST
-// ─────────────────────────────────────
-async function loadAppointments() {
-  if (!supabaseClient) {
-    renderDemoApts();
-    return;
-  }
-  try {
-    const { data, error } = await supabaseClient
-      .from(getSetting('sb-table-apt','appointments'))
-      .select('*')
-      .order('start_date', {ascending: false})
-      .limit(200);
-    if (!error && data) {
-      appointments = data;
-      filteredApts = [...data];
-      renderAptTables();
-    }
-  } catch(e) { renderDemoApts(); }
-}
-
-function renderDemoApts() {
-  const today = new Date();
-  const demo = [];
-  const courses = ['初診相談（無料）','インビザライン相談','ワイヤー矯正相談','精密検査','調整','クリーニング'];
-  const names = ['田中 花子','山田 太郎','佐藤 美咲','鈴木 一郎','高橋 さくら','渡辺 健','伊藤 優子','中村 浩二'];
-  const staff = ['豊島 Dr.','山本 Dr.','田中 DH'];
-  for (let i = -5; i < 15; i++) {
-    const d = new Date(today); d.setDate(today.getDate() + i);
-    if (d.getDay() === 4) continue; // skip Thu
-    const n = Math.floor(Math.random() * 4) + 2;
-    for (let j = 0; j < n; j++) {
-      const h = 9 + Math.floor(Math.random() * 10);
-      const m = Math.random() < 0.5 ? 0 : 30;
-      const dt = new Date(d.getFullYear(), d.getMonth(), d.getDate(), h, m);
-      demo.push({
-        id: i*10+j, start_date: dt.toISOString(),
-        customer_name: names[Math.floor(Math.random()*names.length)],
-        service_name: courses[Math.floor(Math.random()*courses.length)],
-        employee_name: staff[Math.floor(Math.random()*staff.length)],
-        status: Math.random() < 0.08 ? 'cancelled' : Math.random() < 0.05 ? 'pending' : 'confirmed'
-      });
-    }
-  }
-  appointments = demo.sort((a,b)=>new Date(a.start_date)-new Date(b.start_date));
-  filteredApts = [...appointments];
-  renderAptTables();
-}
-
-function renderAptTables() {
-  const today = new Date().toISOString().split('T')[0];
-  const upcoming = filteredApts.filter(a => (a.start_date||'') >= today).sort((a,b)=>new Date(a.start_date)-new Date(b.start_date));
-  const todayApts = filteredApts.filter(a => (a.start_date||'').startsWith(today));
-  const past = filteredApts.filter(a => (a.start_date||'') < today).sort((a,b)=>new Date(b.start_date)-new Date(a.start_date));
-
-  document.getElementById('cnt-upcoming').textContent = upcoming.length;
-  document.getElementById('cnt-today-apt').textContent = todayApts.length;
-  document.getElementById('cnt-past').textContent = past.length;
-  document.getElementById('apt-count').textContent = `全${filteredApts.length}件`;
-
-  function rowHtml(a) {
-    const dt = a.start_date ? new Date(a.start_date) : null;
-    const dateStr = dt ? dt.toLocaleDateString('ja-JP') + ' ' + dt.toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'}) : '―';
-    const name = a.customer_name || a.patient_name || (a.first_name ? a.first_name + ' ' + (a.last_name||'') : '名前不明');
-    const course = a.service_name || a.course || '―';
-    const staff = a.employee_name || a.staff || '―';
-    const status = a.status || 'confirmed';
-    const badgeCls = status==='cancelled'?'b-red':status==='pending'?'b-draft':'b-pub';
-    const statusLabel = status==='cancelled'?'キャンセル':status==='pending'?'仮予約':'確定';
-    return `<tr><td class="mono" style="font-size:.66rem;white-space:nowrap">${dateStr}</td>
-      <td class="tc">${name}</td><td>${course}</td><td>${staff}</td>
-      <td><span class="badge ${badgeCls}">${statusLabel}</span></td>
-      <td><div class="row-actions"><button class="btn btn-ghost btn-xs">詳細</button></div></td></tr>`;
-  }
-  function timeRowHtml(a) {
-    const dt = a.start_date ? new Date(a.start_date) : null;
-    const timeStr = dt ? dt.toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'}) : '―';
-    const name = a.customer_name || a.patient_name || (a.first_name ? a.first_name + ' ' + (a.last_name||'') : '名前不明');
-    const course = a.service_name || a.course || '―';
-    const staff = a.employee_name || a.staff || '―';
-    const status = a.status || 'confirmed';
-    const badgeCls = status==='cancelled'?'b-red':status==='pending'?'b-draft':'b-pub';
-    const statusLabel = status==='cancelled'?'キャンセル':status==='pending'?'仮予約':'確定';
-    return `<tr><td class="mono">${timeStr}</td><td class="tc">${name}</td><td>${course}</td><td>${staff}</td><td><span class="badge ${badgeCls}">${statusLabel}</span></td></tr>`;
-  }
-
-  const slice = (arr, page) => arr.slice((page-1)*PER_PAGE, page*PER_PAGE);
-  document.getElementById('apt-table-upcoming').innerHTML = slice(upcoming, aptPage).map(rowHtml).join('') || '<tr><td colspan="6" style="text-align:center;color:var(--text3);padding:20px;">今後の予約はありません</td></tr>';
-  document.getElementById('apt-table-today').innerHTML = todayApts.map(timeRowHtml).join('') || '<tr><td colspan="5" style="text-align:center;color:var(--text3);padding:20px;">本日の予約はありません</td></tr>';
-  document.getElementById('apt-table-past').innerHTML = slice(past, 1).map(rowHtml).join('');
-
-  renderPagination('apt-pag-info', 'apt-pag-btns', upcoming.length, aptPage, p => { aptPage=p; renderAptTables(); });
-}
-
-function filterApts() {
-  const q = (document.getElementById('apt-search')?.value || '').toLowerCase();
-  const s = document.getElementById('apt-status')?.value || '';
-  filteredApts = appointments.filter(a => {
-    const name = (a.customer_name || a.patient_name || a.first_name || '').toLowerCase();
-    const course = (a.service_name || a.course || '').toLowerCase();
-    const matchQ = !q || name.includes(q) || course.includes(q);
-    const matchS = !s || a.status === s;
-    return matchQ && matchS;
-  });
-  aptPage = 1;
-  renderAptTables();
-}
-
-// ─────────────────────────────────────
-//  PATIENTS
-// ─────────────────────────────────────
-async function loadPatients() {
-  if (!supabaseClient) { renderDemoPatients(); return; }
-  // Try to find a patients/customers table
-  const tryTables = ['patients', 'customers', 'users', 'customer'];
-  for (const t of tryTables) {
-    try {
-      const { data, error } = await supabaseClient.from(t).select('*').limit(100);
-      if (!error && data && data.length > 0) {
-        patients = data;
-        filteredPts = [...data];
-        renderPatientTable();
-        return;
-      }
-    } catch(e) {}
-  }
-  // If no patients table, aggregate from appointments
-  if (appointments.length) {
-    const seen = new Map();
-    appointments.forEach(a => {
-      const name = a.customer_name || a.patient_name || a.first_name || '名前不明';
-      const phone = a.customer_phone || a.phone || '―';
-      const email = a.customer_email || a.email || '―';
-      const date = a.start_date?.split('T')[0] || '';
-      if (!seen.has(name)) seen.set(name, {name,phone,email,first:date,last:date,count:0});
-      const p = seen.get(name);
-      p.count++;
-      if (date < p.first) p.first = date;
-      if (date > p.last) p.last = date;
-    });
-    patients = Array.from(seen.values());
-    filteredPts = [...patients];
-    renderPatientTable();
-  } else {
-    renderDemoPatients();
-  }
-}
-
-function renderDemoPatients() {
-  const names = ['田中 花子','山田 太郎','佐藤 美咲','鈴木 一郎','高橋 さくら','渡辺 健','伊藤 優子','中村 浩二','小林 彩','加藤 誠'];
-  patients = names.map((n,i) => ({
-    name:n, phone:'09' + String(1000+i).padStart(8,'0').slice(0,8),
-    email: 'patient' + i + '@example.com',
-    first: '2024-0' + (i%9+1) + '-01', last: '2026-02-' + String(i+1).padStart(2,'0'), count: i+2
-  }));
-  filteredPts = [...patients];
-  renderPatientTable();
-}
-
-function renderPatientTable() {
-  document.getElementById('pt-count').textContent = `全${filteredPts.length}件`;
-  const slice = filteredPts.slice((ptPage-1)*PER_PAGE, ptPage*PER_PAGE);
-  document.getElementById('patients-table').innerHTML = slice.map(p => {
-    const initial = (p.name||'?').charAt(0);
-    return `<tr>
-      <td><div style="display:flex;align-items:center;gap:8px;">
-        <div class="patient-avatar">${initial}</div>
-        <span class="tc">${p.name||'名前不明'}</span>
-      </div></td>
-      <td class="mono" style="font-size:.67rem">${p.phone||'―'}</td>
-      <td style="font-size:.67rem">${p.email||'―'}</td>
-      <td class="mono" style="font-size:.67rem">${p.first||'―'}</td>
-      <td style="text-align:center">${p.count||'―'}</td>
-      <td class="mono" style="font-size:.67rem">${p.last||'―'}</td>
-    </tr>`;
-  }).join('') || '<tr><td colspan="6" style="text-align:center;color:var(--text3);padding:20px;">データなし</td></tr>';
-  renderPagination('pt-pag-info', 'pt-pag-btns', filteredPts.length, ptPage, p=>{ptPage=p;renderPatientTable();});
-}
-
-function filterPatients() {
-  const q = (document.getElementById('pt-search')?.value || '').toLowerCase();
-  filteredPts = patients.filter(p => {
-    const name = (p.name||'').toLowerCase();
-    const phone = (p.phone||'').toLowerCase();
-    return !q || name.includes(q) || phone.includes(q);
-  });
-  ptPage = 1; renderPatientTable();
-}
-
-// ─────────────────────────────────────
-//  POSTS PAGE
-// ─────────────────────────────────────
-function initPostsPage() {
-  filteredPosts = [...WP_POSTS];
-  postsPage = 1;
-  
-  // Populate year filter
-  const sel = document.getElementById('posts-year');
-  if (sel && sel.options.length === 1) {
-    const years = [...new Set(WP_POSTS.map(p=>p.date.slice(0,4)))].sort().reverse();
-    years.forEach(y => { const o = new Option(y+'年', y); sel.appendChild(o); });
-  }
-
-  const cat1 = WP_POSTS.filter(p => (p.cats||[]).includes('医院からのお知らせ'));
-  const cat2 = WP_POSTS.filter(p => (p.cats||[]).includes('矯正歯科についてのあれこれ知識'));
-  document.getElementById('cnt-oshirase').textContent = cat1.length;
-  document.getElementById('cnt-kyousei').textContent = cat2.length;
-  
-  const postRow = (p, showCat=true) => `<tr>
-    <td class="tc"><a href="#">${p.title}</a><div class="excerpt">${p.excerpt||''}</div></td>
-    ${showCat ? `<td><span class="badge b-navy" style="font-size:.54rem">${(p.cats||[])[0]||'―'}</span></td>` : ''}
-    <td style="font-size:.64rem;white-space:nowrap">${p.creator==='toyoshima_up'?'投稿用とよしま':'eilife'}</td>
-    <td class="mono" style="font-size:.64rem;white-space:nowrap">${p.date}</td>
-    <td><div class="row-actions">
-      <button class="btn btn-ghost btn-xs">編集</button>
-      <button class="btn btn-ghost btn-xs" onclick="setKwAndGenSEO('${p.title.replace(/'/g,'\\'+'')}')">AI更新</button>
-    </div></td></tr>`;
-
-  document.getElementById('posts-tbody-cat1').innerHTML = cat1.slice(0,30).map(p=>postRow(p,false)).join('');
-  document.getElementById('posts-tbody-cat2').innerHTML = cat2.length > 0 ? cat2.map(p=>postRow(p,false)).join('') : '<tr><td colspan="4" style="padding:20px;text-align:center;color:var(--text3);">この投稿タイプの記事はまだありません</td></tr>';
-  
-  renderPostsTable();
-}
-
-function filterPosts() {
-  const q = (document.getElementById('posts-search')?.value||'').toLowerCase();
-  const yr = document.getElementById('posts-year')?.value||'';
-  filteredPosts = WP_POSTS.filter(p => {
-    const matchQ = !q || p.title.toLowerCase().includes(q);
-    const matchY = !yr || p.date.startsWith(yr);
-    return matchQ && matchY;
-  });
-  postsPage = 1; renderPostsTable();
-}
-
-function renderPostsTable() {
-  const total = filteredPosts.length;
-  document.getElementById('posts-count').textContent = `${total}件`;
-  const start = (postsPage-1)*PER_PAGE;
-  const slice = filteredPosts.slice(start, start+PER_PAGE);
-  document.getElementById('posts-tbody').innerHTML = slice.map(p => `<tr>
-    <td class="tc"><a href="#">${p.title}</a><div class="excerpt">${p.excerpt||''}</div></td>
-    <td><span class="badge b-navy" style="font-size:.54rem">${(p.cats||[])[0]||'―'}</span></td>
-    <td style="font-size:.64rem;white-space:nowrap">${p.creator==='toyoshima_up'?'投稿用とよしま':'eilife'}</td>
-    <td class="mono" style="font-size:.64rem;white-space:nowrap">${p.date}</td>
-    <td><div class="row-actions">
-      <button class="btn btn-ghost btn-xs">編集</button>
-      <button class="btn btn-ghost btn-xs" onclick="setKwAndGenSEO('${p.title.replace(/'/g,'\\'+'')}')">AI更新</button>
-    </div></td></tr>`).join('');
-  renderPagination('posts-pag-info','posts-pag-btns',total,postsPage,p=>{postsPage=p;renderPostsTable();});
-}
-
-// ─────────────────────────────────────
-//  PAGES PAGE
-// ─────────────────────────────────────
-function initPagesPage() {
-  const pub = WP_PAGES.filter(p=>p.status==='publish');
-  document.getElementById('cnt-pub-pages').textContent = pub.length;
-  
-  const row = (p, showStatus=true) => `<tr>
-    <td class="tc"><a href="#">${p.title||'（タイトルなし）'}</a></td>
-    ${showStatus ? `<td><span class="badge ${p.status==='publish'?'b-pub':'b-draft'}">${p.status==='publish'?'公開済':'下書き'}</span></td>` : ''}
-    <td class="mono" style="font-size:.64rem">${p.date||'―'}</td>
-    <td><div class="row-actions"><button class="btn btn-ghost btn-xs">編集</button></div></td></tr>`;
-
-  document.getElementById('pages-tbody-all').innerHTML = WP_PAGES.map(p=>row(p)).join('');
-  document.getElementById('pages-tbody-pub').innerHTML = pub.map(p=>row(p,false)).join('');
-}
-
-// ─────────────────────────────────────
-//  PAGINATION
-// ─────────────────────────────────────
-function renderPagination(infoId, btnId, total, current, cb) {
-  const pages = Math.ceil(total/PER_PAGE);
-  const start = (current-1)*PER_PAGE;
-  const el = document.getElementById(infoId);
-  const btnsEl = document.getElementById(btnId);
-  if (el) el.textContent = `${start+1}〜${Math.min(start+PER_PAGE,total)} / 全${total}件`;
-  if (!btnsEl) return;
-  const maxBtns = 8;
-  let html = '';
-  for (let i = Math.max(1, current-3); i <= Math.min(pages, current+4); i++) {
-    html += `<div class="pag-btn${i===current?' active':''}" onclick="(${cb})(${i})">${i}</div>`;
-  }
-  btnsEl.innerHTML = html;
-}
-
-// ─────────────────────────────────────
-//  DASHBOARD POSTS
-// ─────────────────────────────────────
-function renderDashPosts() {
-  const el = document.getElementById('dash-posts');
-  if (!el) return;
-  el.innerHTML = WP_POSTS.slice(0,8).map(p => `<tr>
-    <td class="tc"><a href="#">${p.title}</a></td>
-    <td><span class="badge b-navy" style="font-size:.54rem">${(p.cats||[])[0]||'―'}</span></td>
-    <td style="font-size:.64rem">${p.creator==='toyoshima_up'?'投稿用':'eilife'}</td>
-    <td class="mono" style="font-size:.64rem">${p.date}</td>
-  </tr>`).join('');
-}
-
-// ─────────────────────────────────────
-//  AI: ANALYTICS
-// ─────────────────────────────────────
-async function runAnalytics() {
-  const period = document.getElementById('ana-period').value;
-  const focus = document.getElementById('ana-focus').value;
-  const data = document.getElementById('ana-data').value;
-  const aptStats = appointments.length > 0 ? `予約データ: 総件数${appointments.length}件、本日${appointments.filter(a=>(a.start_date||'').startsWith(new Date().toISOString().split('T')[0])).length}件` : 'Supabase未接続';
-  await callClaude(`あなたは歯科クリニックのWebマーケティング専門家です。
-${CLINIC_INFO()}
-【予約状況】${aptStats}
-【期間】${period}　【フォーカス】${focus}
-【アクセスデータ】${data||'(未提供 — 一般的な歯科クリニックのサンプルデータで分析)'}
-
-以下の形式で詳細な解析レポートを作成：
-■ サマリー（3行）
-■ 主要指標の評価
-■ 流入チャネル分析
-■ SEO改善ポイント（3項目）
-■ コンバージョン（予約）率向上施策（3項目）
-■ 予約データとアクセスデータの相関分析
-■ 優先度別アクションプラン（高/中/低）`, 'ana-out', '📊 アクセスデータを解析中...');
-}
-
-async function runActionPlan() {
-  const prev = document.getElementById('ana-out').innerText;
-  await callClaude(`以下の解析結果を元に、${getSetting('cfg-name','六本松矯正歯科クリニックとよしま')}のWeb担当者向けに「今すぐ実行できる改善アクションプラン」を週次スケジュール形式で作成してください。各アクションに「期待効果」「工数見積もり」「担当（AI自動/手動）」を明記してください。
-${prev}`, 'ana-out', '🗓️ アクションプラン策定中...');
-}
-
-async function runRankAI() {
-  await callClaude(`SEO専門家として${getSetting('cfg-name','六本松矯正歯科')}のキーワード順位改善戦略を詳細に分析。
-対象KW: 六本松矯正歯科(3位↑) / インビザライン福岡(8位↑) / 矯正分割払い福岡(12位↓要対策) / 舌側矯正(15位↑) / 小児矯正中央区(18位NEW)
-各KWに①競合の推定対策②コンテンツ戦略③内部リンク改善④達成期間を詳細記載。`, 'rank-out', '🔍 競合・順位分析中...');
-}
-
-// ─────────────────────────────────────
-//  AI: SEO
-// ─────────────────────────────────────
-async function genSEO() {
-  const kw = document.getElementById('seo-kw').value;
-  const sub = document.getElementById('seo-sub').value;
-  const type = document.getElementById('seo-type').value;
-  const len = document.getElementById('seo-len').value;
-  const note = document.getElementById('seo-note').value;
-  const result = await callClaude(`SEOと歯科医療の専門家ライターとして以下の条件でSEO記事を作成してください。
-${CLINIC_INFO()}
-KW: ${kw} / サブKW: ${sub||'なし'} / 種別: ${type} / 文字数: ${len}
-追記指示: ${note||'当院特徴を自然に盛り込み、矯正相談CTAを末尾に。医療広告GL遵守。'}
-H1/H2/H3の見出し構造を明確に。記事全文を出力。`, 'seo-out', '✍️ SEO記事を生成中...');
-  if (result) {
-    callClaude(`以下の記事のSEOメタ情報を生成: タイトルタグ×3案（32字以内）、メタディスクリプション×2案（120字以内）、OGPタイトル×1案
-${result.slice(0,500)}`, 'seo-meta-out', 'メタ情報生成中...');
-    callClaude(`以下の記事の構成案をSEOポイントのコメント付きで作成:
-${result.slice(0,600)}`, 'seo-struct-out', '構成案生成中...');
-  }
-}
-async function genSEOTitles() {
-  const kw = document.getElementById('seo-kw').value;
-  await callClaude(`SEO専門家として「${kw}」をターゲットにした歯科矯正記事タイトル案10個を提案。各タイトルに文字数・クリック率予測・狙いを記載。医療広告GL遵守。`, 'seo-out', '📝 タイトル案生成中...');
-}
-function setKwAndGenSEO(kw) {
-  nav('seo', null);
-  setTimeout(() => {
-    document.getElementById('seo-kw').value = kw;
-    genSEO();
-  }, 100);
-}
-function seoToLegal() {
-  document.getElementById('legal-text').value = document.getElementById('seo-out').innerText;
-  nav('legal', null);
-  setTimeout(runLegal, 200);
-}
-function seoToLegalDirect() {
-  const txt = document.getElementById('seo-out').innerText;
-  if (txt && !txt.includes('クリックしてください')) {
-    document.getElementById('legal-text').value = txt;
-    runLegal();
-  }
-}
-
-// ─────────────────────────────────────
-//  AI: LEGAL
-// ─────────────────────────────────────
-async function runLegal() {
-  const text = document.getElementById('legal-text').value;
-  if (!text.trim()) { alert('チェックするテキストを入力してください。'); return; }
-  document.getElementById('legal-result-area').innerHTML = `<div class="legal-item warn"><div class="legal-item-icon"><span class="spinner"></span></div><div class="legal-item-body"><strong>医療広告ガイドライン チェック中...</strong><span>しばらくお待ちください</span></div></div>`;
-  const result = await callClaude(`医療広告の法務専門家として以下のテキストを「医療広告ガイドライン」に基づいてチェック。
-対象: ${text}
-①❌違反・要修正箇所（具体的引用・修正例）②⚠️グレーゾーン③✅問題なし箇所④総合評価（公開可/修正後公開/公開不可）⑤修正案
-チェック項目: No.1/最上級表現・効果の保証（「必ず」「絶対」）・体験談・比較優良広告・科学的根拠のない効果記載・適切な免責事項`, 'legal-out', '⚖️ 医療広告ガイドラインをチェック中...');
-  if (result) {
-    const hasNG = result.includes('違反') || result.includes('❌');
-    const hasWarn = result.includes('グレー') || result.includes('⚠️');
-    document.getElementById('legal-result-area').innerHTML = `<div class="legal-item ${hasNG?'ng':hasWarn?'warn':'ok'}">
-      <div class="legal-item-icon">${hasNG?'❌':hasWarn?'⚠️':'✅'}</div>
-      <div class="legal-item-body">
-        <strong>総合判定: ${hasNG?'修正が必要です（公開前に修正してください）':hasWarn?'グレーゾーンあり（要確認・修正推奨）':'問題なし（公開可能）'}</strong>
-        <span>詳細は下記レポートをご確認ください</span>
-      </div>
-    </div>`;
-  }
-}
-async function autoFix() {
-  const text = document.getElementById('legal-text').value;
-  const issues = document.getElementById('legal-out').innerText;
-  await callClaude(`医療広告ガイドライン完全準拠の形で以下のテキストを自動修正。修正箇所に【修正】と注記し、修正理由も添える。
-元テキスト: ${text}
-指摘事項: ${issues.slice(0,1000)}`, 'legal-out', '🔧 自動修正中...');
-}
-function noteToLegal() {
-  document.getElementById('legal-text').value = document.getElementById('note-out').innerText;
-  nav('legal', null);
-  setTimeout(runLegal, 200);
-}
-
-// ─────────────────────────────────────
-//  AI: NOTE
-// ─────────────────────────────────────
-async function genNote() {
-  const theme = document.getElementById('note-theme').value;
-  const topic = document.getElementById('note-topic').value;
-  const tone = document.getElementById('note-tone').value;
-  const hashtag = document.getElementById('note-hashtag').checked;
-  const cta = document.getElementById('note-cta').checked;
-  const emoji = document.getElementById('note-emoji').checked;
-  await callClaude(`歯科医療知識を持つNOTEライターとして記事を作成。
-${CLINIC_INFO()}
-テーマ: ${theme} / トピック: ${topic||'テーマに合った最適なものを選定'} / スタイル: ${tone}
-絵文字: ${emoji?'適度に使用':'なし'} / CTA: ${cta?'末尾に相談誘導を追加':'なし'} / ハッシュタグ: ${hashtag?'末尾に10個追加':'なし'}
-制約: 医療広告GL遵守・読者が「知らなかった!」と感じる豆知識を含む・1200〜1800字・NOTE読者に向けた読みやすい文体
-記事全文を出力。`, 'note-out', '📝 NOTE記事を生成中...');
-}
-async function genNoteIdeas() {
-  const theme = document.getElementById('note-theme').value;
-  await callClaude(`歯科医院向けNOTEコンテンツ戦略の専門家として「${theme}」テーマで${getSetting('cfg-name','六本松矯正歯科')}のNOTEアカウント向け記事アイデアを10個提案。各アイデアに①タイトル案②概要（2行）③推定リーチ④投稿タイミング⑤ハッシュタグ5個を記載。`, 'note-ideas-out', '💡 記事アイデアを生成中...');
-  // Switch to ideas tab
-  const ideasTab = document.querySelector('#note-tabs .tab-btn:nth-child(2)');
-  if (ideasTab) switchTab(ideasTab, 'note-tabs', 'note-ideas');
-}
-
-// ─────────────────────────────────────
-//  AI: KEYWORDS
-// ─────────────────────────────────────
-function renderKwTags() {
-  const el = document.getElementById('kw-tags');
-  if (!el) return;
-  el.innerHTML = kwList.map((k,i) =>
-    `<div class="tag">${k}<button onclick="kwList.splice(${i},1);renderKwTags()">×</button></div>`
-  ).join('');
-}
-function addKw() {
-  const v = document.getElementById('kw-input').value.trim();
-  if (v) { kwList.push(v); document.getElementById('kw-input').value = ''; renderKwTags(); }
-}
-async function discoverKws() {
-  await callClaude(`SEO専門家として${CLINIC_INFO()}のサイトに追加すべき新規キーワードを発掘。
-カテゴリ別に各5件(計30件): ①ロングテール②地域×症状③比較・悩み系④情報収集系⑤競合が弱い穴場
-各KWに月間検索量（推定）・難易度・活用方法を記載。`, 'kw-discover-out', '🔍 キーワード発掘中...');
-}
-
-// ─────────────────────────────────────
-//  SETTINGS: CONNECTION TESTS
-// ─────────────────────────────────────
-async function testSupabase() {
-  const resEl = document.getElementById('sb-test-result');
-  resEl.textContent = 'テスト中...';
-  try {
-    const client = await initSupabase();
-    if (!client) { resEl.textContent = '❌ URLまたはKeyが未入力です'; return; }
-    const table = document.getElementById('sb-table-apt').value || 'appointments';
-    const { data, error } = await client.from(table).select('id').limit(1);
-    if (error) { resEl.textContent = `❌ エラー: ${error.message}`; return; }
-    resEl.textContent = `✅ 接続成功！（${table} テーブル確認）`;
-    document.getElementById('sb-badge').textContent = '接続済み';
-    document.getElementById('sb-badge').className = 'badge b-pub';
-  } catch(e) { resEl.textContent = '❌ ' + e.message; }
-}
-
-async function testWP() {
-  const resEl = document.getElementById('wp-test-result');
-  const url = document.getElementById('wp-url').value;
-  if (!url) { resEl.textContent = '❌ URLが未入力です'; return; }
-  resEl.textContent = 'テスト中...';
-  try {
-    const r = await fetch(url + '/wp-json/wp/v2/posts?per_page=1', {signal: AbortSignal.timeout(8000)});
-    if (r.ok) {
-      resEl.textContent = '✅ WordPress REST API 接続成功！';
-      document.getElementById('wp-badge').textContent = '接続済み';
-      document.getElementById('wp-badge').className = 'badge b-pub';
-    } else {
-      resEl.textContent = `⚠️ レスポンス: HTTP ${r.status}`;
-    }
-  } catch(e) { resEl.textContent = '❌ 接続失敗: ' + e.message; }
-}
-
-async function testClaude() {
-  const resEl = document.getElementById('claude-test-result');
-  resEl.textContent = 'テスト中...';
-  try {
-    const body = {model:'claude-sonnet-4-20250514',max_tokens:30,messages:[{role:'user',content:'「テスト成功」と日本語で返してください'}]};
-    const headers = {'Content-Type':'application/json'};
-    const key = document.getElementById('claude-key').value;
-    if (key) headers['x-api-key'] = key;
-    const r = await fetch('https://api.anthropic.com/v1/messages', {method:'POST',headers,body:JSON.stringify(body)});
-    const data = await r.json();
-    if (data.content?.[0]?.text) { resEl.textContent = '✅ Claude API 接続成功！'; document.getElementById('claude-badge').textContent = '接続済み'; document.getElementById('claude-badge').className = 'badge b-pub'; }
-    else resEl.textContent = '⚠️ ' + JSON.stringify(data.error||data).slice(0,80);
-  } catch(e) { resEl.textContent = '❌ ' + e.message; }
-}
-
-function showSettingsStatus(type, msg) {
-  const el = document.getElementById('settings-status-bar');
-  if (!el) return;
-  const cls = type === 'ok' ? 'alert-ok' : 'alert-warn';
-  el.innerHTML = `<div class="alert-banner ${cls}" style="margin-bottom:14px;"><svg viewBox="0 0 14 14" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"><path d="M2 7l4 4 6-6"/></svg>${msg}</div>`;
-  setTimeout(() => el.innerHTML = '', 4000);
-}
-
-// ─────────────────────────────────────
-//  REFRESH ALL
-// ─────────────────────────────────────
-function refreshAll() {
-  loadSettings();
-  checkConnections().then(() => {
-    renderDashPosts();
-  });
-}
-
-// ─────────────────────────────────────
-//  INIT
-// ─────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  loadSettings();
-  renderDashPosts();
-  renderCalLabels();
-  checkConnections();
+// ── SCROLL ANIMATION
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+window.addEventListener('scroll', () => {
+  document.getElementById('header').classList.toggle('scrolled', window.scrollY > 30);
 });
 
+// ── MOBILE MENU
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ── CHAT
+let chatOpen = false, loading = false;
+let history = [];
+
+const SYSTEM = `あなたは「六本松矯正歯科クリニックとよしま」のAIスタッフです。患者様に丁寧で親しみやすく、スタッフとして対応してください。
+
+【クリニック基本情報】
+医院名: 六本松矯正歯科クリニックとよしま
+住所: 〒810-0044 福岡県福岡市中央区六本松4-11-26 ビバーチェ・ハシモト1F
+電話: 092-406-2119
+ネット予約URL: https://489.toyoshima-do.com/
+公式サイト: https://xn--68j7a2dtb9053amj1aoqai3wdd676ltle.com/
+開院: 2018年6月
+
+【診療時間】
+月・火・水・金: 9:00〜12:00 / 14:00〜19:00
+土曜: 9:00〜12:00 / 14:00〜17:00
+休診日: 木曜・日曜・祝日
+※月1回日曜診療あり（代わりに平日代休日あり）
+※完全予約制
+
+【アクセス】
+地下鉄七隈線「六本松駅」より徒歩3分
+西鉄バス「別府橋」バス停 目の前
+駐車場3台完備
+
+【診療内容】
+■ 矯正歯科（専門）
+- インビザライン（マウスピース矯正）: 透明で目立たない、取り外し可能
+- ワイヤー矯正（表側矯正）: 幅広い症例対応、費用を抑えられる
+- 舌側矯正（裏側矯正）: 歯の裏側に装置、上の歯のみも可能、スポーツ向け
+- 小児矯正: お子様の顎の成長に合わせた矯正
+
+■ その他診療
+- 一般歯科・虫歯治療（保険診療）
+- ホワイトニング
+- レーザー治療
+- 小児歯科
+- クリーニング・予防歯科
+
+【クリニックの特徴】
+- 完全個室の診療室・カウンセリングルーム
+- お子様連れ歓迎
+- お支払い: 医院窓口・銀行振込・カード決済
+- 分割払い可能（金利・手数料無料、回数制限あり）
+- 矯正相談・初診カウンセリング無料（ネット予約から）
+
+【矯正治療の考え方】
+- 矯正は口腔と全身の健康に繋がる（肩こり・頭痛改善、虫歯・歯周病予防）
+- 十分なカウンセリング、分かりやすい説明を重視
+- 患者様のリスクと治療計画への理解を大切に
+
+【応答スタイル】
+- 敬語で丁寧、でも親しみやすいスタッフ口調
+- 絵文字を適度に使用
+- 料金の具体的な金額は「カウンセリングでご案内」と案内
+- 医療的な診断は「ご来院のうえご確認ください」と案内
+- 予約誘導: https://489.toyoshima-do.com/
+- 電話でも対応: 092-406-2119`;
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  document.getElementById('chatWindow').classList.toggle('open', chatOpen);
+  document.getElementById('fabBtn').innerHTML = chatOpen
+    ? '<div class="chat-pulse"></div>✕'
+    : '<div class="chat-pulse"></div>💬';
+  document.getElementById('chatBadge').style.display = chatOpen ? 'none' : 'flex';
+  if(chatOpen) document.getElementById('chatInp').focus();
+}
+
+function openChat() { if(!chatOpen) toggleChat(); }
+
+function sendQ(txt) {
+  document.getElementById('chatInp').value = txt;
+  sendMsg();
+}
+
+function handleKey(e) {
+  if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); sendMsg(); }
+}
+
+function autoH(el) {
+  el.style.height='auto';
+  el.style.height = Math.min(el.scrollHeight,90)+'px';
+}
+
+function now() {
+  return new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'});
+}
+
+function addMsg(role, text) {
+  const msgs = document.getElementById('chatMsgs');
+  const div = document.createElement('div');
+  div.className = `msg ${role}`;
+  const fmt = text
+    .replace(/\n/g,'<br>')
+    .replace(/https?:\/\/[^\s<]+/g, url =>
+      `<a href="${url}" target="_blank" style="color:${role==='bot'?'var(--sage)':'rgba(255,255,255,.9)'};text-decoration:underline;word-break:break-all;">${url}</a>`
+    );
+  if(role==='bot') {
+    div.innerHTML = `<div class="msg-av">👩‍⚕️</div>
+      <div><div class="msg-bub">${fmt}</div><div class="msg-t">${now()}</div></div>`;
+  } else {
+    div.innerHTML = `<div>
+      <div class="msg-bub">${fmt}</div>
+      <div class="msg-t msg-t-r">${now()}</div></div>`;
+  }
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showTyping(show) {
+  document.getElementById('typing').classList.toggle('show', show);
+  const msgs = document.getElementById('chatMsgs');
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+async function sendMsg() {
+  if(loading) return;
+  const inp = document.getElementById('chatInp');
+  const txt = inp.value.trim();
+  if(!txt) return;
+  inp.value = '';
+  inp.style.height = 'auto';
+  addMsg('user', txt);
+  document.getElementById('quickBtns').style.display = 'none';
+  history.push({ role:'user', content:txt });
+  loading = true;
+  document.getElementById('sendBtn').disabled = true;
+  showTyping(true);
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        system: SYSTEM,
+        messages: history
+      })
+    });
+    const data = await res.json();
+    const reply = data.content?.[0]?.text ||
+      'ご不便をおかけして申し訳ございません。お電話（092-406-2119）またはネット予約からお問い合わせください。';
+    history.push({ role:'assistant', content: reply });
+    showTyping(false);
+    addMsg('bot', reply);
+  } catch(e) {
+    showTyping(false);
+    addMsg('bot', '申し訳ありません、一時的なエラーが発生しました。\n\nお電話: 092-406-2119\nネット予約: https://489.toyoshima-do.com/');
+  }
+  loading = false;
+  document.getElementById('sendBtn').disabled = false;
+}
 </script>
+
+<div class="admin-link-footer">
+  <a href="/admin">管理画面</a>
+</div>
 </body>
 </html>
-"""
-
-with open('/home/claude/dashboard/index.html', 'w') as f:
-    f.write(html)
-print("HTML written:", len(html), "chars")
-PYEOF
