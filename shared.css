@@ -1,0 +1,190 @@
+/* ═══════════════════════════════════════════
+   豊島歯科 共通レスポンシブCSS  v2.0
+   全サブページに適用
+═══════════════════════════════════════════ */
+
+/* ── フォント・基本 ── */
+html { -webkit-text-size-adjust: 100%; }
+img, video { max-width: 100%; height: auto; }
+table { border-collapse: collapse; }
+
+/* ── スクロールバー非表示（横） ── */
+.price-table-wrap, .table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
+}
+
+/* ══════════════════════════════════════
+   TABLET（900px以下）
+══════════════════════════════════════ */
+@media (max-width: 900px) {
+
+  /* ─ ヘッダー ─ */
+  #header { padding: 0 16px !important; height: 56px !important; }
+  .logo-en, .le { display: none !important; }
+  .logo-jp, .lj { font-size: .72rem !important; }
+  .nav-links, .nl { display: none !important; }
+  .hamburger, .hb { display: flex !important; }
+  .nav-cta-li { display: none !important; }
+
+  /* ─ ページヒーロー ─ */
+  .page-hero, .ph {
+    padding: 96px 20px 48px !important;
+    text-align: center;
+  }
+  .page-hero-jp, .pj { font-size: clamp(1.4rem, 5vw, 2rem) !important; }
+  .page-hero-sub, .ps { font-size: .75rem !important; }
+  .breadcrumb, .bc { font-size: .6rem !important; }
+
+  /* ─ コンテンツエリア ─ */
+  .page-content, .pc { padding: 44px 20px !important; }
+
+  /* ─ セクションタイトル ─ */
+  .sec-title, .st { font-size: clamp(1.1rem, 4vw, 1.4rem) !important; }
+
+  /* ─ カードグリッド → 1カラム ─ */
+  .card-grid, .cg { grid-template-columns: 1fr 1fr !important; gap: 14px !important; }
+
+  /* ─ CTAバンド ─ */
+  .cta-band, .cta, footer { padding: 48px 20px !important; }
+  .footer-inner, .fi2 { grid-template-columns: 1fr !important; gap: 20px !important; }
+
+  /* ─ 料金テーブル ─ */
+  .price-table { font-size: .78rem !important; }
+  .price-table th, .price-table td { padding: 9px 12px !important; }
+
+  /* ─ ハイライトボックス ─ */
+  .highlight-box, .hb2, .warn-box { padding: 18px 16px !important; }
+
+  /* ─ FAQ ─ */
+  .faq-q-text { font-size: .84rem !important; }
+
+  /* ─ コンタクトグリッド ─ */
+  .contact-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ══════════════════════════════════════
+   MOBILE（600px以下）
+══════════════════════════════════════ */
+@media (max-width: 600px) {
+
+  /* ─ ヘッダー ─ */
+  #header { padding: 0 14px !important; height: 52px !important; }
+  .logo-mark, .lm { width: 30px !important; height: 30px !important; }
+  .logo-jp, .lj { font-size: .65rem !important; letter-spacing: .04em !important; }
+
+  /* ─ ページヒーロー ─ */
+  .page-hero, .ph { padding: 84px 16px 40px !important; }
+  .page-hero-en, .pe { font-size: .75rem !important; letter-spacing: .2em !important; }
+  .page-hero-jp, .pj { font-size: clamp(1.25rem, 6vw, 1.7rem) !important; letter-spacing: .04em !important; }
+  .page-hero-sub, .ps { font-size: .72rem !important; line-height: 1.8 !important; margin-top: 10px !important; }
+  .breadcrumb, .bc { flex-wrap: wrap; justify-content: center; gap: 4px !important; margin-top: 12px !important; }
+
+  /* ─ コンテンツエリア ─ */
+  .page-content, .pc { padding: 36px 16px !important; }
+  .sec-label, .sl { font-size: .78rem !important; letter-spacing: .2em !important; }
+  .sec-title, .st { font-size: clamp(1.05rem, 5vw, 1.3rem) !important; margin-bottom: 10px !important; }
+  .lead, .ld { font-size: .84rem !important; line-height: 1.95 !important; }
+
+  /* ─ コンテンツブロック ─ */
+  .content-block, .cb { margin-bottom: 36px !important; }
+  .content-block h3, .cb h3 {
+    font-size: .95rem !important;
+    padding-left: 11px !important;
+    line-height: 1.6 !important;
+  }
+  .content-block p, .cb p { font-size: .83rem !important; line-height: 1.95 !important; }
+  .content-block ul li, .cb ul li { font-size: .83rem !important; }
+
+  /* ─ カードグリッド → 全1カラム ─ */
+  .card-grid, .cg { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .card, .cd { padding: 18px 16px !important; }
+  .card-num, .cn { font-size: 1.7rem !important; }
+  .card h4, .cd h4 { font-size: .88rem !important; }
+  .card p, .cd p { font-size: .76rem !important; }
+
+  /* ─ 料金テーブル ─ */
+  .price-table { min-width: 480px; font-size: .74rem !important; }
+  .price-table th { font-size: .68rem !important; padding: 8px 10px !important; }
+  .price-table td { padding: 8px 10px !important; }
+
+  /* ─ ハイライト・警告ボックス ─ */
+  .highlight-box, .hb2 { padding: 16px 14px !important; border-radius: 8px !important; }
+  .highlight-box p, .hb2 p { font-size: .8rem !important; }
+  .warn-box { padding: 14px 14px !important; }
+  .warn-box p { font-size: .8rem !important; }
+
+  /* ─ FAQ ─ */
+  .faq-q { padding: 16px 2px 12px !important; gap: 10px !important; }
+  .faq-q-badge { width: 22px !important; height: 22px !important; font-size: .66rem !important; }
+  .faq-q-text { font-size: .82rem !important; }
+  .faq-a { padding: 0 2px 16px 32px !important; font-size: .8rem !important; line-height: 1.9 !important; }
+
+  /* ─ CTAバンド ─ */
+  .cta-band, .cta { padding: 40px 16px !important; }
+  .cta-band h2, .cta h2 { font-size: 1.15rem !important; margin-bottom: 10px !important; }
+  .cta-band p, .cta p { font-size: .76rem !important; line-height: 1.85 !important; margin-bottom: 18px !important; }
+  .btn-primary, .bp { padding: 13px 28px !important; font-size: .82rem !important; }
+
+  /* ─ フッター ─ */
+  .footer-inner, .fi2 { gap: 16px !important; }
+  footer { padding: 40px 16px 80px !important; }
+
+  /* ─ モバイルメニュー ─ */
+  #mobileMenu a { font-size: 1rem !important; }
+  .menu-cta-wrap { padding: 0 20px !important; }
+
+  /* ─ 採用ページ特有 ─ */
+  .job-grid { grid-template-columns: 1fr !important; }
+
+  /* ─ 2カラムレイアウト ─ */
+  .two-col, .tc, .split-layout { grid-template-columns: 1fr !important; gap: 20px !important; }
+
+  /* ─ タッチ操作 ─ */
+  a, button { min-height: 44px; }
+  .faq-q { min-height: 52px; }
+
+  /* ─ テーブルwrapper ─ */
+  .table-outer {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -16px;
+    padding: 0 16px;
+  }
+
+  /* ─ ページトップボタン ─ */
+  #pageTopBtn { bottom: 80px !important; right: 16px !important; }
+}
+
+/* ── ボトムナビ余白（スマホ） ── */
+@media (max-width: 600px) {
+  body { padding-bottom: 64px; }
+}
+
+/* ── モバイルボトムナビ ── */
+#mobileBottomNav {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: rgba(21,47,78,.97);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255,255,255,.1);
+  z-index: 1800;
+  padding: 6px 0 env(safe-area-inset-bottom, 6px);
+}
+#mobileBottomNav a {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  gap: 3px; padding: 6px 4px;
+  color: rgba(255,255,255,.5); font-size: .52rem;
+  letter-spacing: .04em; text-decoration: none; transition: color .2s;
+  min-height: 44px; justify-content: center;
+}
+#mobileBottomNav a:hover, #mobileBottomNav a.active { color: #b8965a; }
+#mobileBottomNav svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+#mobileBottomNav .bnav-reserve {
+  background: #b8965a; border-radius: 6px; color: #fff !important;
+  margin: 4px 6px; flex: 1.4 !important; border-radius: 8px;
+}
+@media (max-width: 600px) {
+  #mobileBottomNav { display: flex; }
+}
