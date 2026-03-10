@@ -1363,7 +1363,7 @@ textarea.field { resize: vertical; min-height: 80px; line-height: 1.7; }
         <input class="field" id="sb-table-apt" placeholder="appointments" style="max-width:250px;" value="appointments">
       </div>
       <div style="display:flex;gap:7px;margin-top:12px;">
-        <button class="btn btn-sage" onclick="testSupabase()">接続テスト</button>
+        <button class="btn btn-sage" onclick="saveSettings();setTimeout(testSupabase,100)">接続テスト</button>
         <span class="text-muted" id="sb-test-result" style="align-self:center;"></span>
       </div>
     </div>
@@ -1418,7 +1418,7 @@ textarea.field { resize: vertical; min-height: 80px; line-height: 1.7; }
         <input class="field" id="claude-key" placeholder="sk-ant-..." type="password" style="max-width:500px;">
       </div>
       <div style="display:flex;gap:7px;margin-top:8px;">
-        <button class="btn btn-sage" onclick="testClaude()">AI接続テスト</button>
+        <button class="btn btn-sage" onclick="saveSettings();setTimeout(testClaude,100)">AI接続テスト</button>
         <span class="text-muted" id="claude-test-result" style="align-self:center;"></span>
       </div>
     </div>
@@ -1608,7 +1608,11 @@ async function callClaude(prompt, outputId, loadMsg = 'AI処理中...') {
       max_tokens: 2000,
       messages: [{ role: 'user', content: prompt }]
     };
-    const headers = { 'Content-Type': 'application/json' };
+    const headers = {
+      'Content-Type': 'application/json',
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true'
+    };
     const apiKey = getSetting('claude-key');
     if (apiKey) headers['x-api-key'] = apiKey;
     const res = await fetch('https://api.anthropic.com/v1/messages', {
@@ -2404,7 +2408,12 @@ async function testSupabase() {
   resEl.textContent = 'テスト中...';
   try {
     const client = await initSupabase();
-    if (!client) { resEl.textContent = '❌ URLまたはKeyが未入力です'; return; }
+    if (!client) {
+      const url = document.getElementById('sb-url')?.value;
+      const key = document.getElementById('sb-key')?.value;
+      resEl.textContent = !url ? '❌ Project URLを入力してください' : !key ? '❌ Anon Keyを入力してください' : '❌ 接続の初期化に失敗しました';
+      return;
+    }
     const table = document.getElementById('sb-table-apt').value || 'appointments';
     const { data, error } = await client.from(table).select('id').limit(1);
     if (error) { resEl.textContent = `❌ エラー: ${error.message}`; return; }
@@ -2436,7 +2445,11 @@ async function testClaude() {
   resEl.textContent = 'テスト中...';
   try {
     const body = {model:'claude-sonnet-4-20250514',max_tokens:30,messages:[{role:'user',content:'「テスト成功」と日本語で返してください'}]};
-    const headers = {'Content-Type':'application/json'};
+    const headers = {
+      'Content-Type':'application/json',
+      'anthropic-version':'2023-06-01',
+      'anthropic-dangerous-direct-browser-access':'true'
+    };
     const key = document.getElementById('claude-key').value;
     if (key) headers['x-api-key'] = key;
     const r = await fetch('https://api.anthropic.com/v1/messages', {method:'POST',headers,body:JSON.stringify(body)});
